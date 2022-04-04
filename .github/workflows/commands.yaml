@@ -3,7 +3,7 @@ name: Slash Commands Deploy
 on:
   - push
 
-job:
+jobs:
   commands:
     runs-on: ${{ matrix.os }}
     env:

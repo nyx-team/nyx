@@ -1,10 +1,9 @@
-const { 
+const {
     Client,
     Collection,
     Intents,
 } = require('discord.js');
 
-const path = require('path');
 const fs = require('node:fs');
 
 const loadCommands = require('./loadCommands');
@@ -16,12 +15,12 @@ const client = new Client({
     ],
 });
 
-//#region Load Config
-const configJSON = fs.readFileSync('../config.json', { 
-                        encoding: 'utf8' 
-                   });
+// #region Load Config
+const configJSON = fs.readFileSync('../config.json', {
+    encoding: 'utf8',
+});
 const config = JSON.parse(configJSON);
-//#endregion
+// #endregion
 
 // Collection(s)
 client.commands = new Collection();
@@ -29,11 +28,11 @@ client.commands = new Collection();
 // Temporarily Here
 // TODO: Make an Event Handler
 client.on('interactionCreate', async (interaction) => {
-    if(!interaction.isCommand()) return;
+    if (!interaction.isCommand()) return;
     const { commandName, options } = interaction;
 
     const command = client.commands.get(commandName);
-    if(!command) return;
+    if (!command) return;
 
     try {
         await command.execute(interaction);

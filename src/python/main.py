@@ -20,6 +20,11 @@ with open('../config.json', 'r') as f:
 
 config = json.loads(config_file)
 
+#Search for cogs in /cogs directory and load them automatically
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cogs.{filename[:-3]}')
+
 bot = Bot(command_prefix=',')
 
 @bot.listen()

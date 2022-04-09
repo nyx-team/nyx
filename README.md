@@ -1,10 +1,10 @@
 # Nyx
 
-Nyx is an open-source discord bot, made in JS and Python.
+**Nyx is a Multi-purpose, open-source Discord Bot, made in JS and Python.**
 
 ## Configuration
 
-To generate a Config file (`config.json`) do:
+To generate a `config.json` file do:
 
 `python make_config.py`
 

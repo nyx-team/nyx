@@ -43,7 +43,7 @@ eventFiles.forEach((file) => {
 });
 
 // On Ready
-client.on('ready', async () => {
+client.once('ready', async () => {
     loadCommands(client);
     console.log('Bot is Ready!');
 });

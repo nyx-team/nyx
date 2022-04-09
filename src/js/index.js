@@ -25,23 +25,20 @@ const config = JSON.parse(configJSON);
 // Collection(s)
 client.commands = new Collection();
 
-// Temporarily Here
-// TODO: Make an Event Handler
-client.on('interactionCreate', async (interaction) => {
-    if (!interaction.isCommand()) return;
-    const { commandName, options } = interaction;
+// Event(s) Handler
+const eventFiles = fs.readdirSync('./events', {
+    encoding: 'utf8',
+}).filter((file) => file.endsWith('.js'));
 
-    const command = client.commands.get(commandName);
-    if (!command) return;
+eventFiles.forEach((file) => {
+    /* eslint-disable global-require */
+    /* eslint-disable import/no-dynamic-require */
+    const events = require(`./events/${file}`);
 
-    try {
-        await command.execute(interaction);
-    } catch (err) {
-        await interaction.reply({
-            content: 'An error occured while trying to execute the command.',
-            ephemeral: true,
-        });
-        console.error(err);
+    if (events.once && events.once === true) {
+        client.once(events.name, async (...args) => events.execute(client, ...args));
+    } else {
+        client.on(events.name, async (...args) => events.execute(client, ...args));
     }
 });
 

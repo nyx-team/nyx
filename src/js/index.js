@@ -24,6 +24,7 @@ const config = JSON.parse(configJSON);
 
 // Collection(s)
 client.commands = new Collection();
+client.legacyCommands = new Collection();
 
 // Event(s) Handler
 const eventFiles = fs.readdirSync('./events', {
@@ -42,10 +43,6 @@ eventFiles.forEach((file) => {
     }
 });
 
-// On Ready
-client.once('ready', async () => {
-    Util.loadCommands(client);
-    console.log('Bot is Ready!');
-});
+client.on('nyxDebug', (message) => console.log(message));
 
 client.login(config.token);

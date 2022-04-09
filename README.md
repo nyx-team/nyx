@@ -1,6 +1,6 @@
 # Nyx
 
-Nyx is an open-source discord bot.
+Nyx is an open-source discord bot, made in JS and Python.
 
 ## Configuration
 

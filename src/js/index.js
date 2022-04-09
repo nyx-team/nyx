@@ -6,7 +6,7 @@ const {
 
 const fs = require('node:fs');
 
-const loadCommands = require('./loadCommands');
+const Util = require('./Util');
 
 const client = new Client({
     intents: [
@@ -44,7 +44,7 @@ eventFiles.forEach((file) => {
 
 // On Ready
 client.once('ready', async () => {
-    loadCommands(client);
+    Util.loadCommands(client);
     console.log('Bot is Ready!');
 });
 

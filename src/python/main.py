@@ -9,8 +9,6 @@ class Bot(AutoShardedBot):
     def __init__(self, command_prefix, *args, **options):
         super().__init__(command_prefix, *args, **options)
 
-# If the file doesn't exist
-# raise an Exception
 if not exists('../config.json'):
     raise Exception('No Config File found.')
 

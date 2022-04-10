@@ -11,3 +11,5 @@ class Fun(commands.Cog, name="Fun Commands"):
         
 def setup(bot):
     bot.add_cog(Fun(bot))
+
+    #test SSS

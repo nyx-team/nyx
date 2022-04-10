@@ -50,6 +50,21 @@ class Util {
 
         this.Log('commands', 'Loaded Legacy (Prefixed) Commands.', client);
     }
+
+    static loadEvents(client) {
+        const eventFiles = fs.readdirSync('./events')
+            .filter((file) => file.endsWith('.js'));
+
+        eventFiles.forEach((file) => {
+            const events = require(`./events/${file}`);
+
+            if (events.once && events.once === true) {
+                client.once(events.name, async (...args) => events.execute(client, ...args));
+            } else {
+                client.on(events.name, async (...args) => events.execute(client, ...args));
+            }
+        });
+    }
 }
 
 module.exports = Util;

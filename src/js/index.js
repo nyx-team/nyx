@@ -13,6 +13,11 @@ const client = new Client({
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
     ],
+    partials: ['CHANNEL'],
+    allowedMentions: {
+        parse: ['users'],
+        repliedUser: false,
+    },
     presence: {
         activities: [{
             name: 'dark theme moment',

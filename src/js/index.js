@@ -13,6 +13,12 @@ const client = new Client({
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
     ],
+    presence: {
+        activities: [{
+            name: 'dark theme moment',
+            type: 'PLAYING',
+        }],
+    },
 });
 
 // #region Load Config

@@ -9,15 +9,15 @@ class Bot(AutoShardedBot):
     def __init__(self, command_prefix, *args, **options):
         super().__init__(command_prefix, *args, **options)
 
-if not exists('../config.json'):
-    raise Exception('No Config File found.')
+        self.config = self.get_config()
 
-# Get config file
-config_file = ''
-with open('../config.json', 'r') as f:
-    config_file = f.read()
+    def get_config(self):
+        if not exists('../config.json'):
+            raise FileNotFoundError('No Config File found.')
 
-config = json.loads(config_file)
+        with open('../config.json', 'r') as f:
+            res = f.read()
+            return json.loads(res)
 
 bot = Bot(command_prefix=',')
 
@@ -32,6 +32,6 @@ async def on_ready():
 
 if __name__ == '__main__':
     try:
-        bot.run(config['token'])
+        bot.run(bot.config['token'])
     except LoginFailure as e:
         print(e)

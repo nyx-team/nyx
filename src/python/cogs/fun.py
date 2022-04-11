@@ -25,7 +25,7 @@ class Fun(commands.Cog, name="Fun commands"):
                 await number_message.edit(content=f"YES! The number was {rand}!")
             else:
                 await number_message.edit(content=f"Aw man, the number was {rand} and not {msg.content}.")
-        except TypeError as e:
+        except TypeError:
             await number_message.edit(content='*You did not send a valid number.*')
         
 def setup(bot):

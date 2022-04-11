@@ -10,7 +10,7 @@ class Fun(commands.Cog, name="Fun commands"):
     async def test(self, ctx):
         await ctx.send("test pass")
 
-    @commands.cooldown(1, 30, commands.BucketType.user)
+    @commands.cooldown(1, 30, commands.BucketType.member)
     @commands.command()
     async def guess(self, ctx):
         def check(message):
@@ -19,10 +19,14 @@ class Fun(commands.Cog, name="Fun commands"):
         number_message = await ctx.send("Guess the number from 1-10")
         rand = random.randint(1, 10)
         msg = await self.bot.wait_for('message', check=check)
-        if msg == rand:
-            await number_message.edit(content=f"YES! The number was {rand}!")
-        else:
-            await number_message.edit(content=f"Aw man, the number was {rand} and not {msg.content}.")
+
+        try:
+            if int(msg.content) == rand:
+                await number_message.edit(content=f"YES! The number was {rand}!")
+            else:
+                await number_message.edit(content=f"Aw man, the number was {rand} and not {msg.content}.")
+        except TypeError as e:
+            await number_message.edit(content='*You did not send a valid number.*')
         
 def setup(bot):
     bot.add_cog(Fun(bot))

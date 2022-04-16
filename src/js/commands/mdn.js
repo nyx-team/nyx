@@ -49,7 +49,7 @@ module.exports = {
         .setTimestamp();
         /* eslint-disable no-restricted-syntax */
         for (let { title, summary, mdn_url } of documents) {
-            summary = summary.replace(/(\r\n|\n|\r)/gm);
+            summary = summary.replace(/(\r\n|\n|\r)/gm, '');
 
             embed.addField(title, `${summary}\n**[Link](${base}${mdn_url})**`);
         }

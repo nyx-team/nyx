@@ -12,6 +12,7 @@
     },
     "rules": {
         "indent": ["error", 4],
-        "no-console": "off"
+        "no-console": "off",
+        "curly": "off"
     }
 }

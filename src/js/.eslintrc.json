@@ -13,6 +13,8 @@
     "rules": {
         "indent": ["error", 4],
         "no-console": "off",
-        "curly": "off"
+        "curly": "off",
+        "global-require": "off",
+        "import/no-dynamic-require": "off"
     }
 }

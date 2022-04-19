@@ -15,6 +15,7 @@
         "no-console": "off",
         "curly": "off",
         "global-require": "off",
-        "import/no-dynamic-require": "off"
+        "import/no-dynamic-require": "off",
+        "consistent-return": "off"
     }
 }

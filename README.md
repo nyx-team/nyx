@@ -8,13 +8,15 @@
 
 **You will need to generate a config file to run the Bot**
 
-Generate one by doing: `python make_config.py`
+Generate one by doing: 
+
+`python make_config.py`
 
 It should generate a `config.json` file in the `src` directory.
 
 Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
 
-Config should look like this:
+`config.json`**:**
 
 ```json
 {

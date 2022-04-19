@@ -19,7 +19,9 @@ module.exports = {
             .split(/\s+/);
         const command = args.shift().toLowerCase();
 
-        const commands = client.legacyCommands.get(command);
+        const commands = client.legacyCommands.get(command)
+            ?? client.legacyCommands.find((cmds) => cmds.aliases
+                && cmds.aliases.includes(command));
         if (!commands) return;
 
         const isCommandValid = this.validateCommand(message, commands, args, prefix);

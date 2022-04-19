@@ -7,6 +7,7 @@ module.exports = {
 
     minArgs: 1,
     args: '<command name>',
+    category: 'Help',
 
     /**
      * @param {Message} message
@@ -32,7 +33,8 @@ module.exports = {
             .setColor(0x6666ff)
             .addField('Description', description);
 
-        if (command.args) embed.addField('Args', command.args);
+        if (command.args) embed.addField('Args', `\`${command.args}\``);
+        if (command.category) embed.addField('Category', command.category);
         if (command.author) embed.addField('Command Author', `This command is made by: \`${command.author}\``);
 
         await message.reply({

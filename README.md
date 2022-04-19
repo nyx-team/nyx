@@ -6,11 +6,13 @@
 
 ## Configuration
 
-To generate a `config.json` file do:
+**You will need to generate a config file to run the Bot**
 
-`python make_config.py`
+Generate one by doing: `python make_config.py`
 
-And it should generate a `config.json` file in the `src` directory.
+It should generate a `config.json` file in the `src` directory.
+
+Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
 
 Config should look like this:
 

@@ -14,11 +14,6 @@ module.exports = {
      * @param {Client} client
      */
     async execute(message, args, client) {
-        /*
-        if (!args.length) return message.reply({
-            content: `**Not enough arguments passed!**\nArgs:\n\`\`\`\nhelp ${this.args}\n\`\`\``,
-        });*/
-
         const commandName = args[0];
         const command = client.legacyCommands.get(commandName);
 

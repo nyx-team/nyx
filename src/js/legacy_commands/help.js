@@ -33,6 +33,7 @@ module.exports = {
             .setColor(0x6666ff)
             .addField('Description', description);
 
+        if (command.aliases) embed.addField('Aliases', command.aliases.join(', '));
         if (command.args) embed.addField('Args', `\`${command.args}\``);
         if (command.category) embed.addField('Category', command.category);
         if (command.author) embed.addField('Command Author', `This command is made by: \`${command.author}\``);

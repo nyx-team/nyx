@@ -33,6 +33,14 @@ const configJSON = fs.readFileSync('../config.json', {
 const config = JSON.parse(configJSON);
 // #endregion
 
+try {
+    /* eslint-disable import/no-unresolved */
+    require('dotenv').config();
+/* eslint-disable no-empty */
+} catch {}
+
+const token = config.token ?? process.env.token;
+
 // Collection(s)
 client.commands = new Collection();
 client.legacyCommands = new Collection();
@@ -40,4 +48,4 @@ client.legacyCommands = new Collection();
 Util.loadEvents(client);
 client.on('nyxDebug', (message) => console.log(message));
 
-client.login(config.token);
+client.login(token);

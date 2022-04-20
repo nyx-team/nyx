@@ -56,5 +56,5 @@ async function exit(message, code = 0) {
 
     console.log(`Created command ${name}! File name: ${filteredName}.js`);
 
-    exit(undefined, 0);
+    exit();
 })();

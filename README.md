@@ -22,15 +22,6 @@ It should generate a `config.json` file in the `src` directory.
 
 Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
 
-`config.json`**:**
-
-```json
-{
-    "token": "TOKEN HERE"
-}
-```
-
-<br/>
 ### Using `dotenv`
 
 ***This one only works for JS***

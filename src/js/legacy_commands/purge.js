@@ -15,7 +15,7 @@ module.exports = {
         const amount = parseInt(args[0]);
 
         /* eslint-disable no-promise-executor-return */
-        const sleep = (ms = 3000) => new Promise((r) => setTimeout(r, ms));
+        const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
         await message.delete();
         const { size } = await message.channel.bulkDelete(amount, true);

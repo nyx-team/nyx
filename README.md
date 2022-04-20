@@ -6,7 +6,15 @@
 
 ## Configuration
 
-**You will need to generate a config file to run the Bot**
+**There are two ways to configure the Bot:**
+
+***One works globally, one works only for JS***
+
+Soon we'll try to make the two config options globally
+
+### JSON Config File
+
+***This one works both in JS and Python***
 
 Generate one by doing: 
 
@@ -23,3 +31,23 @@ Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
     "token": "TOKEN HERE"
 }
 ```
+
+### Using `dotenv`
+
+***This one only works for JS***
+
+First, Install `dotenv` IN `src/js` directory, not in root. By doing:
+
+```sh-session
+npm install -D dotenv
+```
+
+Then add a `.env` file in `src/js` directory.
+
+Like this:
+
+```env
+token="TOKEN HERE"
+```
+
+**Note:** the Name must be exactly `token` otherwise you will an error when trying to start the Bot.

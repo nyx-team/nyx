@@ -35,6 +35,7 @@ const config = JSON.parse(configJSON);
 
 try {
     /* eslint-disable import/no-unresolved */
+    /* eslint-disable import/no-extraneous-dependencies */
     require('dotenv').config();
 /* eslint-disable no-empty */
 } catch {}

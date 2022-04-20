@@ -8,8 +8,6 @@
 
 **There are two ways to configure the Bot:**
 
-***One works globally, one works only for JS***
-
 Soon we'll try to make the two config options globally
 
 ### JSON Config File
@@ -32,18 +30,19 @@ Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
 }
 ```
 
+<br/>
 ### Using `dotenv`
 
 ***This one only works for JS***
 
-First, Install `dotenv` IN `src/js` directory, not in root. By doing:
+First, install `dotenv` IN `src/js` directory, not in root. 
+By doing:
 
 ```sh-session
 npm install -D dotenv
 ```
 
-Then add a `.env` file in `src/js` directory.
-
+Then add a `.env` file in `src/js` directory
 Like this:
 
 ```env

@@ -51,7 +51,7 @@ async function exit(message, code = 0) {
 
     console.log('Creating command...');
     const filteredName = name.replaceAll(/(-|\s|_)/g, '-')
-        .replaceAll(/(\.|js)/g, '');
+        .replaceAll(/\.\w*$/g, '');
     fs.writeFileSync(`./legacy_commands/${filteredName}.js`, template);
 
     console.log(`Created command ${name}! File name: ${filteredName}.js`);

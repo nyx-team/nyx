@@ -40,4 +40,4 @@ Like this:
 token="TOKEN HERE"
 ```
 
-**Note:** the Name must be exactly `token` otherwise you will an error when trying to start the Bot.
+**Note:** the Name must be exactly `token` otherwise you will get an error when trying to start the Bot.

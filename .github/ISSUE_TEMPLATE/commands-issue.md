@@ -1,7 +1,7 @@
 ---
 name: Commands Issue
 about: Issue Template for Commands
-title: 'command:'
+title: 'commands: command `command` not working'
 labels: ''
 assignees: ''
 

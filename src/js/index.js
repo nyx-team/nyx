@@ -5,6 +5,7 @@ const {
 } = require('discord.js');
 
 const fs = require('node:fs');
+const path = require('node:path');
 
 const Util = require('./Util');
 
@@ -27,7 +28,11 @@ const client = new Client({
 });
 
 // #region Load Config
-const configJSON = fs.readFileSync('../config.json', {
+const configJSON = fs.readFileSync(path.join(
+    __dirname,
+    '..',
+    'config.json',
+), {
     encoding: 'utf8',
 });
 const config = JSON.parse(configJSON);

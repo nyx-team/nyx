@@ -1,5 +1,7 @@
 const { Client } = require('discord.js');
+
 const fs = require('node:fs');
+const path = require('node:path');
 
 /**
  * Utilities specifically for Nyx
@@ -21,10 +23,15 @@ class Util {
      * @param {Client} client
      */
     static loadCommands(client) {
-        const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync(this.curPathJoin(
+            'commands',
+        )).filter((file) => file.endsWith('.js'));
 
         commandFiles.forEach((file) => {
-            const command = require(`./commands/${file}`);
+            const command = require(this.curPathJoin(
+                'commands',
+                file,
+            ));
 
             client.commands.set(command.name, command);
         });
@@ -37,7 +44,9 @@ class Util {
      * @param {Client} client
      */
     static loadLegacyCommands(client) {
-        const legacyCommandFiles = fs.readdirSync('./legacy_commands')
+        const legacyCommandFiles = fs.readdirSync(this.curPathJoin(
+            'legacy_commands',
+        ))
             .filter((file) => file.endsWith('.js'));
 
         legacyCommandFiles.forEach((file) => {
@@ -50,11 +59,14 @@ class Util {
     }
 
     static loadEvents(client) {
-        const eventFiles = fs.readdirSync('./events')
+        const eventFiles = fs.readdirSync(this.curPathJoin('events'))
             .filter((file) => file.endsWith('.js'));
 
         eventFiles.forEach((file) => {
-            const events = require(`./events/${file}`);
+            const events = require(this.curPathJoin(
+                'events',
+                file,
+            ));
 
             if (events.once && events.once === true) {
                 client.once(events.name, async (...args) => events.execute(client, ...args));
@@ -62,6 +74,10 @@ class Util {
                 client.on(events.name, async (...args) => events.execute(client, ...args));
             }
         });
+    }
+
+    static curPathJoin(dir, ...otherPaths) {
+        return path.join(__dirname, dir, ...otherPaths);
     }
 }
 

@@ -8,38 +8,16 @@
 
 ## Configuration
 
-**There are two ways to configure the Bot:**
-
-Soon we'll try to make the two config options globally
+A Config file is mandatory to start or to be able to start the Bot.
 
 ### JSON Config File
 
-***This one works both in JS and Python***
+This Config method works both in Python and JavaScript
 
-Generate one by doing: 
-
-`python make_config.py`
-
-It should generate a `config.json` file in the `src` directory.
-
-Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
-
-### Using `dotenv`
-
-***This one only works for JS***
-
-First, install `dotenv` IN `src/js` directory, not in root. 
-By doing:
-
+Simply run:
 ```sh-session
-npm install -D dotenv
+python make_config.py
 ```
 
-Then add a `.env` file in `src/js` directory
-Like this:
-
-```env
-token="TOKEN HERE"
-```
-
-**Note:** the Name must be exactly `token` otherwise you will get an error when trying to start the Bot.
+And a `config.json` file should generate,
+then fill in the credintials to be able to start the Bot.

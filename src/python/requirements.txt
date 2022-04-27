@@ -1,2 +1,0 @@
-discord.py==1.7.3
-mysql_connector_repackaged==0.3.1

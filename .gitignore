@@ -1,7 +1,4 @@
 # Auto-Generated files
-src/js/node_modules
 __pycache__
-src/config.json
-package-lock.json
-
 .env
+config.json

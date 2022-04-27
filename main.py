@@ -12,10 +12,10 @@ class Bot(AutoShardedBot):
         self.config = self.get_config()
 
     def get_config(self):
-        if not exists('../config.json'):
+        if not exists('./config.json'):
             raise FileNotFoundError('No Config File found.')
 
-        with open('../config.json', 'r') as f:
+        with open('./config.json', 'r') as f:
             res = f.read()
             return json.loads(res)
 

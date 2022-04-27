@@ -1,42 +1,41 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const [,, ...args] = process.argv;
+const { REST } = require("@discordjs/rest");
+const { Routes } = require("discord-api-types/v9");
+const [, , ...args] = process.argv;
 
-const fs = require('node:fs');
+const { readFileSync, readdirSync } = require("fs");
 
-const token = process.env.token ?? (
-    args[0] === 'manual'
-        ? JSON.parse(
-            fs.readFileSync('../config.json', {
-                encoding: 'utf8',
-            })
-        ).token
-        : null
-);
+const token =
+  process.env.token ??
+  (args[0] === "manual"
+    ? JSON.parse(
+        readFileSync("../config.json", {
+          encoding: "utf8",
+        })
+      ).token
+    : null);
 
 const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = readdirSync("./commands").filter((file) =>
+  file.endsWith(".js")
+);
 
-commandFiles.forEach(file => {
-    const { data } = require(`./commands/${file}`);
-    commands.push(data.toJSON())
+commandFiles.forEach((file) => {
+  const { data } = require(`./commands/${file}`);
+  commands.push(data.toJSON());
 });
 
-const clientId = '960533661109878805';
+const clientId = "960533661109878805";
 
-const rest = new REST({ version: '9' }).setToken(token);
+const rest = new REST({ version: "9" }).setToken(token);
 
 (async () => {
-    try {
-        console.log('Started refreshing application (/) commands.');
+  try {
+    console.log("Started refreshing application (/) commands.");
 
-        await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: commands },
-        );
+    await rest.put(Routes.applicationCommands(clientId), { body: commands });
 
-        console.log('Successfully reloaded application (/) commands.');
-    } catch (error) {
-        console.error(error);
-    }
+    console.log("Successfully reloaded application (/) commands.");
+  } catch (error) {
+    console.error(error);
+  }
 })();

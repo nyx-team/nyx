@@ -25,7 +25,7 @@ Copy this example here to `python` branch:
 }
 ```
 
-Should be places in root directory of the `python` branch, and named as `config.json`
+Should be placed in root directory of the `python` branch, and named as `config.json`
 
 ### Using `dotenv`
 

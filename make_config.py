@@ -1,6 +1,6 @@
 from os.path import exists
 
-config_path = './src/config.json'
+config_path = './config.json'
 
 template = '''{
     "token": "TOKEN HERE"

@@ -1,30 +1,32 @@
 # Nyx
 
+***This is the JS Branch of the Bot!***
+
 **Nyx is a Multi-purpose, open-source Discord Bot, made in JS and Python.**
 
 [Invite the Bot here](https://discord.com/oauth2/authorize?client_id=960533661109878805&scope=bot%20applications.commands&permissions=545394261246)
 
 ## Configuration
 
-**There are two ways to configure the Bot:**
-
-Soon we'll try to make the two config options globally
+Configuration file is Mandatory for the Bot to work, so follow the steps below on how to add a config for the 2 branches
 
 ### JSON Config File
 
-***This one works both in JS and Python***
+**Recommended for Python Branch**
 
-Generate one by doing: 
+Copy this example here to `python` branch:
 
-`python make_config.py`
+```json
+{
+    "token": "TOKEN"
+}
+```
 
-It should generate a `config.json` file in the `src` directory.
-
-Then fill in the credentials needed to run the bot (e.g. `"TOKEN"`)
+Should be places in root directory of the `python` branch, and named as `config.json`
 
 ### Using `dotenv`
 
-***This one only works for JS***
+**Recommended for JS branch**
 
 First, install `dotenv` IN `src/js` directory, not in root. 
 By doing:

@@ -30,7 +30,7 @@ const client = new Client({
 // #region Load Config
 const configJSON = fs.readFileSync(path.join(
     __dirname,
-    '..',
+    '.',
     'config.json',
 ), {
     encoding: 'utf8',

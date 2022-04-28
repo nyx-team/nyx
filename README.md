@@ -38,7 +38,7 @@ By doing:
 npm install -D dotenv
 ```
 
-Then add a `.env` file in `src/js` directory
+Then add a `.env` file in the root directory
 Like this:
 
 ```env

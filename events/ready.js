@@ -1,13 +1,13 @@
-const Util = require('../Util');
+const { loadCommands, loadLegacyCommands } = require("../Util");
 
 module.exports = {
-    name: 'ready',
+    name: "ready",
     once: true,
 
     async execute(client) {
-        Util.loadCommands(client);
-        Util.loadLegacyCommands(client);
+        loadCommands(client);
+        loadLegacyCommands(client);
 
-        console.log('Bot is ready!');
+        console.log("Bot is ready!");
     },
 };

@@ -1,17 +1,17 @@
 module.exports = {
-    name: 'purge',
-    aliases: ['clear'],
-    description: 'Deletes a certain amount of message provided by the user.',
-    author: 'loldonut',
+    name: "purge",
+    aliases: ["clear"],
+    description: "Deletes a certain amount of message provided by the user.",
+    author: "loldonut",
 
-    args: '<purge count>',
+    args: "<purge count>",
     minArgs: 1,
-    reqPerms: ['MANAGE_MESSAGES'],
+    reqPerms: ["MANAGE_MESSAGES"],
 
-    category: 'Moderation',
+    category: "Moderation",
 
     async execute(message, args) {
-        /* eslint-disable radix */
+    /* eslint-disable radix */
         const amount = parseInt(args[0]);
 
         /* eslint-disable no-promise-executor-return */

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer');
-const fs = require('node:fs');
+const inquirer = require("inquirer");
+const { writeFileSync } = require("fs");
 
 async function exit(message, code = 0) {
     if (message) console.error(message);
@@ -10,31 +10,27 @@ async function exit(message, code = 0) {
 
 (async () => {
     const { name } = await inquirer.prompt({
-        name: 'name',
-        type: 'input',
-        message: 'Command name?',
+        name: "name",
+        type: "input",
+        message: "Command name?",
     });
 
-    if (!name) exit('You did not provide a name!', 1);
+    if (!name) exit("You did not provide a name!", 1);
 
     const { description } = await inquirer.prompt({
-        name: 'description',
-        type: 'input',
-        message: 'Description?',
+        name: "description",
+        type: "input",
+        message: "Description?",
     });
 
-    if (!description) exit('You did not provide a description!', 1);
+    if (!description) exit("You did not provide a description!", 1);
 
     const { category } = await inquirer.prompt({
-        name: 'category',
-        type: 'list',
-        choices: [
-            'Moderation',
-            'Fun',
-            'Others',
-        ],
+        name: "category",
+        type: "list",
+        choices: ["Moderation", "Fun", "Others"],
         default() {
-            return 'Others';
+            return "Others";
         },
     });
 
@@ -49,10 +45,11 @@ async function exit(message, code = 0) {
     },
 }`;
 
-    console.log('Creating command...');
-    const filteredName = name.replaceAll(/(-|\s|_)/g, '-')
-        .replaceAll(/\.\w*$/g, '');
-    fs.writeFileSync(`./legacy_commands/${filteredName}.js`, template);
+    console.log("Creating command...");
+    const filteredName = name
+        .replaceAll(/(-|\s|_)/g, "-")
+        .replaceAll(/\.\w*$/g, "");
+    writeFileSync(`./legacy_commands/${filteredName}.js`, template);
 
     console.log(`Created command ${name}! File name: ${filteredName}.js`);
 

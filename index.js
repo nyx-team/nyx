@@ -1,48 +1,38 @@
-const {
-    Client,
-    Collection,
-    Intents,
-} = require('discord.js');
+const { Client, Collection, Intents } = require("discord.js");
 
-const fs = require('node:fs');
-const path = require('node:path');
+const { readFileSync } = require("fs");
 
-const Util = require('./Util');
+const { join } = require("path");
+
+const { loadEvents } = require("./Util");
 
 const client = new Client({
-    intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-    ],
-    partials: ['CHANNEL'],
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    partials: ["CHANNEL"],
     allowedMentions: {
-        parse: ['users'],
+        parse: ["users"],
         repliedUser: false,
     },
     presence: {
-        activities: [{
-            name: 'dark theme moment',
-            type: 'PLAYING',
-        }],
+        activities: [
+            {
+                name: "dark theme moment",
+                type: "PLAYING",
+            },
+        ],
     },
 });
 
 // #region Load Config
-const configJSON = fs.readFileSync(path.join(
-    __dirname,
-    '.',
-    'config.json',
-), {
-    encoding: 'utf8',
+const configJSON = readFileSync(join(__dirname, ".", "config.json"), {
+    encoding: "utf8",
 });
 const config = JSON.parse(configJSON);
 // #endregion
 
 try {
-    /* eslint-disable import/no-unresolved */
-    /* eslint-disable import/no-extraneous-dependencies */
-    require('dotenv').config();
-/* eslint-disable no-empty */
+    require("dotenv").config();
+    /* eslint-disable no-empty */
 } catch {}
 
 const token = config.token ?? process.env.token;
@@ -51,7 +41,7 @@ const token = config.token ?? process.env.token;
 client.commands = new Collection();
 client.legacyCommands = new Collection();
 
-Util.loadEvents(client);
-client.on('nyxDebug', (message) => console.log(message));
+loadEvents(client);
+client.on("nyxDebug", (message) => console.log(message));
 
 client.login(token);

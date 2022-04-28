@@ -7,34 +7,32 @@ const { join } = require("path");
 const { loadEvents } = require("./Util");
 
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-  partials: ["CHANNEL"],
-  allowedMentions: {
-    parse: ["users"],
-    repliedUser: false,
-  },
-  presence: {
-    activities: [
-      {
-        name: "dark theme moment",
-        type: "PLAYING",
-      },
-    ],
-  },
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    partials: ["CHANNEL"],
+    allowedMentions: {
+        parse: ["users"],
+        repliedUser: false,
+    },
+    presence: {
+        activities: [
+            {
+                name: "dark theme moment",
+                type: "PLAYING",
+            },
+        ],
+    },
 });
 
 // #region Load Config
 const configJSON = readFileSync(join(__dirname, ".", "config.json"), {
-  encoding: "utf8",
+    encoding: "utf8",
 });
 const config = JSON.parse(configJSON);
 // #endregion
 
 try {
-  /* eslint-disable import/no-unresolved */
-  /* eslint-disable import/no-extraneous-dependencies */
-  require("dotenv").config();
-  /* eslint-disable no-empty */
+    require("dotenv").config();
+    /* eslint-disable no-empty */
 } catch {}
 
 const token = config.token ?? process.env.token;

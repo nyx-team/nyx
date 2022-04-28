@@ -3,9 +3,9 @@ const { MessageEmbed } = require("discord.js");
 const { get } = require("axios");
 
 module.exports = {
-  name: "mdn",
+    name: "mdn",
 
-  /* eslint-disable indent */
+    /* eslint-disable indent */
   data: new SlashCommandBuilder()
     .setName("mdn")
     .setDescription("Search for MDN JS Docs")

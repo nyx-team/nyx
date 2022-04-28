@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { CommandInteraction } = require("discord.js");
 
 module.exports = {
-  name: "purge",
-  /* eslint-disable indent */
+    name: "purge",
+    /* eslint-disable indent */
   data: new SlashCommandBuilder()
     .setName("purge")
     .setDescription("Purges messages / Bulk deletes messages")

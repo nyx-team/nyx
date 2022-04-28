@@ -31,7 +31,7 @@ Should be placed in root directory of the `python` branch, and named as `config.
 
 **Recommended for JS branch**
 
-First, install `dotenv` IN `src/js` directory, not in root. 
+First, install `dotenv`
 By doing:
 
 ```sh-session

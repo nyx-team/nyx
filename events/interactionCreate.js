@@ -1,5 +1,5 @@
 module.exports = {
-    name: "interactionCreate",
+    name: 'interactionCreate',
 
     async execute(client, interaction) {
         if (!interaction.isCommand()) return;
@@ -12,7 +12,7 @@ module.exports = {
             await command.execute(interaction, options);
         } catch (err) {
             await interaction.reply({
-                content: "An error occured while trying to execute the command.",
+                content: 'An error occured while trying to execute the command.',
                 ephemeral: true,
             });
             console.error(err);

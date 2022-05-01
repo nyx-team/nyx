@@ -1,8 +1,8 @@
 // For autocompletion/IntelliSense
-const { Client, Message, MessageEmbed } = require("discord.js");
+const { Client, Message, MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: "messageCreate",
+    name: 'messageCreate',
 
     /**
    * @param {Client} client
@@ -11,7 +11,7 @@ module.exports = {
     async execute(client, message) {
     // Hardcoded prefix for now
     // TODO: Make prefix customizable
-        const prefix = ",";
+        const prefix = ',';
         if (!message.content.startsWith(prefix)) return;
 
         const args = message.content.slice(prefix.length).trim().split(/\s+/);
@@ -39,7 +39,7 @@ module.exports = {
             await commands.execute(message, args, client);
         } catch (err) {
             console.error(err);
-            await message.channel.send(":x: The Command Failed!");
+            await message.channel.send(':x: The Command Failed!');
         }
     },
 
@@ -50,7 +50,7 @@ module.exports = {
     // does not meet minArgs
         if (command?.minArgs && args.length < command?.minArgs) {
             const embed = new MessageEmbed()
-                .setColor("DARK_BLUE")
+                .setColor('DARK_BLUE')
                 .setDescription(
                     `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
                 );

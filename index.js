@@ -1,37 +1,37 @@
-const { Client, Collection, Intents } = require("discord.js");
+const { Client, Collection, Intents } = require('discord.js');
 
-const { readFileSync } = require("fs");
+const { readFileSync } = require('fs');
 
-const { join } = require("path");
+const { join } = require('path');
 
-const { loadEvents } = require("./Util");
+const { loadEvents } = require('./Util');
 
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-    partials: ["CHANNEL"],
+    partials: ['CHANNEL'],
     allowedMentions: {
-        parse: ["users"],
+        parse: ['users'],
         repliedUser: false,
     },
     presence: {
         activities: [
             {
-                name: "dark theme moment",
-                type: "PLAYING",
+                name: 'dark theme moment',
+                type: 'PLAYING',
             },
         ],
     },
 });
 
 // #region Load Config
-const configJSON = readFileSync(join(__dirname, ".", "config.json"), {
-    encoding: "utf8",
+const configJSON = readFileSync(join(__dirname, '.', 'config.json'), {
+    encoding: 'utf8',
 });
 const config = JSON.parse(configJSON);
 // #endregion
 
 try {
-    require("dotenv").config();
+    require('dotenv').config();
     /* eslint-disable no-empty */
 } catch {}
 
@@ -42,6 +42,6 @@ client.commands = new Collection();
 client.legacyCommands = new Collection();
 
 loadEvents(client);
-client.on("nyxDebug", (message) => console.log(message));
+client.on('nyxDebug', (message) => console.log(message));
 
 client.login(token);

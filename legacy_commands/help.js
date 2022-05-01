@@ -1,13 +1,13 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: "help",
-    description: "Helps with commands, what else.",
-    author: "loldonut",
+    name: 'help',
+    description: 'Helps with commands, what else.',
+    author: 'loldonut',
 
     minArgs: 1,
-    args: "<command name>",
-    category: "Help",
+    args: '<command name>',
+    category: 'Help',
 
     /**
    * @param {Message} message
@@ -32,14 +32,14 @@ module.exports = {
             })
             .setTimestamp()
             .setColor(0x6666ff)
-            .addField("Description", description);
+            .addField('Description', description);
 
-        if (command.aliases) embed.addField("Aliases", command.aliases.join(", "));
-        if (command.args) embed.addField("Args", `\`${command.args}\``);
-        if (command.category) embed.addField("Category", command.category);
+        if (command.aliases) embed.addField('Aliases', command.aliases.join(', '));
+        if (command.args) embed.addField('Args', `\`${command.args}\``);
+        if (command.category) embed.addField('Category', command.category);
         if (command.author)
             embed.addField(
-                "Command Author",
+                'Command Author',
                 `This command is made by: \`${command.author}\``
             );
 

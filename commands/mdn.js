@@ -1,17 +1,17 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed } = require("discord.js");
-const { get } = require("axios");
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+const { get } = require('axios');
 
 module.exports = {
-    name: "mdn",
+    name: 'mdn',
 
     data: new SlashCommandBuilder()
-        .setName("mdn")
-        .setDescription("Search for MDN JS Docs")
+        .setName('mdn')
+        .setDescription('Search for MDN JS Docs')
         .addStringOption((options) =>
             options
-                .setName("query")
-                .setDescription("Search JS Stuff through MDN")
+                .setName('query')
+                .setDescription('Search JS Stuff through MDN')
                 .setRequired(true)
         ),
 
@@ -26,9 +26,9 @@ module.exports = {
      * @param {CommandInteractionOptionResolver} options
      */
     async execute(interaction, options) {
-        const base = "https://developer.mozilla.org";
+        const base = 'https://developer.mozilla.org';
 
-        const query = options.getString("query");
+        const query = options.getString('query');
 
         const uri = `${base}/api/v1/search?q=${encodeURIComponent(
             query
@@ -40,7 +40,7 @@ module.exports = {
 
         if (!documents.length)
             return interaction.reply({
-                content: "No results was found!",
+                content: 'No results was found!',
                 ephemeral: true,
             });
         if (documents.length > 3) {
@@ -50,20 +50,20 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setAuthor({
-                name: "MDN Docs",
+                name: 'MDN Docs',
             })
-            .setColor("BLUE")
+            .setColor('BLUE')
             .setTimestamp();
         /* eslint-disable no-restricted-syntax */
         for (let { title, summary, mdn_url } of documents) {
-            summary = summary.replace(/(\r\n|\n|\r)/gm, "");
+            summary = summary.replace(/(\r\n|\n|\r)/gm, '');
 
             embed.addField(title, `${summary}\n**[Link](${base}${mdn_url})**`);
         }
 
         if (truncated) {
             embed.addField(
-                "Other Results",
+                'Other Results',
                 `Got too many results! [Click here to view all results](${uri})`
             );
         }

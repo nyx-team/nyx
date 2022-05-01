@@ -8,22 +8,24 @@ const { join } = require("path");
  */
 class Util {
     /**
-   * Logs your message
-   * to Event `nyxDebug`
-   * @param {string} eventType
-   * @param {string} message
-   * @param {Client} client
-   */
+     * Logs your message
+     * to Event `nyxDebug`
+     * @param {string} eventType
+     * @param {string} message
+     * @param {Client} client
+     */
     static Log(eventType, message, client) {
         client.emit("nyxDebug", `[${eventType}]: ${message}`);
     }
 
     /**
-   * Loads in the slash commands.
-   * @param {Client} client
-   */
+     * Loads in the slash commands.
+     * @param {Client} client
+     */
     static loadCommands(client) {
-        const commandFiles = readdirSync(this.curPathJoin("commands")).filter(
+        const commandFiles = readdirSync(
+            this.curPathJoin('commands')
+        ).filter(
             (file) => file.endsWith(".js")
         );
 
@@ -37,9 +39,9 @@ class Util {
     }
 
     /**
-   * Loads prefixed commands
-   * @param {Client} client
-   */
+     * Loads prefixed commands
+     * @param {Client} client
+     */
     static loadLegacyCommands(client) {
         const legacyCommandFiles = readdirSync(
             this.curPathJoin("legacy_commands")
@@ -55,12 +57,14 @@ class Util {
     }
 
     static loadEvents(client) {
-        const eventFiles = readdirSync(this.curPathJoin("events")).filter((file) =>
+        const eventFiles = readdirSync(
+            './events'
+        ).filter((file) =>
             file.endsWith(".js")
         );
 
         eventFiles.forEach((file) => {
-            const events = require(this.curPathJoin("events", file));
+            const events = require(`./events/${file}`);
 
             if (events.once && events.once === true) {
                 client.once(events.name, async (...args) =>

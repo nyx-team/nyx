@@ -23,7 +23,7 @@ module.exports = {
             .replaceAll('<', 'l')
             .replaceAll('>', 'm')
             .replaceAll('!', 'n')
-            .replaceAll('||', 'o')
+            .replaceAll('/', 'o')
             .replaceAll('%', 'p')
             .replaceAll('~', 'q')
             .replaceAll('←', 'r')

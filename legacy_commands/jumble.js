@@ -24,7 +24,7 @@ module.exports = {
             .replace(/(l|L)/g, '<')
             .replace(/(m|M)/g, '>')
             .replace(/(n|N|Ñ|ñ)/g, '!')
-            .replace(/(o|O|Ó|Ô|Ö|Ò|Œ|Ø|Ō|Õ|ó|ô|ö|ò|œ|ø|ō|õ)/g, '\|\|')
+            .replace(/(o|O|Ó|Ô|Ö|Ò|Œ|Ø|Ō|Õ|ó|ô|ö|ò|œ|ø|ō|õ)/g, '/')
             .replace(/(p|P)/g, '%')
             .replace(/(q|Q)/g, '~')
             .replace(/(r|R)/g, '←')

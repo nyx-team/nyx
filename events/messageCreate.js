@@ -5,23 +5,20 @@ module.exports = {
     name: 'messageCreate',
 
     /**
-   * @param {Client} client
-   * @param {Message} message
-   */
+     * @param {Client} client
+     * @param {Message} message
+     */
     async execute(client, message) {
-    // Hardcoded prefix for now
-    // TODO: Make prefix customizable
+        // Hardcoded prefix for now
+        // TODO: Make prefix customizable
         const prefix = ',';
         if (!message.content.startsWith(prefix)) return;
 
         const args = message.content.slice(prefix.length).trim().split(/\s+/);
         const command = args.shift().toLowerCase();
 
-        const commands =
-      client.legacyCommands.get(command) ??
-      client.legacyCommands.find(
-          (cmds) => cmds.aliases && cmds.aliases.includes(command)
-      );
+        const commands = client.legacyCommands.get(command) 
+            ?? client.legacyCommands.find((cmds) => cmds.aliases && cmds.aliases.includes(command));
         if (!commands) return;
 
         const isCommandValid = this.validateCommand(
@@ -44,10 +41,10 @@ module.exports = {
     },
 
     validateCommand(message, command, args, prefix) {
-    // Check if command needs a minium args
-    // If there is then
-    // Send an error if args length
-    // does not meet minArgs
+        // Check if command needs a minium args
+        // If there is then
+        // Send an error if args length
+        // does not meet minArgs
         if (command?.minArgs && args.length < command?.minArgs) {
             const embed = new MessageEmbed()
                 .setColor('DARK_BLUE')

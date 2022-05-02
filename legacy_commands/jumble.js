@@ -3,7 +3,7 @@ module.exports = {
     description: 'Does "random" (not really) stuff to your text',
 
     category: 'Fun',
-    reqArgs: 1,
+    minArgs: 1,
     args: '<text>',
 
     async execute(message, args, client) {

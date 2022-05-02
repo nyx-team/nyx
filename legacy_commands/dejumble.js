@@ -1,9 +1,10 @@
 module.exports = {
     name: 'dejumble',
     description: 'De-Jumbles the Jumbled words from Nyx',
+    author: 'loldonut',
 
     category: 'Fun',
-    reqArgs: 1,
+    minArgs: 1,
 
     async execute(message, args, client) {
         const jumbledText = args.join(' ');

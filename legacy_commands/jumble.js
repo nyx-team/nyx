@@ -1,6 +1,7 @@
 module.exports = {
     name: 'jumble',
     description: 'Does "random" (not really) stuff to your text',
+    author: 'loldonut',
 
     category: 'Fun',
     minArgs: 1,

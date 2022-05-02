@@ -37,11 +37,24 @@ module.exports = {
         if (command.aliases) embed.addField('Aliases', command.aliases.join(', '));
         if (command.args) embed.addField('Args', `\`${command.args}\``);
         if (command.category) embed.addField('Category', command.category);
-        if (command.author)
+        if (command.author) {
+            // The Commit that added tne command
+            const commandCommit = command.commit
+                ? `${command.commit}` 
+                : '';
+
+            const nyxGithub = 'https://github.com/nyx-team/nyx';
+
+            const commandCommitLink = commandCommit
+                ? ` ([${commandCommit.slice(0, 7)}](${nyxGithub}/tree/${commandCommit}))`
+                : '';
+
+
             embed.addField(
                 'Command Author',
-                `This command is made by: \`${command.author}\``
+                `This command is made by: \`${command.author}\`${commandCommitLink}`
             );
+        }
 
         await message.reply({
             embeds: [embed],

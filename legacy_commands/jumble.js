@@ -2,6 +2,7 @@ module.exports = {
     name: 'jumble',
     description: 'Does "random" (not really) stuff to your text',
     author: 'loldonut',
+    commit: '5701068faab33bf5d7460285a7b939564eb8ae92',
 
     category: 'Fun',
     minArgs: 1,

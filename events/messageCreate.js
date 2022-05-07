@@ -45,7 +45,10 @@ module.exports = {
         // If there is then
         // Send an error if args length
         // does not meet minArgs
-        if (command?.minArgs && args.length < command?.minArgs) {
+        if (
+            command?.minArgs &&
+            args.length < command?.minArgs
+        ) {
             const embed = new MessageEmbed()
                 .setColor('DARK_BLUE')
                 .setDescription(
@@ -56,12 +59,22 @@ module.exports = {
             };
         }
 
+        if (
+            command?.reqPerms &&
+            message.member.permissions.any(command.reqPerms) &&
+            !message.guild.me.permissions.has(command?.reqPerms)
+        ) {
+            return {
+                content: `:x: **The Bot does not have the required permission to run the command!**\nPermissions needed: \`${command.reqPerms.join(', ')}\``,
+            };
+        }
+
         // If message author
         // has the required permissions
         // to run the command.
         if (
             command?.reqPerms &&
-      !message.member.permissions.any(command.reqPerms)
+            !message.member.permissions.any(command.reqPerms)
         ) {
             return false;
         }

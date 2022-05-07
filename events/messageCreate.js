@@ -61,7 +61,7 @@ module.exports = {
 
         if (
             command?.reqPerms &&
-            message.member.permissions.any(command.reqPerms) &&
+            message.member.permissions.has(command.reqPerms) &&
             !message.guild.me.permissions.has(command?.reqPerms)
         ) {
             return {
@@ -74,7 +74,7 @@ module.exports = {
         // to run the command.
         if (
             command?.reqPerms &&
-            !message.member.permissions.any(command.reqPerms)
+            !message.member.permissions.has(command.reqPerms)
         ) {
             return false;
         }

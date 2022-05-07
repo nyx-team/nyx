@@ -41,24 +41,6 @@ module.exports = {
     },
 
     validateCommand(message, command, args, prefix) {
-        // Check if command needs a minium args
-        // If there is then
-        // Send an error if args length
-        // does not meet minArgs
-        if (
-            command?.minArgs &&
-            args.length < command?.minArgs
-        ) {
-            const embed = new MessageEmbed()
-                .setColor('DARK_BLUE')
-                .setDescription(
-                    `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
-                );
-            return {
-                embeds: [embed],
-            };
-        }
-
         if (
             command?.reqPerms &&
             message.member.permissions.has(command.reqPerms) &&
@@ -77,6 +59,24 @@ module.exports = {
             !message.member.permissions.has(command.reqPerms)
         ) {
             return false;
+        }
+
+        // Check if command needs a minium args
+        // If there is then
+        // Send an error if args length
+        // does not meet minArgs
+        if (
+            command?.minArgs &&
+            args.length < command?.minArgs
+        ) {
+            const embed = new MessageEmbed()
+                .setColor('DARK_BLUE')
+                .setDescription(
+                    `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
+                );
+            return {
+                embeds: [embed],
+            };
         }
 
         return true;

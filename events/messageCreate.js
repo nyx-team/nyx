@@ -1,5 +1,9 @@
 // For autocompletion/IntelliSense
-const { Client, Message, MessageEmbed } = require('discord.js');
+const {
+    Client,
+    Message,
+    MessageEmbed,
+} = require('discord.js');
 
 module.exports = {
     name: 'messageCreate',
@@ -21,7 +25,7 @@ module.exports = {
             ?? client.legacyCommands.find((cmds) => cmds.aliases && cmds.aliases.includes(command));
         if (!commands) return;
 
-        const isCommandValid = this.validateCommand(
+        const isCommandValid = await this.validateCommand(
             message,
             commands,
             args,
@@ -40,7 +44,7 @@ module.exports = {
         }
     },
 
-    validateCommand(message, command, args, prefix) {
+    async validateCommand(message, command, args, prefix) {
         if (
             command?.reqPerms &&
             message.member.permissions.has(command.reqPerms) &&
@@ -69,14 +73,21 @@ module.exports = {
             command?.minArgs &&
             args.length < command?.minArgs
         ) {
-            const embed = new MessageEmbed()
-                .setColor('DARK_BLUE')
-                .setDescription(
-                    `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
-                );
-            return {
-                embeds: [embed],
-            };
+            if (!command?.customArgError) {
+                const embed = new MessageEmbed()
+                    .setColor('DARK_BLUE')
+                    .setDescription(
+                        `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
+                    );
+                return {
+                    embeds: [embed],
+                };
+            }
+
+            if (typeof command?.customArgError === 'function') {
+                await command?.customArgError(message);
+                return false;
+            }
         }
 
         return true;

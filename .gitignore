@@ -2,3 +2,8 @@
 __pycache__
 .env
 config.json
+
+# JS Files
+node_modules
+package.json
+package-lock.json

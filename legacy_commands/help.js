@@ -7,13 +7,37 @@ module.exports = {
 
     minArgs: 1,
     args: '<command name>',
+    async customArgError(message) {
+        const commands = [];
+
+        message.client.legacyCommands
+            .every((_, name) => commands.push(`\`${name}\``));
+
+        const embed = new MessageEmbed()
+            .setAuthor({
+                name: 'Nyx (JS) Commands',
+                iconURL: message.client.user
+                    .displayAvatarURL({ dynamic: true }),
+            })
+            .addField('Commands', `${commands.join(', ')}`)
+            .setColor('BLURPLE')
+            .setTimestamp()
+            .setFooter({
+                text: 'Nyx JavaScript Branch',
+            });
+
+        await message.reply({
+            content: ':x: **Not enough arguments passed!**',
+            embeds: [embed],
+        });
+    },
     category: 'Help',
 
     /**
-   * @param {Message} message
-   * @param {string[]} args
-   * @param {Client} client
-   */
+     * @param {Message} message
+     * @param {string[]} args
+     * @param {Client} client
+     */
     async execute(message, args, client) {
         const commandName = args[0];
         const command = client.legacyCommands.get(commandName);

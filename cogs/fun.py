@@ -27,6 +27,11 @@ class Fun(commands.Cog, name="Fun commands"):
                 await number_message.edit(content=f"Aw man, the number was {rand} and not {msg.content}.")
         except TypeError:
             await number_message.edit(content='*You did not send a valid number.*')
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandNotFound):
+            return
         
 def setup(bot):
     bot.add_cog(Fun(bot))

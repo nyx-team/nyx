@@ -7,7 +7,7 @@ module.exports = {
 
     async execute(message, client) {
         await message.channel.send({
-            content: `Pong! | ${client.ws.ping}ms!`,
+            content: `Pong! | ${message.client.ws.ping}ms!`,
         });
     },
 };

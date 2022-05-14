@@ -44,7 +44,13 @@ module.exports = {
         }
     },
 
-    async validateCommand(message, command, args, prefix) {
+    async validateCommand(
+        message,
+        command,
+        args,
+        prefix,
+        client
+    ) {
         if (
             command?.reqPerms &&
             message.member.permissions.has(command.reqPerms) &&
@@ -85,7 +91,7 @@ module.exports = {
             }
 
             if (typeof command?.customArgError === 'function') {
-                await command?.customArgError(message);
+                await command?.customArgError(message, client);
                 return false;
             }
         }

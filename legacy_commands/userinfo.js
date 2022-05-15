@@ -39,7 +39,7 @@ module.exports = {
             })
             .addField('Joined in', moment(member.joinedAt).format('llll'))
             .addField('Created in', moment(member.user.createdAt).format('llll'))
-            .addField(`Roles${hasRoles ? ` - ${roles.length - 1}` : ''}`,
+            .addField(`Roles${hasRoles ? ` - ${roles.length}` : ''}`,
                 hasRoles === true
                     ? roles.join(' ')
                     : 'None'

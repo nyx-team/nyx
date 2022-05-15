@@ -16,6 +16,7 @@
     "bufferutil": "^4.0.6",
     "discord.js": "^13.6.0",
     "erlpack": "github:discord/erlpack",
+    "moment": "^2.29.3",
     "utf-8-validate": "^5.0.9",
     "zlib-sync": "^0.1.7"
   },

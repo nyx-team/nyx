@@ -1,13 +1,19 @@
-const { Client, Collection, Intents } = require('discord.js');
-
+const {
+    Client,
+    Collection,
+    Intents,
+} = require('discord.js');
 const { readFileSync } = require('fs');
-
 const { join } = require('path');
 
 const { loadEvents } = require('./Util');
 
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_BANS,
+    ],
     partials: ['CHANNEL'],
     allowedMentions: {
         parse: ['users'],

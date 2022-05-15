@@ -5,6 +5,8 @@ const {
     MessageEmbed,
 } = require('discord.js');
 
+const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 module.exports = {
     name: 'messageCreate',
 
@@ -16,9 +18,14 @@ module.exports = {
         // Hardcoded prefix for now
         // TODO: Make prefix customizable
         const prefix = ',';
-        if (!message.content.startsWith(prefix)) return;
+        const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`);
+        if (!prefixRegex.test(message.content)) return;
 
-        const args = message.content.slice(prefix.length).trim().split(/\s+/);
+        const [, matchedPrefix] = message.content.match(prefixRegex);
+        const args = message.content
+            .slice(matchedPrefix.length)
+            .trim()
+            .split(/\s+/);
         const command = args.shift().toLowerCase();
 
         const commands = client.legacyCommands.get(command) 

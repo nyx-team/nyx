@@ -34,12 +34,23 @@ async function exit(message, code = 0) {
         },
     });
 
-    const template = `module.exports = {
+    const filteredDescription = description
+        .replaceAll("'", "\\'");
+
+    const template = `const { Message, Client } = require('discord.js'):
+
+    module.exports = {
     name: '${name}',
-    description: '${description}',
+    description: '${filteredDescription}',
 
     category: '${category}',
 
+    /**
+     * ${description}
+     * @param {Message} message
+     * @param {string[]} args
+     * @param {Client} client
+     */
     async execute(message, args, client) {
         // ...
     },

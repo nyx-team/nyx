@@ -19,6 +19,8 @@ module.exports = {
             ? message.member
             : message.mentions.members.first()
         ?? (await message.guild.members.fetch(args[0])
+            // If the fetching is unsuccessful 
+            // Use 'message.member' instead
             .catch(() => message.member))
         if (!member)
             return message.reply({

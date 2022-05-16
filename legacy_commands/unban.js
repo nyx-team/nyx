@@ -1,4 +1,8 @@
-const { Message, MessageEmbed } = require('discord.js');
+const {
+    DiscordAPIError,
+    Message,
+    MessageEmbed,
+} = require('discord.js');
 
 module.exports = {
     name: 'unban',
@@ -45,6 +49,15 @@ module.exports = {
                 });
             })
             .catch((err) => {
+                if (err instanceof DiscordAPIError) {
+                    const apiError = new MessageEmbed()
+                        .setColor('RED')
+                        .setDescription(`:x: Got API Error!\n\`${err.message}\``)
+                    return message.reply({
+                        embeds: [apiError],
+                    });
+                }
+
                 const noUserFetched = new MessageEmbed()
                     .setDescription(`:x: ${userTarget} is not banned!`)
                     .setTimestamp()

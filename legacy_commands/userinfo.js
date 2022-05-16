@@ -51,7 +51,7 @@ module.exports = {
                 member.user.displayAvatarURL({ dynamic: true })
             )
             .setTimestamp()
-            .setColor(member.roles.highest.color);
+            .setColor(member.displayHexColor);
 
         await message.reply({
             embeds: [embed],

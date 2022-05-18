@@ -13,6 +13,17 @@ module.exports = {
     args: '[new_prefix]',
     minArgs: 1,
     reqPerms: ['MANAGE_GUILD'],
+    async permissionError(message) {
+        const res = await PrefixSchema.findById(message.guild.id);
+        const currentPrefix = res?.prefix ? res.prefix : ',';
+
+        await message.reply({
+            content: `**Current prefix is:** \`${currentPrefix}\``,
+        });
+    },
+    async customArgError(message) {
+        await this.permissionError(message);
+    },
 
     category: 'Other',
 

@@ -3,7 +3,6 @@ const {
     Collection,
     Intents,
 } = require('discord.js');
-const {} = require('mongoose');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 

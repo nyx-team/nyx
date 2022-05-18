@@ -50,7 +50,7 @@ class Util {
         legacyCommandCategories.forEach((category) => {
             const commands = readdirSync(
                 `./legacy_commands/${category}`
-            ).filter((folder) => !folder.endsWith('.'));
+            ).filter((file) => file.endsWith('.js'));
 
             commands.forEach((file) => {
                 const command = require(`./legacy_commands/${category}/${file}`);

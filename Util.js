@@ -1,7 +1,7 @@
-const { Client } = require("discord.js");
+const { Client } = require('discord.js');
 
-const { readdirSync } = require("fs");
-const { join } = require("path");
+const { readdirSync } = require('fs');
+const { join } = require('path');
 
 /**
  * Utilities specifically for Nyx
@@ -15,7 +15,7 @@ class Util {
      * @param {Client} client
      */
     static Log(eventType, message, client) {
-        client.emit("nyxDebug", `[${eventType}]: ${message}`);
+        client.emit('nyxDebug', `[${eventType}]: ${message}`);
     }
 
     /**
@@ -26,16 +26,16 @@ class Util {
         const commandFiles = readdirSync(
             this.curPathJoin('commands')
         ).filter(
-            (file) => file.endsWith(".js")
+            (file) => file.endsWith('.js')
         );
 
         commandFiles.forEach((file) => {
-            const command = require(this.curPathJoin("commands", file));
+            const command = require(this.curPathJoin('commands', file));
 
             client.commands.set(command.name, command);
         });
 
-        this.Log("commands", "Loaded Slash Commands.", client);
+        this.Log('commands', 'Loaded Slash Commands.', client);
     }
 
     /**
@@ -43,24 +43,30 @@ class Util {
      * @param {Client} client
      */
     static loadLegacyCommands(client) {
-        const legacyCommandFiles = readdirSync(
-            this.curPathJoin("legacy_commands")
-        ).filter((file) => file.endsWith(".js"));
+        const legacyCommandCategories = readdirSync(
+            this.curPathJoin('legacy_commands')
+        ).filter((category) => !category.endsWith('.js'));
 
-        legacyCommandFiles.forEach((file) => {
-            const command = require(`./legacy_commands/${file}`);
+        legacyCommandCategories.forEach((category) => {
+            const commands = readdirSync(
+                `./legacy_commands/${category}`
+            ).filter((folder) => !folder.endsWith('.'));
 
-            client.legacyCommands.set(command.name, command);
+            commands.forEach((file) => {
+                const command = require(`./legacy_commands/${category}/${file}`);
+
+                client.legacyCommands.set(command.name, command);
+            });
         });
 
-        this.Log("commands", "Loaded Legacy (Prefixed) Commands.", client);
+        this.Log('commands', 'Loaded Legacy (Prefixed) Commands.', client);
     }
 
     static loadEvents(client) {
         const eventFiles = readdirSync(
             './events'
         ).filter((file) =>
-            file.endsWith(".js")
+            file.endsWith('.js')
         );
 
         eventFiles.forEach((file) => {

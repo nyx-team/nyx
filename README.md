@@ -15,9 +15,9 @@ Configuration file is Mandatory for the Bot to work, so follow the steps below o
 
 ### JSON Config File
 
-**Recommended for Python Branch**
+**Recommended for** ***Both*** **Branches**
 
-Copy this example here to `python` branch:
+Copy this example here to *a* branch:
 
 ```json
 {
@@ -26,7 +26,8 @@ Copy this example here to `python` branch:
 }
 ```
 
-Should be placed in root directory of the `python` branch, and named as `config.json`
+Should be placed in root directory of the branch you picked, and named as `config.json`
+
 
 ### Using `dotenv`
 

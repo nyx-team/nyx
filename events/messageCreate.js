@@ -77,6 +77,13 @@ module.exports = {
             command?.reqPerms &&
             !message.member.permissions.has(command.reqPerms)
         ) {
+            if (
+                command?.permissionError &&
+                typeof command.permissionError === 'function'
+            ) {
+                command.permissionError(message, args);
+                return;
+            }
             return false;
         }
 

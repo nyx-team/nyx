@@ -21,7 +21,8 @@ Copy this example here to `python` branch:
 
 ```json
 {
-    "token": "TOKEN"
+    "token": "TOKEN",
+    "mongo_uri": "uri"
 }
 ```
 
@@ -43,6 +44,7 @@ Like this:
 
 ```env
 token="TOKEN HERE"
+mongo_uri="uri"
 ```
 
 **Note:** the Name must be exactly `token` otherwise you will get an error when trying to start the Bot.

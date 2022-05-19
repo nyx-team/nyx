@@ -55,7 +55,7 @@ Minimum argument(s) needed for the commmand to run
 
 If a user didn't give the minimum argument(s) the bot will automatically give an error. 
 ***Argument Error can be customized***
-[**See `customArgError`**](#`customArgError`)
+[**See `customArgError`**](#customArgError)
 
 ### `reqPerms`
 
@@ -73,5 +73,5 @@ Overwrites the default argument error, with the custom one
 
 **Parameters:**
 
-- `message`: [Message](https://discord.js.org/#/docs/discord.js/stable/class/Message)
+- `message`: [**Message**](https://discord.js.org/#/docs/discord.js/stable/class/Message)
 - `client`: [**Client**](https://discord.js.org/#/docs/discord.js/stable/class/Client)

@@ -54,6 +54,7 @@ args: '[optional_arg] <required_arg> [option_1|option_2]',
 Minimum argument(s) needed for the commmand to run
 
 If a user didn't give the minimum argument(s) the bot will automatically give an error. 
+
 ***Argument Error can be customized***
 [**See `customArgError`**](#customArgError)
 

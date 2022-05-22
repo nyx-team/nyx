@@ -47,6 +47,7 @@ const token = config.token ?? process.env.token;
 // Collection(s)
 client.commands = new Collection();
 client.legacyCommands = new Collection();
+client.snipedMessages = new Collection();
 
 loadEvents(client);
 client.on('nyxDebug', (message) => console.log(message));

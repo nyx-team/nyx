@@ -17,6 +17,11 @@ module.exports = {
      * @param {Message} message
      */
     async execute(client, message) {
+        if (
+            !message.channel
+                .permissionsFor(message.client.user)
+                .has('SEND_MESSAGES')
+        ) return;
         const results = await PrefixSchema.findById(message.guild.id);
         const prefix = results ? results.prefix : ',';
 

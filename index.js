@@ -30,19 +30,28 @@ const client = new Client({
     },
 });
 
-// #region Load Config
-const configJSON = readFileSync(join(__dirname, '.', 'config.json'), {
-    encoding: 'utf8',
-});
-const config = JSON.parse(configJSON);
-// #endregion
-
 try {
     require('dotenv').config();
     /* eslint-disable no-empty */
 } catch {}
 
-const token = config.token ?? process.env.token;
+// #region Load Config
+let configJSON;
+
+try {
+    configJSON = readFileSync(join(__dirname, '.', 'config.json'), {
+        encoding: 'utf8',
+    });
+} catch {
+    configJSON = null;
+}
+
+const config = configJSON != null 
+    ? JSON.parse(configJSON)
+    : process.env.token;
+// #endregion
+
+const token = config?.token ?? process.env.token;
 
 // Collection(s)
 client.commands = new Collection();

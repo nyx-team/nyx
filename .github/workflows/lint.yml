@@ -1,0 +1,23 @@
+name: ESLint check
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Node.js v16 Environment
+      uses: actions/setup-node@v3.1.0
+      with:
+        node-version: 16
+        cache: 'npm'
+        cache-dependency-path: package.json
+
+    - name: Install Node Dependencies
+      run: |
+        npm i -g eslint --save-dev
+        eslint .

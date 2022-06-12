@@ -6,7 +6,7 @@ const {
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
-const { loadEvents } = require('./Util');
+const { loadEvents } = require('./utils/Util');
 
 const client = new Client({
     intents: [

@@ -2,6 +2,7 @@
 
 const inquirer = require('inquirer');
 const { writeFileSync } = require('fs');
+const { join } = require('node:path');
 
 async function exit(message, code = 0) {
     if (message) console.error(message);
@@ -28,7 +29,7 @@ async function exit(message, code = 0) {
     const { category } = await inquirer.prompt({
         name: 'category',
         type: 'list',
-        choices: ['Moderation', 'Fun', 'Others'],
+        choices: ['Moderation', 'Fun', 'Other'],
         default() {
             return 'Others';
         },
@@ -60,9 +61,20 @@ async function exit(message, code = 0) {
     const filteredName = name
         .replaceAll(/(-|\s|_)/g, '-')
         .replaceAll(/\.\w*$/g, '');
-    writeFileSync(`./legacy_commands/${filteredName}.js`, template);
+    writeFileSync(
+        join(
+            __dirname,
+            `../legacy_commands/${category}/${filteredName}.js`
+        ),
+        template
+    );
 
-    console.log(`Created command ${name}! File name: ${filteredName}.js`);
+    console.log(`Created command ${name}!`);
+    console.log(`
+        Category: ${category}
+        File name: ${filteredName}.js
+        Path: legacy_commands/${category}/${filteredName}.js
+    `);
 
     exit();
 })();

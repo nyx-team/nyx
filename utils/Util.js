@@ -3,6 +3,8 @@ const { Client } = require('discord.js');
 const { readdirSync } = require('fs');
 const { join } = require('path');
 
+const curPathJoin = (...paths) => join(__dirname, ...paths);
+
 /**
  * Utilities specifically for Nyx
  */
@@ -24,13 +26,13 @@ class Util {
      */
     static loadCommands(client) {
         const commandFiles = readdirSync(
-            this.curPathJoin('commands')
+            curPathJoin('..', 'commands')
         ).filter(
             (file) => file.endsWith('.js')
         );
 
         commandFiles.forEach((file) => {
-            const command = require(this.curPathJoin('commands', file));
+            const command = require(curPathJoin('..', 'commands', file));
 
             client.commands.set(command.name, command);
         });
@@ -44,16 +46,27 @@ class Util {
      */
     static loadLegacyCommands(client) {
         const legacyCommandCategories = readdirSync(
-            this.curPathJoin('legacy_commands')
+            curPathJoin('..', 'legacy_commands')
         ).filter((category) => !category.endsWith('.js'));
 
         legacyCommandCategories.forEach((category) => {
             const commands = readdirSync(
-                `./legacy_commands/${category}`
+                curPathJoin(
+                    '..',
+                    'legacy_commands',
+                    category
+                )
             ).filter((file) => file.endsWith('.js'));
 
             commands.forEach((file) => {
-                const command = require(`./legacy_commands/${category}/${file}`);
+                const command = require(
+                    curPathJoin(
+                        '..',
+                        'legacy_commands',
+                        category,
+                        file,
+                    )
+                );
 
                 client.legacyCommands.set(command.name, command);
             });
@@ -64,13 +77,15 @@ class Util {
 
     static loadEvents(client) {
         const eventFiles = readdirSync(
-            './events'
+            curPathJoin('..', 'events')
         ).filter((file) =>
             file.endsWith('.js')
         );
 
         eventFiles.forEach((file) => {
-            const events = require(`./events/${file}`);
+            const events = require(
+                curPathJoin('..', 'events', file)
+            );
 
             if (events.once && events.once === true) {
                 client.once(events.name, async (...args) =>
@@ -82,10 +97,6 @@ class Util {
                 );
             }
         });
-    }
-
-    static curPathJoin(dir, ...otherPaths) {
-        return join(__dirname, dir, ...otherPaths);
     }
 }
 

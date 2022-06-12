@@ -1,4 +1,4 @@
-const Util = require('../Util');
+const Util = require('../utils/Util');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
@@ -11,7 +11,7 @@ const mongoURI = process.env.mongo_uri
     ).mongo_uri;
 
 module.exports = {
-    name: "ready",
+    name: 'ready',
     once: true,
 
     async execute(client) {

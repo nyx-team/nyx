@@ -2,25 +2,26 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const [, , ...args] = process.argv;
 
-const { readFileSync, readdirSync } = require('fs');
+const { readFileSync, readdirSync } = require('node:fs');
+const { join } = require('node:path');
 
 const token =
   process.env.token ??
   (args[0] === 'manual'
       ? JSON.parse(
-          readFileSync('../config.json', {
+          readFileSync(join(__dirname, '../config.json'), {
               encoding: 'utf8',
           })
       ).token
       : null);
 
 const commands = [];
-const commandFiles = readdirSync('./commands').filter((file) =>
+const commandFiles = readdirSync(join(__dirname, '../commands')).filter((file) =>
     file.endsWith('.js')
 );
 
 commandFiles.forEach((file) => {
-    const { data } = require(`./commands/${file}`);
+    const { data } = require(join(__dirname, `../commands/${file}`));
     commands.push(data.toJSON());
 });
 

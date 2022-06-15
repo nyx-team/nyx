@@ -2,7 +2,7 @@
 name: Command Request
 about: Suggest a Command for the Bot
 title: "[Command]: Add command `command`"
-labels: ''
+labels: commands, request
 assignees: ''
 
 ---

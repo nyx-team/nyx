@@ -2,7 +2,7 @@ import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-import { EventOptions, SlashCommandOptions } from '../typings';
+import { CommandOptions, EventOptions, SlashCommandOptions } from '../typings';
 
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
@@ -42,6 +42,38 @@ export default class Util {
         });
 
         this.Log('commands', 'Loaded Slash Commands', client);
+    }
+
+    /**
+     * Load prefixed commands
+     *
+     * @param {Client} client
+     */
+    public static loadLegacyCommands(client: Client): void {
+        const loadLegacyCommandCategories = readdirSync(
+            curPathJoin('..', 'legacy_commands')
+        ).filter((category) => !category.endsWith('.ts'));
+
+        loadLegacyCommandCategories.forEach(async (category) => {
+            const commands = readdirSync(curPathJoin(
+                '..',
+                'legacy_commands',
+                category
+            )).filter((file) => file.endsWith('.ts'));
+
+            commands.forEach(async (file) => {
+                const command = (await import(curPathJoin(
+                    '..',
+                    'legacy_commands',
+                    category,
+                    file
+                ))).default as CommandOptions;
+
+                client.legacyCommands.set(command.name, command);
+            });
+        });
+
+        this.Log('commands', 'Loaded Legacy Commands', client);
     }
 
     public static loadEvents(client: Client): void {

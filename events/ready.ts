@@ -7,6 +7,7 @@ export default {
 
     async execute(client) {
         Util.loadCommands(client);
+        Util.loadLegacyCommands(client);
 
         console.log('The Bot is Ready!');
     }

@@ -1,0 +1,9 @@
+# Auto-Generated files
+node_modules
+__pycache__
+package-lock.json
+dist
+
+# Private Info
+.env
+config.json

@@ -16,6 +16,7 @@ export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';
 
 export interface CommandOptions {
     name: string;
+    aliases: Array<string>;
     description: string;
     author?: string;
     commit?: string;
@@ -23,8 +24,8 @@ export interface CommandOptions {
     minArgs?: number;
     args?: string;
     reqPerms?: Array<PermissionString>;
-    permissionError?(message: Message): Promise<void>;
-    customArgError?(message: Message): Promise<void>;
+    permissionError?(message: Message, args?: Array<string>): Promise<void>;
+    customArgError?(message: Message, client: Client): Promise<void>;
 
     category: CategoryOptions;
     execute(
@@ -38,7 +39,7 @@ export interface EventOptions {
     name: string;
     once?: boolean;
 
-    execute(client?: Client, ...args?: any[]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    execute(client?: Client, ...args: any[]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface SlashCommandOptions {

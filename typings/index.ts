@@ -34,6 +34,13 @@ export interface CommandOptions {
     ): Promise<void>;
 }
 
+export interface EventOptions {
+    name: string;
+    once?: boolean;
+
+    execute(client?: Client, ...args?: any[]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
+}
+
 export interface SlashCommandOptions {
     name: string;
     data: SlashCommandBuilder;

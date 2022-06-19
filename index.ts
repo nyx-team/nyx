@@ -11,6 +11,7 @@ import type {
     Config
 } from './typings/index';
 import loadConfig from './utils/loadConfig';
+import Util from './utils/Util';
 
 const client = new Client({
     intents: [
@@ -46,10 +47,9 @@ client.commands = new Collection<string, SlashCommandOptions>();
 client.legacyCommands = new Collection<string, CommandOptions>();
 client.snipedMessages = new Collection<string, Message>();
 
-client.once('ready', () => {
-    console.log('The Bot is Ready!');
-});
-
 const config = loadConfig() as Config;
 
+Util.loadEvents(client);
+
+client.on('nyxDebug', (m) => console.log(m));
 client.login(config.token);

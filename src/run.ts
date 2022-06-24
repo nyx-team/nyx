@@ -19,7 +19,5 @@ export default function run(): void {
     } catch (err) {
         Util.Log('client', 'An Error occured while trying to log the Bot:', client);
         console.error(err);
-
-        return;
     }
 }

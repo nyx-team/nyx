@@ -1,6 +1,8 @@
-import loadConfig from './utils/loadConfig';
-import Util from './utils/Util';
-import { client } from './bot/bot';
+import {
+    client,
+    loadConfig,
+    Util
+} from './index';
 
 import { Config } from './typings';
 

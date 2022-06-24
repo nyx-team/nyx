@@ -2,6 +2,8 @@
 export { client } from './bot/bot';
 
 // Utils
-export * from './utils/Util';
-export * from './utils/loadConfig';
-export * from './utils/validateCommand';
+import Util from './utils/Util';
+import loadConfig from './utils/loadConfig';
+import validateCommand from './utils/validateCommand';
+
+export { Util, loadConfig, validateCommand };

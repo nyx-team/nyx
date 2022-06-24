@@ -7,10 +7,7 @@ import type { Config } from '../typings';
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
 export default function loadConfig(): Config {
-    config({
-        path: curPathJoin('../..', '.env')
-    });
-
+    // JSON config
     if (existsSync(curPathJoin('..', 'config.json'))) {
         const config = JSON.parse(
             readFileSync(curPathJoin('../..', 'config.json'), {
@@ -20,7 +17,13 @@ export default function loadConfig(): Config {
 
         return config;
     }
-    else if (existsSync(curPathJoin('../..', '.env'))) {
+ 
+    // dotenv config
+    if (existsSync(curPathJoin('../..', '.env'))) {
+        config({
+            path: curPathJoin('../..', '.env')
+        });
+
         return {
             token: process.env.token,
             mongo_uri: process.env.mongo_uri

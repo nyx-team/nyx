@@ -1,8 +1,8 @@
 import { connect, pluralize } from 'mongoose';
 
-import Util from '../utils/Util';
-import type { Config, EventOptions } from '../typings/index';
-import loadConfig from '../utils/loadConfig';
+import Util from '../../utils/Util';
+import type { EventOptions } from '../../typings';
+import loadConfig from '../../utils/loadConfig';
 
 export default {
     name: 'ready',

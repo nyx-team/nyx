@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { SlashCommandOptions } from '../typings';
+import { SlashCommandOptions } from '../../typings';
 
 export default {
     name: 'ping',

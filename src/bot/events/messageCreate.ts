@@ -1,6 +1,6 @@
-import PrefixSchema from '../models/PrefixSchema';
-import validateCommand from '../utils/validateCommand';
-import type { CommandOptions, EventOptions } from '../typings/index';
+import PrefixSchema from '../../models/PrefixSchema';
+import validateCommand from '../../utils/validateCommand';
+import type { CommandOptions, EventOptions } from '../../typings';
 
 const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 

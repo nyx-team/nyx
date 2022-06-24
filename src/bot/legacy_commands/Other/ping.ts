@@ -1,4 +1,4 @@
-import type { CommandOptions } from '../../typings/index';
+import type { CommandOptions } from '../../../typings';
 
 export default {
     name: 'ping',

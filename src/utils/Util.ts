@@ -2,7 +2,11 @@ import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-import { CommandOptions, EventOptions, SlashCommandOptions } from '../typings';
+import {
+    CommandOptions,
+    EventOptions,
+    SlashCommandOptions
+} from '../typings';
 
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
@@ -30,12 +34,12 @@ export default class Util {
      */
     public static loadCommands(client: Client): void {
         const commandFiles = readdirSync(
-            curPathJoin('..', 'commands')
+            curPathJoin('..', 'bot', 'commands')
         ).filter((file) => file.endsWith('.ts'));
 
         commandFiles.forEach(async (file) => {
             const command = (await import(
-                curPathJoin('..', 'commands', file)
+                curPathJoin('..', 'bot', 'commands', file)
             )).default as SlashCommandOptions;
 
             client.commands.set(command.name, command);
@@ -51,12 +55,13 @@ export default class Util {
      */
     public static loadLegacyCommands(client: Client): void {
         const loadLegacyCommandCategories = readdirSync(
-            curPathJoin('..', 'legacy_commands')
+            curPathJoin('..', 'bot', 'legacy_commands')
         ).filter((category) => !category.endsWith('.ts'));
 
         loadLegacyCommandCategories.forEach(async (category) => {
             const commands = readdirSync(curPathJoin(
                 '..',
+                'bot',
                 'legacy_commands',
                 category
             )).filter((file) => file.endsWith('.ts'));
@@ -64,6 +69,7 @@ export default class Util {
             commands.forEach(async (file) => {
                 const command = (await import(curPathJoin(
                     '..',
+                    'bot',
                     'legacy_commands',
                     category,
                     file
@@ -78,11 +84,11 @@ export default class Util {
 
     public static loadEvents(client: Client): void {
         const eventFiles = readdirSync(
-            curPathJoin('..', 'events')
+            curPathJoin('..', 'bot', 'events')
         ).filter((file) => file.endsWith('.ts'));
  
         eventFiles.forEach(async (file) => {
-            const event = (await import(curPathJoin('..', 'events', file))).default as EventOptions;
+            const event = (await import(curPathJoin('..', 'bot', 'events', file))).default as EventOptions;
 
             if (event?.once === true) {
                 client.once(event.name, (...args) => event.execute(client, ...args));

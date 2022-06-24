@@ -20,6 +20,9 @@ export default function run(): void {
         console.log('Please wait...');
     } catch (err) {
         Util.Log('client', 'An Error occured while trying to log the Bot:', client);
-        console.error(err);
+        console.error(err, '\nExiting...');
+
+        // Exit with code `1` (error)
+        process.exit(1);
     }
 }

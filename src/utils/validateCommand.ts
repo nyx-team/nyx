@@ -14,12 +14,11 @@ export default async function validateCommand(
     client: Client
 ): Promise<boolean | MessageOptions> {
     if (
-        command?.reqPerms &&
-        message.member.permissions.has(command.reqPerms) &&
-        !message.guild.me.permissions.has(command?.reqPerms)
+        command?.botReqPerms &&
+        !message.guild.me.permissions.has(command.botReqPerms)
     ) {
         return {
-            content: `:x: **The Bot does not have the required permission to run the command!**\nPermissions needed: \`${command.reqPerms.join(', ')}\``,
+            content: `:x: **The Bot does not have the required permission to run the command!**\nPermissions needed: \`${command.botReqPerms.join(', ')}\``,
         };
     }
 

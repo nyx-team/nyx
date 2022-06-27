@@ -24,8 +24,11 @@ export interface CommandOptions {
 
     minArgs?: number;
     args?: string;
+
     reqPerms?: Array<PermissionString>;
+    botReqPerms?: Array<PermissionString>;
     permissionError?(message: Message, args?: Array<string>): Promise<void>;
+
     customArgError?(message: Message, client: Client): Promise<void>;
 
     category: CategoryOptions;

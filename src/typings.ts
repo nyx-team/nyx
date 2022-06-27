@@ -10,6 +10,7 @@ import {
 export type Config = {
     token: string;
     mongo_uri: string;
+    devToken?: string;
 };
 
 export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';

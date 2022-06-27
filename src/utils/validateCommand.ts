@@ -4,7 +4,9 @@ import {
     MessageEmbed,
     MessageOptions
 } from 'discord.js';
+
 import { CommandOptions } from '../typings';
+import { PermissionsReadable } from './Constants';
 
 export default async function validateCommand(
     message: Message,
@@ -17,8 +19,10 @@ export default async function validateCommand(
         command?.botReqPerms &&
         !message.guild.me.permissions.has(command.botReqPerms)
     ) {
+        // Convert required perms into a readable one
+        const reqPerms = command.botReqPerms.map((e) => PermissionsReadable[e]);
         return {
-            content: `:x: **The Bot does not have the required permission to run the command!**\nPermissions needed: \`${command.botReqPerms.join(', ')}\``,
+            content: `:x: **The Bot does not have the required permission to run the command!**\nPermission(s) needed: \`${reqPerms.join(', ')}\``,
         };
     }
 

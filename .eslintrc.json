@@ -33,6 +33,7 @@
             "always"
         ],
         "no-console": "off",
-        "curly": "off"
+        "curly": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
     }
 }

@@ -5,12 +5,22 @@ import {
 } from './index';
 
 import { Config } from './typings';
+import deployCommands from './utils/deployCommands';
 
 /**
  * Run the Bot
  */
 export default function run(args: Array<string>): void {
     const config = loadConfig() as Config;
+
+    const isDevMode = args.includes('--dev') || args.includes('-D');
+
+    // Deploy slash commands
+    if (args[0] === 'deploy') {
+        console.log('Deploying Slash Commands...');
+        deployCommands(isDevMode);
+        return;
+    }
 
     try {
         Util.loadEvents(client);
@@ -19,7 +29,7 @@ export default function run(args: Array<string>): void {
         // ts-node index.ts --dev
         // or
         // ts-node index.ts -D
-        if (args.includes('--dev') || args.includes('-D')) {
+        if (isDevMode) {
             Util.Log('client', 'Detected dev mode (`-D` or `--dev` flag)', client);
             Util.Log('client', 'Logging in using Development Token!', client);
 

@@ -17,7 +17,7 @@ export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';
 
 export interface CommandOptions {
     name: string;
-    aliases: Array<string>;
+    aliases?: Array<string>;
     description: string;
     author?: string;
     commit?: string;

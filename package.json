@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node index.ts --dev"
+    "dev": "nodemon index.ts --dev"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "@typescript-eslint/parser": "^5.28.0",
     "dotenv": "^16.0.1",
     "eslint": "^8.18.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.18"
   }
 }

@@ -5,8 +5,6 @@ export default {
     name: 'snipe',
     description: 'Snipes a message that has been deleted on the target channel',
 
-    reqPerms: ['MANAGE_MESSAGES'],
-
     category: 'Fun',
 
     async execute(message: Message) {

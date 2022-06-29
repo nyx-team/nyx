@@ -1,3 +1,5 @@
+**This is and old version of the Bot when it was written on JS. So consider this an Archive.**
+
 # Nyx
 
 ***This is the JS Branch of the Bot!***

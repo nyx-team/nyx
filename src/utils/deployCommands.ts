@@ -1,19 +1,18 @@
 import { readdirSync } from 'fs';
 import { join } from 'path';
+
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
+import { Snowflake } from 'discord.js';
 
-import { Config, SlashCommandOptions } from '../typings';
-import loadConfig from './loadConfig';
+import { SlashCommandOptions } from '../typings';
 
 /**
  * Deploy commands to the client (Globally)
  * 
  * @param {boolean} dev - If it should be deployed on the dev bot
  */
-export default async function deployCommands(dev: boolean): Promise<void> {
-    const { token, devToken } = loadConfig() as Config;
-
+export default async function deployCommands(token: string, clientId: Snowflake): Promise<void> {
     const commands = [];
     const commandFiles = readdirSync(join(__dirname, '..', 'bot', 'commands'))
         .filter((file) => file.endsWith('.ts'));
@@ -25,12 +24,9 @@ export default async function deployCommands(dev: boolean): Promise<void> {
         commands.push(data.toJSON());
     });
 
-    // TODO: make this customizable
-    const clientId = '990926099280175125';
-
     const rest = new REST({ version: '9' })
-        .setToken(dev === true ? devToken : token);
-    
+        .setToken(token);
+
     try {
         console.log('Started refreshing application (/) commands.');
     

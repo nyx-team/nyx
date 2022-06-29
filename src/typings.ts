@@ -4,13 +4,16 @@ import {
     CommandInteraction,
     CommandInteractionOptionResolver,
     Message,
-    PermissionString
+    PermissionString,
+    Snowflake
 } from 'discord.js';
 
 export type Config = {
     token: string;
     mongo_uri: string;
     devToken?: string;
+    clientId: Snowflake;
+    devClientId?: Snowflake;
 };
 
 export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';

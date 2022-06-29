@@ -27,7 +27,9 @@ export default function loadConfig(): Config {
         return {
             token: process.env.token,
             mongo_uri: process.env.mongo_uri,
-            devToken: process.env.devToken
+            devToken: process.env.devToken,
+            clientId: process.env.clientId,
+            devClientId: process.env.devClientId
         };
     }
 }

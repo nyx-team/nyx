@@ -16,9 +16,15 @@ export default function run(args: Array<string>): void {
     const isDevMode = args.includes('--dev') || args.includes('-D');
 
     // Deploy slash commands
+    // equivalent to:
+    // ts-node index.ts deploy CLIENT_ID [-D|--dev]
     if (args[0] === 'deploy') {
         console.log('Deploying Slash Commands...');
-        deployCommands(isDevMode);
+
+        const deployToken = isDevMode ? config.devToken : config.token;
+        const deployClientId = isDevMode ? config.devClientId : config.clientId;
+
+        deployCommands(deployToken, deployClientId);
         return;
     }
 

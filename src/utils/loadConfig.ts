@@ -1,10 +1,14 @@
-import { config } from 'dotenv';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
 
 import type { Config } from '../typings';
 
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
+
+let config = null;
+try {
+    import('dotenv').then((v) => config = v.default.config);
+} catch {} // eslint-disable-line no-empty
 
 export default function loadConfig(): Config {
     // JSON config
@@ -20,9 +24,11 @@ export default function loadConfig(): Config {
  
     // dotenv config
     if (existsSync(curPathJoin('../..', '.env'))) {
-        config({
-            path: curPathJoin('../..', '.env')
-        });
+        if (config) {
+            config({
+                path: curPathJoin('../..', '.env')
+            });
+        }
 
         return {
             token: process.env.token,

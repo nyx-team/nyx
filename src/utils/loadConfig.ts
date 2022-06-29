@@ -7,7 +7,7 @@ const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
 let config = null;
 try {
-    import('dotenv').then((v) => config = v.default.config);
+    config = require('dotenv').config; // eslint-disable-line @typescript-eslint/no-var-requires
 } catch {} // eslint-disable-line no-empty
 
 export default function loadConfig(): Config {

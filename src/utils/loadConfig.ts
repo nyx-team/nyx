@@ -24,12 +24,20 @@ export default function loadConfig(): Config {
  
     // dotenv config
     if (existsSync(curPathJoin('../..', '.env'))) {
-        if (config) {
-            config({
-                path: curPathJoin('../..', '.env')
-            });
-        }
+        config({
+            path: curPathJoin('../..', '.env')
+        });
 
+        return {
+            token: process.env.token,
+            mongo_uri: process.env.mongo_uri,
+            devToken: process.env.devToken,
+            clientId: process.env.clientId,
+            devClientId: process.env.devClientId
+        };
+    }
+
+    if (!config) {
         return {
             token: process.env.token,
             mongo_uri: process.env.mongo_uri,

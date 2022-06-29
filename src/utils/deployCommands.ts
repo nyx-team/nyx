@@ -17,19 +17,20 @@ export default async function deployCommands(token: string, clientId: Snowflake)
     const commandFiles = readdirSync(join(__dirname, '..', 'bot', 'commands'))
         .filter((file) => file.endsWith('.ts'));
     
-    commandFiles.forEach(async (file) => {
+    for (const file of commandFiles) {
         const { data } = (await import(
             join(__dirname, '..', 'bot', 'commands', file)
         )).default as SlashCommandOptions;
+
         commands.push(data.toJSON());
-    });
+    }
 
     const rest = new REST({ version: '9' })
         .setToken(token);
 
     try {
         console.log('Started refreshing application (/) commands.');
-    
+
         await rest.put(Routes.applicationCommands(clientId), { body: commands });
 
         console.log('Successfully reloaded application (/) commands.');

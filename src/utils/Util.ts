@@ -8,25 +8,11 @@ import {
     SlashCommandOptions
 } from '../typings';
 
+import { UtilLog } from '../index';
+
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
 export default class Util {
-    /**
-     * Logs your message
-     * to Event `nyxDebug`
-     *
-     * @param {string} eventType
-     * @param {string} message
-     * @param {Client} client
-     */
-    public static Log(
-        eventType: string,
-        message: string,
-        client: Client
-    ): void {
-        client.emit('nyxDebug', `[${eventType}]: ${message}`);
-    }
-
     /**
      * Loads in the slash commands
      * 
@@ -45,7 +31,7 @@ export default class Util {
             client.commands.set(command.name, command);
         });
 
-        this.Log('commands', 'Loaded Slash Commands', client);
+        UtilLog.INFO('Loaded Slash Commands');
     }
 
     /**
@@ -79,7 +65,7 @@ export default class Util {
             });
         });
 
-        this.Log('commands', 'Loaded Legacy Commands', client);
+        UtilLog.INFO('Loaded Legacy Commands');
     }
 
     public static loadEvents(client: Client): void {
@@ -97,6 +83,6 @@ export default class Util {
             }
         });
 
-        this.Log('events', 'Loaded Events', client);
+        UtilLog.INFO('Loaded Events');
     }
 }

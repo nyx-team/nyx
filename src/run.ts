@@ -1,7 +1,8 @@
 import {
     client,
     loadConfig,
-    Util
+    Util,
+    ClientLog
 } from './index';
 
 import { Config } from './typings';
@@ -19,7 +20,7 @@ export default function run(args: Array<string>): void {
     // equivalent to:
     // ts-node index.ts deploy CLIENT_ID [-D|--dev]
     if (args[0] === 'deploy') {
-        console.log('Deploying Slash Commands...');
+        ClientLog.INFO('Deploying Slash Commands...');
 
         const deployToken = isDevMode ? config.devToken : config.token;
         const deployClientId = isDevMode ? config.devClientId : config.clientId;
@@ -36,21 +37,17 @@ export default function run(args: Array<string>): void {
         // or
         // ts-node index.ts -D
         if (isDevMode) {
-            Util.Log('client', 'Detected dev mode (`-D` or `--dev` flag)', client);
-            Util.Log('client', 'Logging in using Development Token!', client);
+            ClientLog.INFO('Detected dev mode (`-D` or `--dev` flag)');
+            ClientLog.INFO('Logging in using Development Token!');
 
             client.login(config?.devToken);
         } else {
             client.login(config.token);
         }
 
-        Util.Log('client', 'Successfully logged in to the Bot', client);
-        console.log('Please wait...');
+        ClientLog.INFO('Successfully logged in to the Bot');
+        ClientLog.INFO('Please wait...');
     } catch (err) {
-        Util.Log('client', 'An Error occured while trying to log the Bot:', client);
-        console.error(err, '\nExiting...');
-
-        // Exit with code `1` (error)
-        process.exit(1);
+        ClientLog.ERROR(`An Error occured while trying to log the Bot:\n${err}`, true);
     }
 }

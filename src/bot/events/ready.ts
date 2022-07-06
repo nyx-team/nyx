@@ -3,6 +3,7 @@ import { connect, pluralize } from 'mongoose';
 import Util from '../../utils/Util';
 import type { EventOptions } from '../../typings';
 import loadConfig from '../../utils/loadConfig';
+import { ClientLog } from '../..';
 
 export default {
     name: 'ready',
@@ -16,6 +17,6 @@ export default {
         Util.loadCommands(client);
         Util.loadLegacyCommands(client);
 
-        console.log('The Bot is Ready!');
+        ClientLog.INFO('The Bot is Ready!');
     }
 } as EventOptions;

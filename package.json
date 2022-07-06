@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.ts --dev",
     "start": "ts-node index.ts",
+    "start:heroku": "node --optimize_for_size --max_old_space_size=460 -r ts-node/register index.ts",
     "build": "tsc"
   },
   "repository": {

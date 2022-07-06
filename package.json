@@ -29,7 +29,7 @@
     "erlpack": "github:discord/erlpack",
     "moment": "^2.29.3",
     "mongoose": "^6.4.0",
-    "ts-node": "^10.8.1",
+    "ts-node": "^10.8.2",
     "utf-8-validate": "^5.0.9",
     "zlib-sync": "^0.1.7"
   },

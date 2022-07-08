@@ -1,4 +1,4 @@
-import { DiscordAPIError } from 'discord.js';
+import { Constants, DiscordAPIError } from 'discord.js';
 import { EventOptions } from '../../typings';
 
 export default {
@@ -15,7 +15,7 @@ export default {
             await command.execute(interaction, options);
         } catch (err) {
             console.error(err);
-            if (err === DiscordAPIError && err.code === 10062) return;
+            if (err === DiscordAPIError && err.code === Constants.APIErrors.UNKNOWN_INTERACTION) return;
 
             await interaction.reply({
                 content: 'An error occured while trying to run the command.',

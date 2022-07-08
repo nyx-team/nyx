@@ -12,7 +12,7 @@ export default {
     
     async execute(interaction) {
         let correctNum = randomInt(1, 200);
-        const baseNum = randomInt(1, 100);
+        const baseNum = randomInt(50, 100);
 
         // If the correct number is the same as the base number
         // then either add or minus the correct number

@@ -19,5 +19,5 @@ jobs:
 
     - name: Install Node Dependencies & Run ESLint
       run: |
-        npm i -g eslint --save-dev
+        npm i eslint --save-dev
         eslint . --ext .ts,.js --ignore-path .gitignore

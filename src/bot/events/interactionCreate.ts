@@ -1,3 +1,4 @@
+import { DiscordAPIError } from 'discord.js';
 import { EventOptions } from '../../typings';
 
 export default {
@@ -14,6 +15,12 @@ export default {
             await command.execute(interaction, options);
         } catch (err) {
             console.error(err);
+            if (err === DiscordAPIError && err.code === 10062) return;
+
+            await interaction.reply({
+                content: 'An error occured while trying to run the command.',
+                ephemeral: true
+            });
         }
     }
 } as EventOptions;

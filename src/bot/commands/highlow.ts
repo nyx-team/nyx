@@ -11,7 +11,7 @@ export default {
         .setDescription('Guess if the number is higher or lower.'),
     
     async execute(interaction) {
-        let correctNum = randomInt(1, 100);
+        let correctNum = randomInt(1, 200);
         const baseNum = randomInt(1, 100);
 
         // If the correct number is the same as the base number

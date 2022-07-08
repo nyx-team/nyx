@@ -1,4 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { PermissionFlagsBits } from 'discord-api-types/v9';
+
 import { SlashCommandOptions } from '../../typings';
 
 export default {
@@ -11,7 +13,8 @@ export default {
                 .setName('amount')
                 .setDescription('Amount of messages you want to be deleted')
                 .setRequired(true)
-        ),
+        )
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
     async execute(interaction, options) {
         const amount = options.getNumber('amount');

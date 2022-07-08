@@ -44,4 +44,6 @@ client.commands = new Collection<string, SlashCommandOptions>();
 client.legacyCommands = new Collection<string, CommandOptions>();
 client.snipedMessages = new Collection<string, Message>();
 
-client.on('nyxDebug', (m) => console.log(m));
+client.on('nyxDebug', (m) => console.log(m))
+    .on('warn', console.log)
+    .on('error', console.log);

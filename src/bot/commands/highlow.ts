@@ -55,24 +55,24 @@ export default {
             if (i.customId === 'high') {
                 if (correctNum > baseNum) {
                     await i.followUp({
-                        content: '**Your answer was correct!**',
+                        content: '**Your answer was correct! (Chose High)**',
                     });
                 }
                 else {
                     await i.followUp({
-                        content: '**:x: You chose the wrong answer!**'
+                        content: '**:x: You chose the wrong answer! (Chose High)**'
                     });
                 }
             }
             else if (i.customId === 'low') {
                 if (correctNum < baseNum) {
                     await i.followUp({
-                        content: '**Your answer was correct!**'
+                        content: '**Your answer was correct! (Chose Low)**'
                     });
                 }
                 else {
                     await i.followUp({
-                        content: '**:x: Your chose the wrong answer!**'
+                        content: '**:x: Your chose the wrong answer! (Chose Low)**'
                     });
                 }
             }

@@ -20,4 +20,4 @@ jobs:
     - name: Install Node Dependencies & Run ESLint
       run: |
         npm i eslint --save-dev
-        npm run list:nofix
+        npm run lint:nofix

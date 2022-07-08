@@ -11,7 +11,7 @@ import { SlashCommandOptions } from '../../typings';
 const RPS_BEATS = {
     rock: {
         name: 'Rock',
-        beats: 'scissor'
+        beats: 'scissors'
     },
     paper: {
         name: 'Paper',

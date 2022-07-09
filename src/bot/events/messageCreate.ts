@@ -45,7 +45,9 @@ export default {
             await commands.execute(message, args, client);
         } catch (err) {
             console.error(err);
-            await message.channel.send(':x: The Command Failed!');
+            await message.channel.send({
+                content: ':x: The Command Failed!'
+            });
         }
     },
 } as EventOptions;

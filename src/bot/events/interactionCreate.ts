@@ -1,10 +1,10 @@
-import { Constants, DiscordAPIError } from 'discord.js';
+import { CommandInteraction, Constants, DiscordAPIError } from 'discord.js';
 import { EventOptions } from '../../typings';
 
 export default {
     name: 'interactionCreate',
 
-    async execute(client, interaction) {
+    async execute(client, interaction: CommandInteraction) {
         if (!interaction.isCommand()) return;
         const { commandName, options } = interaction;
 
@@ -12,6 +12,17 @@ export default {
         if (!command) return;
 
         try {
+            if (options.getSubcommand()) {
+                const subCommandName = options.getSubcommand();
+                const subCommand = client.subCommands.get(subCommandName);
+
+                // @ts-ignore
+                await subCommand.execute(interaction, options);
+
+                if (command?.commandSubCommandsOnly) return;
+            }
+
+            // @ts-ignore
             await command.execute(interaction, options);
         } catch (err) {
             console.error(err);

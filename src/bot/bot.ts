@@ -8,6 +8,7 @@ import {
 import type {
     SlashCommandOptions,
     CommandOptions,
+    SlashCommandSubCommandOptions,
 } from '../typings';
 
 export const client = new Client({
@@ -35,12 +36,14 @@ export const client = new Client({
 declare module 'discord.js' {
     export interface Client {
         commands: Collection<string, SlashCommandOptions>;
+        subCommands: Collection<string, SlashCommandSubCommandOptions>;
         legacyCommands: Collection<string, CommandOptions>;
         snipedMessages: Collection<string, Message>;
     }
 }
 
 client.commands = new Collection<string, SlashCommandOptions>();
+client.subCommands = new Collection<string, SlashCommandSubCommandOptions>();
 client.legacyCommands = new Collection<string, CommandOptions>();
 client.snipedMessages = new Collection<string, Message>();
 

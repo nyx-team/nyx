@@ -5,7 +5,8 @@ import { join } from 'path';
 import {
     CommandOptions,
     EventOptions,
-    SlashCommandOptions
+    SlashCommandOptions,
+    SlashCommandSubCommandOptions
 } from '../typings';
 
 import { UtilLog } from '../index';
@@ -27,6 +28,16 @@ export default class Util {
             const command = (await import(
                 curPathJoin('..', 'bot', 'commands', file)
             )).default as SlashCommandOptions;
+
+            if (command?.subcommands) {
+                this.loadSubCommand(client, curPathJoin(
+                    '..',
+                    'bot',
+                    'commands',
+                    'subcommands',
+                    `${file.replace('.ts', '')}`
+                ));
+            }
 
             client.commands.set(command.name, command);
         });
@@ -84,5 +95,16 @@ export default class Util {
         });
 
         UtilLog.INFO('Loaded Events');
+    }
+
+    public static loadSubCommand(client: Client, path: string): void {
+        const subCommandFiles = readdirSync(path)
+            .filter((file) => file.endsWith('.ts'));
+
+        subCommandFiles.forEach(async (file) => {
+            const subcommand = (await import(`${path}/${file}`)).default as SlashCommandSubCommandOptions;
+
+            client.subCommands.set(subcommand.name, subcommand);
+        });
     }
 }

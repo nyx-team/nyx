@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from '@discordjs/builders';
 import {
     Client,
     CommandInteraction,
@@ -52,8 +52,20 @@ export interface EventOptions {
 export interface SlashCommandOptions {
     name: string;
     data: SlashCommandBuilder;
-    execute(
+
+    commandSubCommandsOnly: boolean;
+    subcommands: Array<string>;
+
+    execute?(
         interaction: CommandInteraction,
         options?: CommandInteractionOptionResolver
     ): Promise<void>;
+}
+
+export interface SlashCommandSubCommandOptions {
+    name: string;
+    execute(
+        interaction: CommandInteraction,
+        options?: CommandInteractionOptionResolver
+    ): Promise<unknown>;
 }

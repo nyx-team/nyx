@@ -5,6 +5,7 @@ export default {
     name: 'interactionCreate',
 
     async execute(client, interaction: CommandInteraction) {
+        if (!interaction.inCachedGuild()) return;
         if (!interaction.isCommand()) return;
         const { commandName, options } = interaction;
 

@@ -12,7 +12,7 @@ export default {
         if (!command) return;
 
         try {
-            if (options.getSubcommand()) {
+            if (options.getSubcommand(false)) {
                 const subCommandName = options.getSubcommand();
                 const subCommand = client.subCommands.get(subCommandName);
 

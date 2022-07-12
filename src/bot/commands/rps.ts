@@ -79,7 +79,8 @@ export default {
         authorCollector.on('collect', async (i) => {
             authorSelection = i.customId as validSelections;
 
-            await interaction.editReply({
+            await i.deferReply();
+            await i.followUp({
                 content: `**${i.user.tag}** is done choosing!`,
                 components: []
             });
@@ -90,6 +91,13 @@ export default {
 
         //#region Enemy Selection
         authorCollector.on('end', async () => {
+            if (!authorSelection) {
+                await interaction.followUp({
+                    content: `**${interaction.user.username}** failed to choose! (RPS Command Cancelled.)`
+                });
+                return;
+            }
+
             const enemyPickMSG = await interaction.channel.send({
                 content: `${enemy} it's time for you to pick!`,
                 components: [row]
@@ -116,6 +124,13 @@ export default {
     
             //#region See who is the winner
             enemyCollector.on('end', async () => {
+                if (!enemySelection) {
+                    await interaction.followUp({
+                        content: `**${enemy.username}** failed to choose! (RPS Command Cancelled.)`
+                    });
+                    return;
+                }
+
                 const isAuthorWinner = isWinner(authorSelection, enemySelection);
                 const isEnemyWinner = isWinner(enemySelection, authorSelection);
                 const isBothWinner = isAuthorWinner && isEnemyWinner;
@@ -123,21 +138,21 @@ export default {
                 const results = `
                 **${interaction.user.tag}** picked **${RPS_BEATS[authorSelection].name}**
 **${enemy.tag}** picked **${RPS_BEATS[enemySelection].name}**\n\n**Results -**`;
-        
+
                 if (authorSelection === enemySelection || isBothWinner) {
-                    await interaction.channel.send({
+                    await interaction.followUp({
                         content: `${results} ***Tie***`
                     });
                 }
         
                 if (isAuthorWinner) {
-                    await interaction.channel.send({
+                    await interaction.followUp({
                         content: `${results} ${interaction.user} ***wins!***`
                     });
                 }
         
                 if (isEnemyWinner) {
-                    await interaction.channel.send({
+                    await interaction.followUp({
                         content: `${results} ${enemy} ***wins!***`
                     });
                 }

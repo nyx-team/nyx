@@ -15,7 +15,6 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "ignorePatterns": ["dist/*"],
     "rules": {
         "indent": ["error", 4],
         "keyword-spacing": "error",

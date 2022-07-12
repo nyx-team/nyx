@@ -68,12 +68,12 @@ export default {
 
             embed.addField(
                 'Command Author',
-                `This command is made by: \`${command.author}\`${commandCommitLink}`
+                `This command is made by: \`${command.author}\`${commandCommitLink}`,
             );
         }
 
         await message.reply({
             embeds: [embed],
         });
-    }
+    },
 } as CommandOptions;

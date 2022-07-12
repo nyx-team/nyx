@@ -25,7 +25,7 @@ export default {
             .split(/\s+/);
         const command = args.shift().toLowerCase();
 
-        const commands = client.legacyCommands.get(command) 
+        const commands = client.legacyCommands.get(command)
             ?? client.legacyCommands.find((cmds: CommandOptions) => cmds.aliases && cmds.aliases.includes(command));
         if (!commands) return;
 
@@ -34,7 +34,7 @@ export default {
             commands,
             args,
             prefix,
-            client
+            client,
         );
         if (isCommandValid && isCommandValid !== true) {
             return message.reply(isCommandValid);
@@ -43,10 +43,11 @@ export default {
 
         try {
             await commands.execute(message, args, client);
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err);
             await message.channel.send({
-                content: ':x: The Command Failed!'
+                content: ':x: The Command Failed!',
             });
         }
     },

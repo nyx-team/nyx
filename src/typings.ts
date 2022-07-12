@@ -5,7 +5,7 @@ import {
     CommandInteractionOptionResolver,
     Message,
     PermissionString,
-    Snowflake
+    Snowflake,
 } from 'discord.js';
 
 export type Config = {

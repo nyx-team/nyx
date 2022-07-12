@@ -2,7 +2,7 @@ import {
     Client,
     Message,
     MessageEmbed,
-    MessageOptions
+    MessageOptions,
 } from 'discord.js';
 
 import { CommandOptions } from '../typings';
@@ -13,7 +13,7 @@ export default async function validateCommand(
     command: CommandOptions,
     args: Array<string>,
     prefix: string,
-    client: Client
+    client: Client,
 ): Promise<boolean | MessageOptions> {
     if (
         command?.botReqPerms &&
@@ -55,7 +55,7 @@ export default async function validateCommand(
             const embed = new MessageEmbed()
                 .setColor('DARK_BLUE')
                 .setDescription(
-                    `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`
+                    `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`,
                 );
             return {
                 embeds: [embed],

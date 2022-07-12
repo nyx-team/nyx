@@ -20,10 +20,10 @@ export default {
 
         message.guild.members
             .unban(
-                userTarget, 
+                userTarget,
                 reason
                     ? `Unbanned by: ${message.author.tag} ${reason}`
-                    : null
+                    : null,
             )
             .then((user) => {
                 const embed = new MessageEmbed()
@@ -62,5 +62,5 @@ export default {
                     embeds: [noUserFetched],
                 });
             });
-    }
+    },
 } as CommandOptions;

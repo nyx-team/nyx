@@ -12,5 +12,5 @@ export default {
         setTimeout(() => {
             client.snipedMessages.delete(message.channel.id);
         }, 1000 * 5);
-    }
+    },
 } as EventOptions;

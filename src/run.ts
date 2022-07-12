@@ -2,7 +2,7 @@ import {
     client,
     loadConfig,
     Util,
-    ClientLog
+    ClientLog,
 } from './index';
 
 import { Config } from './typings';
@@ -41,13 +41,15 @@ export default function run(args: Array<string>): void {
             ClientLog.INFO('Logging in using Development Token!');
 
             client.login(config?.devToken);
-        } else {
+        }
+        else {
             client.login(config.token);
         }
 
         ClientLog.INFO('Successfully logged in to the Bot');
         ClientLog.INFO('Please wait...');
-    } catch (err) {
+    }
+    catch (err) {
         ClientLog.ERROR(`An Error occured while trying to log the Bot:\n${err}`, true);
     }
 }

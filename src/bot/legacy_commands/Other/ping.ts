@@ -11,5 +11,5 @@ export default {
         await message.channel.send({
             content: `Pong! | ${message.client.ws.ping}ms`,
         });
-    }
+    },
 } as CommandOptions;

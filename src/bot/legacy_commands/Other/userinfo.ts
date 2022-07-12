@@ -17,7 +17,7 @@ export default {
             ? message.member
             : message.mentions.members.first()
         ?? (await message.guild.members.fetch(args[0])
-            // If the fetching is unsuccessful 
+            // If the fetching is unsuccessful
             // Use 'message.member' instead
             .catch(() => message.member));
         if (!member) {
@@ -27,7 +27,7 @@ export default {
             return;
         }
 
-        const roles = (member.roles.cache.size - 1)  > 0
+        const roles = (member.roles.cache.size - 1) > 0
             ? member.roles.cache
                 .map((e) => e.toString())
                 // @ts-ignore
@@ -49,10 +49,10 @@ export default {
                 hasRoles === true
                     // @ts-ignore
                     ? roles.join(' ')
-                    : 'None'
+                    : 'None',
             )
             .setThumbnail(
-                member.user.displayAvatarURL({ dynamic: true })
+                member.user.displayAvatarURL({ dynamic: true }),
             )
             .setTimestamp()
             .setColor(member.displayHexColor);
@@ -60,5 +60,5 @@ export default {
         await message.reply({
             embeds: [embed],
         });
-    }
+    },
 } as CommandOptions;

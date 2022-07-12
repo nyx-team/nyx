@@ -17,7 +17,7 @@ export default {
 **And so on!**
 Note: It's also case sensitive, so if you try to remove a role named 'Role1' doing "role1" won't work.
 And yes, you can use also use the roles' IDs`,
-                ephemeral: true
+                ephemeral: true,
             });
             return;
         }
@@ -29,6 +29,7 @@ And yes, you can use also use the roles' IDs`,
 
         for (let roleToRemove of rolesToRemove) {
             roleToRemove = roleToRemove.replaceAll('"', '');
+            // eslint-disable-next-line no-shadow
             const role = interaction.guild.roles.cache.find((role) => (role.name === roleToRemove) || role.id === roleToRemove);
             if (!role) continue;
 
@@ -43,20 +44,21 @@ And yes, you can use also use the roles' IDs`,
             try {
                 await target.roles.remove(role);
                 removedRoles.push(`\`${role.name}\``);
-            } catch { continue; }
+            }
+            catch { continue; }
         }
 
         const embed = new MessageEmbed()
             .setAuthor({
                 name: target.user.tag,
-                iconURL: target.user.displayAvatarURL({ dynamic: true })
+                iconURL: target.user.displayAvatarURL({ dynamic: true }),
             })
             .addField('Role(s) removed', `${removedRoles.join(', ') || 'None'}`)
             .setColor('BLURPLE')
             .setTimestamp()
             .setFooter({
                 text: `Role(s) removed by ${interaction.user.tag}`,
-                iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
             });
 
         if (ignoredRoles.length) {
@@ -64,7 +66,7 @@ And yes, you can use also use the roles' IDs`,
         }
 
         await interaction.reply({
-            embeds: [embed]
+            embeds: [embed],
         });
-    }
+    },
 } as SlashCommandSubCommandOptions;

@@ -3,7 +3,7 @@ import chalk from 'chalk';
 export default class Logger {
     /**
      * Logger for Nyx.
-     * 
+     *
      * @param {string} name - The name of the Logger/Event
      */
     public constructor(public name: string) {

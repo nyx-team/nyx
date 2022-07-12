@@ -25,14 +25,15 @@ export default {
 
             // @ts-ignore
             await command.execute(interaction, options);
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err);
             if (err === DiscordAPIError && err.code === Constants.APIErrors.UNKNOWN_INTERACTION) return;
 
             await interaction.reply({
                 content: 'An error occured while trying to run the command.',
-                ephemeral: true
+                ephemeral: true,
             });
         }
-    }
+    },
 } as EventOptions;

@@ -2,7 +2,7 @@ import { Schema, model, models } from 'mongoose';
 
 const reqString = {
     type: String,
-    required: true
+    required: true,
 };
 
 const PrefixSchema = new Schema({
@@ -10,8 +10,8 @@ const PrefixSchema = new Schema({
     prefix: reqString,
     dateChanged: {
         type: Date,
-        required: false
-    }
+        required: false,
+    },
 });
 
 export default models['prefix-schema'] || model('prefix-schema', PrefixSchema);

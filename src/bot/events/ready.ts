@@ -18,5 +18,5 @@ export default {
         Util.loadLegacyCommands(client);
 
         ClientLog.INFO('The Bot is Ready!');
-    }
+    },
 } as EventOptions;

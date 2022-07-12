@@ -12,7 +12,7 @@ export default {
             option
                 .setName('amount')
                 .setDescription('Amount of messages you want to be deleted')
-                .setRequired(true)
+                .setRequired(true),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
@@ -30,5 +30,5 @@ export default {
         await sleep();
 
         await interaction.deleteReply();
-    }
+    },
 } as SlashCommandOptions;

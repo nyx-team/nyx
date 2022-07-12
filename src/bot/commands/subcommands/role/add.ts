@@ -17,7 +17,7 @@ export default {
 **And so on!**
 Note: It's also case sensitive, so if you try to add a role named 'Role1' doing "role1" won't work.
 And yes, you can use also use the roles' IDs`,
-                ephemeral: true
+                ephemeral: true,
             });
             return;
         }
@@ -29,6 +29,7 @@ And yes, you can use also use the roles' IDs`,
 
         for (let roleToAdd of rolesToAdd) {
             roleToAdd = roleToAdd.replaceAll('"', '');
+            // eslint-disable-next-line no-shadow
             const role = interaction.guild.roles.cache.find((role) => (role.name === roleToAdd) || role.id === roleToAdd);
             if (!role) continue;
 
@@ -43,28 +44,29 @@ And yes, you can use also use the roles' IDs`,
             try {
                 await target.roles.add(role);
                 addedRoles.push(`\`${role.name}\``);
-            } catch { continue; }
+            }
+            catch { continue; }
         }
 
         const embed = new MessageEmbed()
             .setAuthor({
                 name: target.user.tag,
-                iconURL: target.user.displayAvatarURL({ dynamic: true })
+                iconURL: target.user.displayAvatarURL({ dynamic: true }),
             })
             .addField('Role(s) added', `${addedRoles.join(', ') || 'None'}`)
             .setColor('BLURPLE')
             .setTimestamp()
             .setFooter({
                 text: `Role(s) added by ${interaction.user.tag}`,
-                iconURL: interaction.user.displayAvatarURL({ dynamic: true })
+                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
             });
-        
+
         if (ignoredRoles.length) {
             embed.addField('Ignored role(s) since the user already has this/these role(s)', ignoredRoles.join(', '));
         }
 
         await interaction.reply({
-            embeds: [embed]
+            embeds: [embed],
         });
-    }
+    },
 } as SlashCommandSubCommandOptions;

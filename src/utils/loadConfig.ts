@@ -5,27 +5,28 @@ import type { Config } from '../typings';
 
 const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 
-let config = null;
+let dotConfig = null;
 try {
-    config = require('dotenv').config; // eslint-disable-line @typescript-eslint/no-var-requires
-} catch {} // eslint-disable-line no-empty
+    dotConfig = require('dotenv').config; // eslint-disable-line @typescript-eslint/no-var-requires
+}
+catch {} // eslint-disable-line no-empty
 
 export default function loadConfig(): Config {
     // JSON config
     if (existsSync(curPathJoin('..', 'config.json'))) {
         const config = JSON.parse(
             readFileSync(curPathJoin('../..', 'config.json'), {
-                encoding: 'utf8'
-            })
+                encoding: 'utf8',
+            }),
         ) as Config;
 
         return config;
     }
- 
+
     // dotenv config
     if (existsSync(curPathJoin('../..', '.env'))) {
-        config({
-            path: curPathJoin('../..', '.env')
+        dotConfig({
+            path: curPathJoin('../..', '.env'),
         });
 
         return {
@@ -33,17 +34,17 @@ export default function loadConfig(): Config {
             mongo_uri: process.env.mongo_uri,
             devToken: process.env.devToken,
             clientId: process.env.clientId,
-            devClientId: process.env.devClientId
+            devClientId: process.env.devClientId,
         };
     }
 
-    if (!config) {
+    if (!dotConfig) {
         return {
             token: process.env.token,
             mongo_uri: process.env.mongo_uri,
             devToken: process.env.devToken,
             clientId: process.env.clientId,
-            devClientId: process.env.devClientId
+            devClientId: process.env.devClientId,
         };
     }
 }

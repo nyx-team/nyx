@@ -15,19 +15,19 @@ export default {
             ? (await message.guild.members.fetch(args[0])
                 .catch(() => message.mentions.members.first())
             )
-            : message.member; 
+            : message.member;
 
         const embed = new MessageEmbed()
             .setAuthor({
                 name: `${member.user.tag} Avatar`,
-                iconURL: member.displayAvatarURL({ dynamic: true })
+                iconURL: member.displayAvatarURL({ dynamic: true }),
             })
             .setImage(member.displayAvatarURL({ dynamic: true }))
             .setColor(member.displayColor)
             .setTimestamp();
 
         await message.reply({
-            embeds: [embed]
+            embeds: [embed],
         });
-    }
+    },
 } as CommandOptions;

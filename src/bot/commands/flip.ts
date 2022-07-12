@@ -6,14 +6,14 @@ export default {
     data: new SlashCommandBuilder()
         .setName('flip')
         .setDescription('Flip a coin'),
-    
+
     async execute(interaction) {
         const coin = ['Heads', 'Tails'];
         const n = Math.floor(Math.random() * coin.length);
         const flipped = coin[n];
 
         await interaction.reply({
-            content: `Results: **${flipped}**`
+            content: `Results: **${flipped}**`,
         });
     },
 } as SlashCommandOptions;

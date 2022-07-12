@@ -35,14 +35,14 @@ export default {
 
         try {
             // if the user is trying to convert it to default
-            // then delete the current prefix   
+            // then delete the current prefix
             if (prefix === ',') {
                 await PrefixSchema.findOneAndDelete({
-                    _id: message.guild.id
+                    _id: message.guild.id,
                 });
 
                 await message.reply({
-                    content: ':white_check_mark: Changed the prefix to default (`,`)'
+                    content: ':white_check_mark: Changed the prefix to default (`,`)',
                 });
                 return;
             }
@@ -58,11 +58,12 @@ export default {
             await message.reply({
                 content: `:white_check_mark: Changed prefix to: \`${prefix}\``,
             });
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err);
             await message.reply({
                 content: ':x: An error occured while trying to register the new prefix.',
             });
         }
-    }
+    },
 } as CommandOptions;

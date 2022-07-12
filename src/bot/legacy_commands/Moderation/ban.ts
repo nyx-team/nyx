@@ -21,8 +21,8 @@ export default {
 
         try {
             const bannedUser = await message.guild.members.ban(targetUser, {
-                reason: reason != null 
-                    ? `Banned by: ${message.author.tag} ${reason}` 
+                reason: reason != null
+                    ? `Banned by: ${message.author.tag} ${reason}`
                     : null,
             });
 
@@ -42,7 +42,8 @@ export default {
             await message.reply({
                 embeds: [embed],
             });
-        } catch (err) {
+        }
+        catch (err) {
             if (err.code === 50013) {
                 await message.reply({
                     content: ':x: I don\'t have permission to ban the user! Bot might have a lower hierarchy than the user you\'re trying to ban, or just the Bot doesn\'t have the permission to ban.',
@@ -55,5 +56,5 @@ export default {
             });
             return;
         }
-    }
+    },
 } as CommandOptions;

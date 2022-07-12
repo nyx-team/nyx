@@ -9,7 +9,7 @@ export default {
     data: new SlashCommandBuilder()
         .setName('highlow')
         .setDescription('Guess if the number is higher or lower.'),
-    
+
     async execute(interaction) {
         let correctNum = randomInt(1, 200);
         const baseNum = randomInt(50, 100);
@@ -26,7 +26,7 @@ export default {
             .setCustomId('high')
             .setLabel('High')
             .setStyle('SUCCESS');
-        
+
         const low = new MessageButton()
             .setCustomId('low')
             .setLabel('Low')
@@ -34,10 +34,10 @@ export default {
 
         const row = new MessageActionRow()
             .addComponents([high, low]);
-        
+
         await interaction.reply({
             content: `Number to base answer: **${baseNum}**\n**Higher or Lower?**`,
-            components: [row]
+            components: [row],
         });
 
         const filter = (i: ButtonInteraction): boolean => ['high', 'low'].includes(i.customId) && i.user.id === interaction.user.id;
@@ -60,22 +60,22 @@ export default {
                 }
                 else {
                     await i.followUp({
-                        content: '**:x: You chose the wrong answer! (Chose High)**'
+                        content: '**:x: You chose the wrong answer! (Chose High)**',
                     });
                 }
             }
             else if (i.customId === 'low') {
                 if (correctNum < baseNum) {
                     await i.followUp({
-                        content: '**Your answer was correct! (Chose Low)**'
+                        content: '**Your answer was correct! (Chose Low)**',
                     });
                 }
                 else {
                     await i.followUp({
-                        content: '**:x: Your chose the wrong answer! (Chose Low)**'
+                        content: '**:x: Your chose the wrong answer! (Chose Low)**',
                     });
                 }
             }
         });
-    }
+    },
 } as SlashCommandOptions;

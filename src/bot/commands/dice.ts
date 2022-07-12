@@ -8,12 +8,12 @@ export default {
     data: new SlashCommandBuilder()
         .setName('dice')
         .setDescription('Roll a dice!'),
-    
+
     async execute(interaction) {
         const rolled = randomInt(1, 6);
 
         await interaction.reply({
-            content: `**Rolled \`${rolled}\`!**`
+            content: `**Rolled \`${rolled}\`!**`,
         });
     },
 } as SlashCommandOptions;

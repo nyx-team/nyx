@@ -2,7 +2,7 @@ import {
     Collection,
     Client,
     Intents,
-    Message
+    Message,
 } from 'discord.js';
 
 import type {
@@ -16,24 +16,25 @@ export const client = new Client({
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_MEMBERS
+        Intents.FLAGS.GUILD_MEMBERS,
     ],
     partials: ['CHANNEL'],
     allowedMentions: {
         parse: ['users'],
-        repliedUser: false
+        repliedUser: false,
     },
     presence: {
         activities: [{
             name: 'dark theme moment',
-            type: 'PLAYING'
-        }]
-    }
+            type: 'PLAYING',
+        }],
+    },
 }) as Client;
 
 // Declare the Collections as a type
 // for Client
 declare module 'discord.js' {
+    // eslint-disable-next-line no-shadow
     export interface Client {
         commands: Collection<string, SlashCommandOptions>;
         subCommands: Collection<string, SlashCommandSubCommandOptions>;

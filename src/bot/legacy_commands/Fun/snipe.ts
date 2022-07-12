@@ -31,5 +31,5 @@ export default {
         await message.reply({
             embeds: [embed],
         });
-    }
+    },
 } as CommandOptions;

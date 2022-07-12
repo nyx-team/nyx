@@ -21,14 +21,14 @@ export default {
                     option
                         .setName('target')
                         .setDescription('Member to add the role to.')
-                        .setRequired(true)
+                        .setRequired(true),
                 )
                 .addStringOption((option) =>
                     option
                         .setName('roles')
                         .setDescription('Roles to add to the member')
-                        .setRequired(true)
-                )
+                        .setRequired(true),
+                ),
         )
         .addSubcommand((subcommand) =>
             subcommand
@@ -38,13 +38,13 @@ export default {
                     option
                         .setName('target')
                         .setDescription('Member to remove the role to.')
-                        .setRequired(true)
+                        .setRequired(true),
                 )
                 .addStringOption((option) =>
                     option
                         .setName('roles')
                         .setDescription('Roles to remove to the member')
-                        .setRequired(true)
-                )
+                        .setRequired(true),
+                ),
         ),
 } as SlashCommandOptions;

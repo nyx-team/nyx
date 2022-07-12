@@ -11,5 +11,5 @@ export default {
         await interaction.reply({
             content: `Pong! | ${interaction.client.ws.ping}ms`,
         });
-    }
+    },
 } as SlashCommandOptions;

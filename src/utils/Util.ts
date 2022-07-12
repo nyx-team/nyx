@@ -6,7 +6,7 @@ import {
     CommandOptions,
     EventOptions,
     SlashCommandOptions,
-    SlashCommandSubCommandOptions
+    SlashCommandSubCommandOptions,
 } from '../typings';
 
 import { UtilLog } from '../index';
@@ -16,12 +16,12 @@ const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 export default class Util {
     /**
      * Loads in the slash commands
-     * 
+     *
      * @param {Client} client
      */
     public static loadCommands(client: Client): void {
         const commandFiles = readdirSync(
-            curPathJoin('..', 'bot', 'commands')
+            curPathJoin('..', 'bot', 'commands'),
         ).filter((file) => file.endsWith('.ts'));
 
         commandFiles.forEach(async (file) => {
@@ -35,7 +35,7 @@ export default class Util {
                     'bot',
                     'commands',
                     'subcommands',
-                    `${file.replace('.ts', '')}`
+                    `${file.replace('.ts', '')}`,
                 ));
             }
 
@@ -52,7 +52,7 @@ export default class Util {
      */
     public static loadLegacyCommands(client: Client): void {
         const loadLegacyCommandCategories = readdirSync(
-            curPathJoin('..', 'bot', 'legacy_commands')
+            curPathJoin('..', 'bot', 'legacy_commands'),
         ).filter((category) => !category.endsWith('.ts'));
 
         loadLegacyCommandCategories.forEach(async (category) => {
@@ -60,7 +60,7 @@ export default class Util {
                 '..',
                 'bot',
                 'legacy_commands',
-                category
+                category,
             )).filter((file) => file.endsWith('.ts'));
 
             commands.forEach(async (file) => {
@@ -69,7 +69,7 @@ export default class Util {
                     'bot',
                     'legacy_commands',
                     category,
-                    file
+                    file,
                 ))).default as CommandOptions;
 
                 client.legacyCommands.set(command.name, command);
@@ -81,15 +81,16 @@ export default class Util {
 
     public static loadEvents(client: Client): void {
         const eventFiles = readdirSync(
-            curPathJoin('..', 'bot', 'events')
+            curPathJoin('..', 'bot', 'events'),
         ).filter((file) => file.endsWith('.ts'));
- 
+
         eventFiles.forEach(async (file) => {
             const event = (await import(curPathJoin('..', 'bot', 'events', file))).default as EventOptions;
 
             if (event?.once === true) {
                 client.once(event.name, (...args) => event.execute(client, ...args));
-            } else {
+            }
+            else {
                 client.on(event.name, (...args) => event.execute(client, ...args));
             }
         });

@@ -1,4 +1,4 @@
-import PrefixSchema from '../../../models/PrefixSchema';
+import PrefixSchema from '../../models/PrefixSchema';
 import { CommandOptions } from '../../../typings';
 
 export default {

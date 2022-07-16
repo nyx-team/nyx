@@ -1,6 +1,7 @@
 import PrefixSchema from '../models/PrefixSchema';
 import validateCommand from '../../utils/validateCommand';
 import type { CommandOptions, EventOptions } from '../../typings';
+import DisabledCommandsSchema from '../models/DisabledCommandsSchema';
 
 const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -28,6 +29,11 @@ export default {
         const commands = client.legacyCommands.get(command)
             ?? client.legacyCommands.find((cmds: CommandOptions) => cmds.aliases && cmds.aliases.includes(command));
         if (!commands) return;
+
+        // @ts-ignore
+        // eslint-disable-next-line
+        const disabledCommands = (await DisabledCommandsSchema.findById(message.guild.id))?.disabledCommands! as Array<string>;
+        if (disabledCommands && disabledCommands.includes(command)) return;
 
         const isCommandValid = await validateCommand(
             message,

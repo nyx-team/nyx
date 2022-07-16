@@ -37,8 +37,7 @@ ${disabledCommandsList.join(', ')}
         const commands = args
             .join(' ')
             .match(quotesRegex)
-            // @ts-ignore
-            .filter((v) => v !== '"disable"' || v !== '"enable"');
+            .filter((v) => v !== '"enable"');
 
         if (!commands) {
             await message.reply({

@@ -59,7 +59,7 @@ And so on...
             const actualCommand = message.client.legacyCommands.find((v) => v.name === command);
 
             if (!actualCommand) continue;
-            if (disabledCommandsList.includes(actualCommand.name)) continue;
+            if (disabledCommandsList?.includes?.(actualCommand.name)) continue;
 
             await DisabledCommandsSchema.findOneAndUpdate({
                 _id: message.guild.id,

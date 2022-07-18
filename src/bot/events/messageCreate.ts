@@ -47,7 +47,8 @@ export default {
             client,
         );
         if (isCommandValid && isCommandValid !== true) {
-            return message.reply(isCommandValid);
+            message.reply(isCommandValid);
+            return;
         }
         if (!isCommandValid) return;
 

@@ -1,5 +1,10 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ButtonInteraction, MessageActionRow, MessageButton } from 'discord.js';
+import {
+    ButtonInteraction,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+} from 'discord.js';
 import { SlashCommandOptions } from '../../typings';
 
 import { randomInt } from 'crypto';
@@ -22,17 +27,17 @@ export default {
                 : correctNum + Math.floor(Math.random() * 2);
         }
 
-        const high = new MessageButton()
+        const high = new ButtonBuilder()
             .setCustomId('high')
             .setLabel('High')
-            .setStyle('SUCCESS');
+            .setStyle(ButtonStyle.Success);
 
-        const low = new MessageButton()
+        const low = new ButtonBuilder()
             .setCustomId('low')
             .setLabel('Low')
-            .setStyle('DANGER');
+            .setStyle(ButtonStyle.Danger);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder<ButtonBuilder>()
             .addComponents([high, low]);
 
         await interaction.reply({

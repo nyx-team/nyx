@@ -1,8 +1,10 @@
 import {
-    Collection,
+    ActivityType,
     Client,
-    Intents,
+    Collection,
+    GatewayIntentBits,
     Message,
+    Partials,
 } from 'discord.js';
 
 import type {
@@ -13,12 +15,12 @@ import type {
 
 export const client = new Client({
     intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_MEMBERS,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildBans,
+        GatewayIntentBits.GuildMembers,
     ],
-    partials: ['CHANNEL'],
+    partials: [Partials.Channel],
     allowedMentions: {
         parse: ['users'],
         repliedUser: false,
@@ -26,7 +28,7 @@ export const client = new Client({
     presence: {
         activities: [{
             name: 'dark theme moment',
-            type: 'PLAYING',
+            type: ActivityType.Playing,
         }],
     },
 }) as Client;

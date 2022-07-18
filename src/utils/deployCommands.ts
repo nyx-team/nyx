@@ -2,8 +2,7 @@ import { readdirSync } from 'fs';
 import { join } from 'path';
 
 import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v10';
-import { Snowflake } from 'discord.js';
+import { Snowflake, Routes } from 'discord.js';
 
 import { SlashCommandOptions } from '../typings';
 
@@ -25,7 +24,7 @@ export default async function deployCommands(token: string, clientId: Snowflake)
         commands.push(data.toJSON());
     }
 
-    const rest = new REST({ version: '9' })
+    const rest = new REST({ version: '10' })
         .setToken(token);
 
     try {

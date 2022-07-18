@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import { CommandOptions } from '../../../typings';
 import DisabledCommandsSchema from '../../models/DisabledCommandsSchema';
@@ -9,7 +9,7 @@ export default {
 
     minArgs: 1,
     args: '<..."commands_to_disable"|list>',
-    reqPerms: ['MANAGE_GUILD'],
+    reqPerms: ['ManageGuild'],
 
     category: 'Moderation',
     async execute(message, args) {
@@ -18,14 +18,14 @@ export default {
         const disabledCommandsList = (await DisabledCommandsSchema.findById(message.guild.id))?.disabledCommands! as Array<string>;
 
         if (args[0] === 'list') {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle(':information_source: List of disabled commands')
                 .setDescription(`
 \`\`\`
 ${disabledCommandsList.join(', ')}
 \`\`\`
                 `)
-                .setColor('BLURPLE');
+                .setColor('Blurple');
 
             await message.reply({
                 embeds: [embed],

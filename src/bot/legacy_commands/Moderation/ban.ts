@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -8,8 +8,8 @@ export default {
 
     args: '<user> [reason]',
     minArgs: 1,
-    reqPerms: ['BAN_MEMBERS'],
-    botReqPerms: ['BAN_MEMBERS'],
+    reqPerms: ['BanMembers'],
+    botReqPerms: ['BanMembers'],
 
     category: 'Moderation',
 
@@ -26,11 +26,10 @@ export default {
                     : null,
             });
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setAuthor({
                     name: `User banned by ${message.author.tag}`,
-                    iconURL: message.author
-                        .displayAvatarURL({ dynamic: true }),
+                    iconURL: message.author.displayAvatarURL(),
                 })
                 // @ts-ignore
                 .addField('Target', `${bannedUser.user?.tag ?? bannedUser.tag ?? bannedUser}`)

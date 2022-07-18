@@ -9,8 +9,8 @@ export default {
 
     args: '<purge count>',
     minArgs: 1,
-    reqPerms: ['MANAGE_MESSAGES'],
-    botReqPerms: ['MANAGE_MESSAGES'],
+    reqPerms: ['ManageMessages'],
+    botReqPerms: ['ManageMessages'],
 
     category: 'Moderation',
 

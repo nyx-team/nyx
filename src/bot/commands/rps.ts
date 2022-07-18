@@ -2,8 +2,9 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import {
     ButtonInteraction,
     CommandInteractionOptionResolver,
-    MessageActionRow,
-    MessageButton,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
 } from 'discord.js';
 
 import { SlashCommandOptions } from '../../typings';
@@ -44,22 +45,22 @@ export default {
         let enemySelection: validSelections;
 
         // #region Buttons and Row
-        const rock = new MessageButton()
+        const rock = new ButtonBuilder()
             .setCustomId('rock')
             .setLabel('✊')
-            .setStyle('SUCCESS');
+            .setStyle(ButtonStyle.Success);
 
-        const paper = new MessageButton()
+        const paper = new ButtonBuilder()
             .setCustomId('paper')
             .setLabel('✋')
-            .setStyle('SUCCESS');
+            .setStyle(ButtonStyle.Success);
 
-        const scissors = new MessageButton()
+        const scissors = new ButtonBuilder()
             .setCustomId('scissors')
             .setLabel('✌️')
-            .setStyle('SUCCESS');
+            .setStyle(ButtonStyle.Success);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder<ButtonBuilder>()
             .addComponents([rock, paper, scissors]);
         // #endregion
 

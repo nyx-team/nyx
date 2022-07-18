@@ -4,7 +4,7 @@ import {
     CommandInteraction,
     CommandInteractionOptionResolver,
     Message,
-    PermissionString,
+    PermissionsString,
     Snowflake,
 } from 'discord.js';
 
@@ -28,8 +28,8 @@ export interface CommandOptions {
     minArgs?: number;
     args?: string;
 
-    reqPerms?: Array<PermissionString>;
-    botReqPerms?: Array<PermissionString>;
+    reqPerms?: Array<PermissionsString>;
+    botReqPerms?: Array<PermissionsString>;
     permissionError?(message: Message, args?: Array<string>): Promise<void>;
 
     customArgError?(message: Message, client: Client): Promise<void>;

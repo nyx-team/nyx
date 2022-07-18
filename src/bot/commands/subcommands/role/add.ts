@@ -1,4 +1,4 @@
-import { GuildMember, MessageEmbed } from 'discord.js';
+import { GuildMember, EmbedBuilder } from 'discord.js';
 import { SlashCommandSubCommandOptions } from '../../../../typings';
 
 export default {
@@ -48,21 +48,24 @@ And yes, you can use also use the roles' IDs`,
             catch { continue; }
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({
                 name: target.user.tag,
-                iconURL: target.user.displayAvatarURL({ dynamic: true }),
+                iconURL: target.user.displayAvatarURL(),
             })
-            .addField('Role(s) added', `${addedRoles.join(', ') || 'None'}`)
-            .setColor('BLURPLE')
+            .addFields([{ name: 'Role(s) added', value: `${addedRoles.join(', ') || 'None'}` }])
+            .setColor('Blurple')
             .setTimestamp()
             .setFooter({
                 text: `Role(s) added by ${interaction.user.tag}`,
-                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+                iconURL: interaction.user.displayAvatarURL(),
             });
 
         if (ignoredRoles.length) {
-            embed.addField('Ignored role(s) since the user already has this/these role(s)', ignoredRoles.join(', '));
+            embed.addFields([{
+                name: 'Ignored role(s) since the user already has this/these role(s)',
+                value: ignoredRoles.join(', '),
+            }]);
         }
 
         await interaction.reply({

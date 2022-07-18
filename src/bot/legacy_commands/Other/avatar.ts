@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -17,12 +17,12 @@ export default {
             )
             : message.member;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({
                 name: `${member.user.tag} Avatar`,
-                iconURL: member.displayAvatarURL({ dynamic: true }),
+                iconURL: member.displayAvatarURL(),
             })
-            .setImage(member.displayAvatarURL({ dynamic: true }))
+            .setImage(member.displayAvatarURL())
             .setColor(member.displayColor)
             .setTimestamp();
 

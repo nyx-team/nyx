@@ -1,5 +1,7 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { PermissionFlagsBits } from 'discord-api-types/v9';
+import {
+    PermissionFlagsBits,
+    SlashCommandBuilder,
+} from 'discord.js';
 
 import { SlashCommandOptions } from '../../typings';
 

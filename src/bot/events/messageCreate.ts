@@ -1,3 +1,5 @@
+import { Message } from 'discord.js';
+
 import PrefixSchema from '../models/PrefixSchema';
 import validateCommand from '../../utils/validateCommand';
 import type { CommandOptions, EventOptions } from '../../typings';
@@ -7,7 +9,9 @@ const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 export default {
     name: 'messageCreate',
-    async execute(client, message) {
+    async execute(client, message: Message<true>) {
+        if (!message.inGuild()) return;
+        if (message.author.bot) return;
         if (
             !message.channel
                 .permissionsFor(message.client.user)

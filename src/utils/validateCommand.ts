@@ -1,7 +1,7 @@
 import {
     Client,
     Message,
-    MessageEmbed,
+    EmbedBuilder,
     MessageOptions,
 } from 'discord.js';
 
@@ -17,7 +17,7 @@ export default async function validateCommand(
 ): Promise<boolean | MessageOptions> {
     if (
         command?.botReqPerms &&
-        !message.guild.me.permissions.has(command.botReqPerms)
+        !message.guild.members.me.permissions.has(command.botReqPerms)
     ) {
         // Convert required perms into a readable one
         const reqPerms = command.botReqPerms.map((e) => PermissionsReadable[e]);
@@ -52,8 +52,8 @@ export default async function validateCommand(
         args.length < command?.minArgs
     ) {
         if (!command?.customArgError) {
-            const embed = new MessageEmbed()
-                .setColor('DARK_BLUE')
+            const embed = new EmbedBuilder()
+                .setColor('DarkBlue')
                 .setDescription(
                     `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`,
                 );

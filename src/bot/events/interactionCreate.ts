@@ -1,12 +1,17 @@
-import { CommandInteraction, Constants, DiscordAPIError } from 'discord.js';
+import {
+    ChatInputCommandInteraction,
+    DiscordAPIError,
+    InteractionType,
+    RESTJSONErrorCodes,
+} from 'discord.js';
 import { EventOptions } from '../../typings';
 
 export default {
     name: 'interactionCreate',
 
-    async execute(client, interaction: CommandInteraction) {
+    async execute(client, interaction: ChatInputCommandInteraction) {
         if (!interaction.inCachedGuild()) return;
-        if (!interaction.isCommand()) return;
+        if (interaction.type !== InteractionType.ApplicationCommand) return;
         const { commandName, options } = interaction;
 
         const command = client.commands.get(commandName);
@@ -28,7 +33,7 @@ export default {
         }
         catch (err) {
             console.error(err);
-            if (err === DiscordAPIError && err.code === Constants.APIErrors.UNKNOWN_INTERACTION) return;
+            if (err === DiscordAPIError && err.code === RESTJSONErrorCodes.UnknownInteraction) return;
 
             await interaction.reply({
                 content: 'An error occured while trying to run the command.',

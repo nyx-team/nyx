@@ -9,7 +9,7 @@ export default {
 
     minArgs: 1,
     args: '<..."commands_to_disable"|list>',
-    reqPerms: ['MANAGE_GUILD'],
+    reqPerms: ['ManageGuild'],
 
     category: 'Moderation',
     async execute(message, args) {

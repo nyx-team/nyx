@@ -8,8 +8,8 @@ export default {
 
     args: '<target_member> [reason]',
     minArgs: 1,
-    reqPerms: ['KICK_MEMBERS'],
-    botReqPerms: ['KICK_MEMBERS'],
+    reqPerms: ['KickMembers'],
+    botReqPerms: ['KickMembers'],
 
     category: 'Moderation',
 

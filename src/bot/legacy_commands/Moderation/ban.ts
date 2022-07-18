@@ -8,8 +8,8 @@ export default {
 
     args: '<user> [reason]',
     minArgs: 1,
-    reqPerms: ['BAN_MEMBERS'],
-    botReqPerms: ['BAN_MEMBERS'],
+    reqPerms: ['BanMembers'],
+    botReqPerms: ['BanMembers'],
 
     category: 'Moderation',
 

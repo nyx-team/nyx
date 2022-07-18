@@ -1,4 +1,4 @@
-import { DiscordAPIError, MessageEmbed } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -26,17 +26,16 @@ export default {
                     : null,
             )
             .then((user) => {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setAuthor({
                         name: `User Unbanned by ${message.author.tag}`,
-                        iconURL: message.author
-                            .displayAvatarURL({ dynamic: true }),
+                        iconURL: message.author.displayAvatarURL(),
                     })
-                    .addField('Target', `${user.tag}`)
+                    .addFields([{ name: 'Target', value: `${user.tag}` }])
                     .setTimestamp()
-                    .setColor('BLURPLE');
+                    .setColor('Blurple');
 
-                if (reason) embed.addField('Reason', `${reason}`);
+                if (reason) embed.addFields([{ name: 'Reason', value: `${reason}` }]);
 
                 return message.reply({
                     embeds: [embed],
@@ -44,8 +43,8 @@ export default {
             })
             .catch((err) => {
                 if (err instanceof DiscordAPIError) {
-                    const apiError = new MessageEmbed()
-                        .setColor('RED')
+                    const apiError = new EmbedBuilder()
+                        .setColor('Red')
                         .setDescription(`:x: Got API Error!\n\`${err.message}\``);
 
                     return message.reply({
@@ -53,10 +52,10 @@ export default {
                     });
                 }
 
-                const noUserFetched = new MessageEmbed()
+                const noUserFetched = new EmbedBuilder()
                     .setDescription(`:x: ${userTarget} is not banned!`)
                     .setTimestamp()
-                    .setColor('RED');
+                    .setColor('Red');
 
                 return message.reply({
                     embeds: [noUserFetched],

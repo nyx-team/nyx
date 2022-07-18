@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import moment from 'moment';
 
 import { CommandOptions } from '../../../typings';
@@ -36,24 +36,27 @@ export default {
             : 'None';
 
         const hasRoles = (member.roles.cache.size - 1) > 0 ? true : false;
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTimestamp()
             .setAuthor({
                 name: `${member.user.tag}`,
                 iconURL: member.user
-                    .displayAvatarURL({ dynamic: true }),
+                    .displayAvatarURL(),
             })
-            .addField('Joined in', moment(member.joinedAt).format('llll'))
-            .addField('Created in', moment(member.user.createdAt).format('llll'))
-            .addField(`Roles${hasRoles ? ` - ${roles.length}` : ''}`,
-                hasRoles === true
+            .addFields([{
+                name: 'Joined in',
+                value: moment(member.joinedAt).format('llll'),
+            }, {
+                name: 'Created in',
+                value: moment(member.user.createdAt).format('llll'),
+            }, {
+                name: `Roles${hasRoles ? ` - ${roles.length}` : ''}`,
+                value: hasRoles === true
                     // @ts-ignore
                     ? roles.join(' ')
                     : 'None',
-            )
-            .setThumbnail(
-                member.user.displayAvatarURL({ dynamic: true }),
-            )
+            }])
+            .setThumbnail(member.user.displayAvatarURL())
             .setTimestamp()
             .setColor(member.displayHexColor);
 

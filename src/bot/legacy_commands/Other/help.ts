@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -13,14 +13,13 @@ export default {
 
         message.client.legacyCommands.forEach((_, name) => commands.push(`\`${name}\``));
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({
                 name: 'Nyx (JS) Commands',
-                iconURL: message.client.user
-                    .displayAvatarURL({ dynamic: true }),
+                iconURL: message.client.user.displayAvatarURL(),
             })
-            .addField('Commands', `${commands.join(', ')}`)
-            .setColor('BLURPLE')
+            .addFields([{ name: 'Commands', value: `${commands.join(', ')}` }])
+            .setColor('Blurple')
             .setTimestamp()
             .setFooter({
                 text: 'Nyx JavaScript Branch',
@@ -47,18 +46,18 @@ export default {
 
         const { name, description } = command;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({
                 name: `Command: ${name}`,
                 iconURL: client.user.avatarURL(),
             })
             .setTimestamp()
             .setColor(0x6666ff)
-            .addField('Description', description);
+            .addFields([{ name: 'Description', value: description }]);
 
-        if (command.aliases) embed.addField('Aliases', command.aliases.join(', '));
-        if (command.args) embed.addField('Args', `\`${command.args}\``);
-        if (command.category) embed.addField('Category', command.category);
+        if (command.aliases) embed.addFields([{ name: 'Aliases', value: command.aliases.join(', ') }]);
+        if (command.args) embed.addFields([{ name: 'Args', value: `\`${command.args}\`` }]);
+        if (command.category) embed.addFields([{ name: 'Category', value: command.category }]);
         if (command.author) {
             const nyxGithub = 'https://github.com/nyx-team/nyx';
 
@@ -66,10 +65,10 @@ export default {
                 ? ` ([${command.commit.slice(0, 7)}](${nyxGithub}/tree/${command.commit}))`
                 : '';
 
-            embed.addField(
-                'Command Author',
-                `This command is made by: \`${command.author}\`${commandCommitLink}`,
-            );
+            embed.addFields([{
+                name: 'Command Author',
+                value: `This command is made by: \`${command.author}\`${commandCommitLink}`,
+            }]);
         }
 
         await message.reply({

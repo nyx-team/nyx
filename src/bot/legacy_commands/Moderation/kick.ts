@@ -1,4 +1,4 @@
-import { GuildMember, Message, MessageEmbed } from 'discord.js';
+import { GuildMember, Message, EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -30,24 +30,24 @@ export default {
         try {
             await member.kick(`Kicked by: ${message.author.tag} Reason: ${reason}`);
 
-            const embed = new MessageEmbed()
-                .setColor('BLURPLE')
+            const embed = new EmbedBuilder()
+                .setColor('Blurple')
                 .setTimestamp()
                 .setAuthor({
                     name: `${message.author.tag}`,
-                    iconURL: message.author.displayAvatarURL({ dynamic: true }),
+                    iconURL: message.author.displayAvatarURL(),
                 })
-                .addField('Kicked', `\`${member.user.tag}\``)
+                .addFields([{ name: 'Kicked', value: `\`${member.user.tag}\`` }])
                 .setFooter({
                     text: `ID: ${member.id}`,
-                    iconURL: member.displayAvatarURL({ dynamic: true }),
+                    iconURL: member.displayAvatarURL(),
                 });
 
             // If there is a reason
             // then add a field
             // I check for args length instead
             // just in case user puts `None` on the `reason` arg
-            if (args.length > 1) embed.addField('Reason', reason);
+            if (args.length > 1) embed.addFields([{ name: 'Reason', value: reason }]);
 
             await message.reply({
                 embeds: [embed],

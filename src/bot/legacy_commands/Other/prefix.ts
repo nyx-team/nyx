@@ -8,7 +8,7 @@ export default {
 
     args: '[new_prefix]',
     minArgs: 1,
-    reqPerms: ['MANAGE_GUILD'],
+    reqPerms: ['ManageGuild'],
     async permissionError(message) {
         const res = await PrefixSchema.findById(message.guild.id);
         const currentPrefix = res?.prefix ? res.prefix : ',';

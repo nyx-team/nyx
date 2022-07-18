@@ -19,6 +19,7 @@ export const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildBans,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.MessageContent,
     ],
     partials: [Partials.Channel],
     allowedMentions: {

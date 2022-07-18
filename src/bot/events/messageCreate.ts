@@ -17,7 +17,6 @@ export default {
                 .permissionsFor(message.client.user)
                 .has('SendMessages')
         ) return;
-        console.log(message.content);
         const results = await PrefixSchema.findById(message.guild.id);
         const prefix = results ? results.prefix : ',';
 

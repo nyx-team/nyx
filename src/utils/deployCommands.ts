@@ -25,7 +25,7 @@ export default async function deployCommands(token: string, clientId: Snowflake)
         commands.push(data.toJSON());
     }
 
-    const rest = new REST({ version: '9' })
+    const rest = new REST({ version: '10' })
         .setToken(token);
 
     try {

@@ -1,4 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
+
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -9,16 +10,43 @@ export default {
     minArgs: 1,
     args: '<command name>',
     async customArgError(message) {
-        const commands = [];
-
-        message.client.legacyCommands.forEach((_, name) => commands.push(`\`${name}\``));
+        const FunCommands = message.client.legacyCommands
+            .filter((v) => v.category === 'Fun')
+            .map((cmd) => cmd.name);
+        const ModerationCommands = message.client.legacyCommands
+            .filter((v) => v.category === 'Moderation')
+            .map((cmd) => cmd.name);
+        const OtherCommands = message.client.legacyCommands
+            .filter((v) => v.category === 'Other')
+            .map((cmd) => cmd.name);
 
         const embed = new EmbedBuilder()
             .setAuthor({
                 name: 'Nyx (JS) Commands',
                 iconURL: message.client.user.displayAvatarURL(),
             })
-            .addFields([{ name: 'Commands', value: `${commands.join(', ')}` }])
+            .addFields([{
+                name: 'Fun',
+                value: `
+\`\`\`
+${FunCommands.join(', ')}
+\`\`\`
+                `,
+            }, {
+                name: 'Moderation',
+                value: `
+\`\`\`
+${ModerationCommands.join(', ')}
+\`\`\`
+                `,
+            }, {
+                name: 'Other',
+                value: `
+\`\`\`
+${OtherCommands.join(', ')}
+\`\`\`
+                `,
+            }])
             .setColor('Blurple')
             .setTimestamp()
             .setFooter({

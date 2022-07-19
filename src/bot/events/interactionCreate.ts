@@ -12,6 +12,8 @@ export default {
     async execute(client, interaction: ChatInputCommandInteraction) {
         if (!interaction.inCachedGuild()) return;
         if (interaction.type !== InteractionType.ApplicationCommand) return;
+        if (!interaction.isChatInputCommand()) return;
+
         const { commandName, options } = interaction;
 
         const command = client.commands.get(commandName);

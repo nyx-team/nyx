@@ -31,6 +31,7 @@ export const client = new Client({
             name: 'dark theme moment',
             type: ActivityType.Playing,
         }],
+        status: 'idle',
     },
 }) as Client;
 

@@ -19,4 +19,4 @@ export default {
 
         ClientLog.INFO('The Bot is Ready!');
     },
-} as EventOptions;
+} as EventOptions<'ready'>;

@@ -43,7 +43,7 @@ declare module 'discord.js' {
         commands: Collection<string, SlashCommandOptions>;
         subCommands: Collection<string, SlashCommandSubCommandOptions>;
         legacyCommands: Collection<string, CommandOptions>;
-        snipedMessages: Collection<string, Message>;
+        snipedMessages: Collection<string, Message | PartialMessage>;
     }
 }
 

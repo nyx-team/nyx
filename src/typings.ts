@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import {
     Client,
+    ClientEvents,
     CommandInteraction,
     CommandInteractionOptionResolver,
     Message,
@@ -42,11 +43,11 @@ export interface CommandOptions {
     ): Promise<void>;
 }
 
-export interface EventOptions {
+export interface EventOptions<K extends keyof ClientEvents> {
     name: string;
     once?: boolean;
 
-    execute(client?: Client, ...args: any[]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    execute(client?: Client, ...args: ClientEvents[K]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface SlashCommandOptions {

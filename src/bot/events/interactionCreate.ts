@@ -1,5 +1,4 @@
 import {
-    ChatInputCommandInteraction,
     DiscordAPIError,
     InteractionType,
     RESTJSONErrorCodes,
@@ -9,7 +8,7 @@ import { EventOptions } from '../../typings';
 export default {
     name: 'interactionCreate',
 
-    async execute(client, interaction: ChatInputCommandInteraction) {
+    async execute(client, interaction) {
         if (!interaction.inCachedGuild()) return;
         if (interaction.type !== InteractionType.ApplicationCommand) return;
         if (!interaction.isChatInputCommand()) return;
@@ -43,4 +42,4 @@ export default {
             });
         }
     },
-} as EventOptions;
+} as EventOptions<'interactionCreate'>;

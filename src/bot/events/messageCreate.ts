@@ -62,4 +62,4 @@ export default {
             });
         }
     },
-} as EventOptions;
+} as EventOptions<'messageCreate'>;

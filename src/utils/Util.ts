@@ -28,7 +28,7 @@ export function loadCommands(client: Client): void {
         )).default as SlashCommandOptions;
 
         if (command?.subcommands) {
-            this.loadSubCommand(client, curPathJoin(
+            loadSubCommand(client, curPathJoin(
                 '..',
                 'bot',
                 'commands',

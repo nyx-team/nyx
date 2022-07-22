@@ -2,7 +2,7 @@
 export { client } from './bot/bot';
 
 // Utils
-import Util from './utils/Util';
+import * as Util from './utils/Util';
 import loadConfig from './utils/loadConfig';
 import validateCommand from './utils/validateCommand';
 import Logger from './utils/Logger';

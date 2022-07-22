@@ -1,6 +1,6 @@
 import { connect, pluralize } from 'mongoose';
 
-import Util from '../../utils/Util';
+import { loadCommands, loadLegacyCommands } from '../../utils/Util';
 import type { EventOptions } from '../../typings';
 import loadConfig from '../../utils/loadConfig';
 import { ClientLog } from '../..';
@@ -14,8 +14,8 @@ export default {
         pluralize(null);
         await connect(mongo_uri, { keepAlive: true });
 
-        Util.loadCommands(client);
-        Util.loadLegacyCommands(client);
+        loadCommands(client);
+        loadLegacyCommands(client);
 
         ClientLog.INFO('The Bot is Ready!');
     },

@@ -45,7 +45,6 @@ export default {
             commands,
             args,
             prefix,
-            client,
         );
         if (isCommandValid && isCommandValid !== true) {
             message.reply(isCommandValid);

@@ -1,5 +1,4 @@
 import {
-    Client,
     Message,
     EmbedBuilder,
     MessageOptions,
@@ -13,7 +12,6 @@ export default async function validateCommand(
     command: CommandOptions,
     args: Array<string>,
     prefix: string,
-    client: Client,
 ): Promise<boolean | MessageOptions> {
     if (
         command?.botReqPerms &&
@@ -63,7 +61,7 @@ export default async function validateCommand(
         }
 
         if (typeof command?.customArgError === 'function') {
-            await command?.customArgError(message, client);
+            await command?.customArgError(message, message.client);
             return false;
         }
     }

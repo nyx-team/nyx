@@ -1,4 +1,5 @@
 import { Message } from 'discord.js';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 import PrefixSchema from '../models/PrefixSchema';
 import validateCommand from '../../utils/validateCommand';
@@ -51,6 +52,31 @@ export default {
             return;
         }
         if (!isCommandValid) return;
+
+        const cooldown = message.client.cooldowns.get(commands.name);
+
+        if (cooldown?.has(message.author.id)) {
+            const cooldownTime = cooldown.get(message.author.id);
+            const currentTime = Date.now();
+
+            if (cooldownTime < currentTime) {
+                const cooldownMessage = await message.reply({
+                    content: '**You are on cooldown!**',
+                });
+                await sleep(5000);
+                await cooldownMessage.delete();
+
+                return;
+            }
+        }
+
+        cooldown.set(message.author.id, Date.now());
+
+        // Remove the cooldown after the specified cooldown
+        // If there's no cooldown specified, the default will be 3 seconds.
+        setTimeout(() => {
+            cooldown.delete(message.author.id);
+        }, 1000 * (commands?.cooldown || 3));
 
         try {
             await commands.execute(message, args, client);

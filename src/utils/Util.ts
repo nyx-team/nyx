@@ -1,4 +1,4 @@
-import { Client } from 'discord.js';
+import { Client, Collection } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
@@ -71,6 +71,7 @@ export function loadLegacyCommands(client: Client): void {
             ))).default as CommandOptions;
 
             client.legacyCommands.set(command.name, command);
+            client.cooldowns.set(command.name, new Collection());
         });
     });
 

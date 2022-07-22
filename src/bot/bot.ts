@@ -5,6 +5,7 @@ import {
     GatewayIntentBits,
     Message,
     Partials,
+    Snowflake,
 } from 'discord.js';
 
 import type {
@@ -44,6 +45,7 @@ declare module 'discord.js' {
         subCommands: Collection<string, SlashCommandSubCommandOptions>;
         legacyCommands: Collection<string, CommandOptions>;
         snipedMessages: Collection<string, Message | PartialMessage>;
+        cooldowns: Collection<string, Collection<Snowflake, number>>;
     }
 }
 
@@ -51,6 +53,7 @@ client.commands = new Collection<string, SlashCommandOptions>();
 client.subCommands = new Collection<string, SlashCommandSubCommandOptions>();
 client.legacyCommands = new Collection<string, CommandOptions>();
 client.snipedMessages = new Collection<string, Message>();
+client.cooldowns = new Collection<string, Collection<Snowflake, number>>();
 
 client.on('nyxDebug', (m) => console.log(m))
     .on('warn', console.log)

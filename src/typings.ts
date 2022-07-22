@@ -35,6 +35,7 @@ export interface CommandOptions {
 
     customArgError?(message: Message, client: Client): Promise<void>;
 
+    cooldown?: number;
     category: CategoryOptions;
     execute(
         message: Message,

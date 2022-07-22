@@ -4,7 +4,6 @@ import { join } from 'path';
 
 import {
     CommandOptions,
-    EventOptions,
     SlashCommandOptions,
     SlashCommandSubCommandOptions,
 } from '../typings';
@@ -85,7 +84,7 @@ export default class Util {
         ).filter((file) => file.endsWith('.ts'));
 
         eventFiles.forEach(async (file) => {
-            const event = (await import(curPathJoin('..', 'bot', 'events', file))).default as EventOptions;
+            const event = (await import(curPathJoin('..', 'bot', 'events', file))).default;
 
             if (event?.once === true) {
                 client.once(event.name, (...args) => event.execute(client, ...args));

@@ -1,4 +1,5 @@
 import { CommandOptions } from '../../../typings';
+import toTimestamp from '../../../utils/toTimestamp';
 
 export default {
     name: 'to-timestamp',
@@ -22,7 +23,7 @@ export default {
         }
 
         await message.reply({
-            content: `To Timestamp: \`${Math.round(unixTime / 1000)}\``,
+            content: `To Timestamp: \`${toTimestamp(unixTime)}\``,
         });
     },
 } as CommandOptions;

@@ -21,7 +21,6 @@ commit_parsers = [
     { message = "^perf", group = "Performance"},
     { message = "^refactor", group = "Refactor"},
     { message = "^test", group = "Testing"},
-    { message = ".*", group = "Other", default_scope = "other"},
 ]
 # filter out the commits that are not matched by commit parsers
 filter_commits = false

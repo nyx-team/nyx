@@ -22,7 +22,7 @@ export default {
         }
 
         await message.reply({
-            content: `To Timestamp: \`${unixTime / 1000}\``,
+            content: `To Timestamp: \`${Math.round(unixTime / 1000)}\``,
         });
     },
 } as CommandOptions;

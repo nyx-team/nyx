@@ -35,6 +35,17 @@ export default {
                 .slice(0, -1)
             : 'None';
 
+        // These 2 variables includes the Date
+        // and in Discord's Timestamp
+        const joinedAt = `
+${moment(member.joinedAt).format('llll')}
+<t:${Math.round(member.joinedTimestamp / 1000)}:R>
+`;
+        const createdAt = `
+${moment(member.user.createdAt).format('llll')}
+<t:${Math.round(member.user.createdTimestamp / 1000)}:R>
+`;
+
         const hasRoles = (member.roles.cache.size - 1) > 0 ? true : false;
         const embed = new EmbedBuilder()
             .setTimestamp()
@@ -45,10 +56,10 @@ export default {
             })
             .addFields([{
                 name: 'Joined in',
-                value: moment(member.joinedAt).format('llll'),
+                value: joinedAt,
             }, {
                 name: 'Created in',
-                value: moment(member.user.createdAt).format('llll'),
+                value: createdAt,
             }, {
                 name: `Roles${hasRoles ? ` - ${roles.length}` : ''}`,
                 value: hasRoles === true

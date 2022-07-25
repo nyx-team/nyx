@@ -50,3 +50,5 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - `function` - Changes to a specific function, replace `function` to that specific function's name.
 - `command` - Changes to a specific command,  replace `command` with the command that has been changed.
 - `event` - Changes to an event,  replace `event` with the event's name that has been changed.
+
+These can also be used when something has been added.

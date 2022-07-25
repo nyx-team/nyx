@@ -2,6 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 import moment from 'moment';
 
 import { CommandOptions } from '../../../typings';
+import toTimestamp from '../../../utils/toTimestamp';
 
 export default {
     name: 'userinfo',
@@ -39,11 +40,11 @@ export default {
         // and in Discord's Timestamp
         const joinedAt = `
 ${moment(member.joinedAt).format('llll')}
-<t:${Math.round(member.joinedTimestamp / 1000)}:R>
+<t:${toTimestamp(member.joinedTimestamp)}:R>
 `;
         const createdAt = `
 ${moment(member.user.createdAt).format('llll')}
-<t:${Math.round(member.user.createdTimestamp / 1000)}:R>
+<t:${toTimestamp(member.user.createdTimestamp)}:R>
 `;
 
         const hasRoles = (member.roles.cache.size - 1) > 0 ? true : false;

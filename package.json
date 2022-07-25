@@ -13,7 +13,8 @@
     "lint:nofix": "eslint . --ext .ts,.js --ignore-path .gitignore",
     "start": "ts-node index.ts",
     "start:heroku": "node --optimize_for_size --max_old_space_size=460 -r ts-node/register index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -40,11 +41,14 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-angular": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "dotenv": "^16.0.1",
     "eslint": "^8.20.0",
     "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.0",
     "nodemon": "^2.0.19"
   }
 }

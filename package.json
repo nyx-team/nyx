@@ -1,6 +1,6 @@
 {
   "name": "nyx",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Nyx is a multi-purpose discord bot",
   "main": "index.js",
   "engines": {
@@ -14,7 +14,8 @@
     "start": "ts-node index.ts",
     "start:heroku": "node --optimize_for_size --max_old_space_size=460 -r ts-node/register index.ts",
     "build": "tsc",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ."
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-angular": "^17.0.3",
+    "@favware/cliff-jumper": "^1.8.5",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "dotenv": "^16.0.1",

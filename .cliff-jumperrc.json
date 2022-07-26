@@ -1,0 +1,5 @@
+{
+    "name": "nyx",
+    "packagePath": ".",
+    "tagTemplate": "{{new-version}}"
+}

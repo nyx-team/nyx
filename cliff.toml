@@ -32,11 +32,8 @@ commit_parsers = [
     { message = "^refactor", group = "Refactor"},
     { message = "^test", group = "Testing"},
 ]
-# filter out the commits that are not matched by commit parsers
 filter_commits = false
-# glob pattern for matching git tags
-tag_pattern = "v[0-9]*"
-# sort the tags chronologically
-date_order = false
-# sort the commits inside sections by oldest/newest order
-sort_commits = "oldest"
+tag_pattern = "v[0-9]*|[0-9]*"
+skip_tags = ""
+topo_order = false
+sort_commits = "newest"

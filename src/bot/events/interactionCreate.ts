@@ -1,6 +1,5 @@
 import {
     DiscordAPIError,
-    InteractionType,
     RESTJSONErrorCodes,
 } from 'discord.js';
 import { EventOptions } from '../../typings';
@@ -10,7 +9,6 @@ export default {
 
     async execute(client, interaction) {
         if (!interaction.inCachedGuild()) return;
-        if (interaction.type !== InteractionType.ApplicationCommand) return;
         if (!interaction.isChatInputCommand()) return;
 
         const { commandName, options } = interaction;

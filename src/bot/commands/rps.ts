@@ -66,15 +66,17 @@ export default {
 
         // #region Author Selection
         const authorFilter = (i: ButtonInteraction): boolean => ['rock', 'paper', 'scissors'].includes(i.customId) && i.user.id === interaction.user.id;
-        const authorCollector = interaction.channel.createMessageComponentCollector({
+
+        const startMessage = await interaction.reply({
+            content: `${interaction.member} has started an RPS battle with ${enemy}!\n${interaction.member} it's time for you to pick!`,
+            components: [row],
+            fetchReply: true,
+        });
+
+        const authorCollector = startMessage.createMessageComponentCollector({
             // @ts-ignore
             filter: authorFilter,
             time: 1000 * 10,
-        });
-
-        await interaction.reply({
-            content: `${interaction.member} has started an RPS battle with ${enemy}!\n${interaction.member} it's time for you to pick!`,
-            components: [row],
         });
 
         authorCollector.on('collect', async (i) => {
@@ -105,7 +107,7 @@ export default {
             });
 
             const enemyFilter = (i: ButtonInteraction): boolean => ['rock', 'paper', 'scissors'].includes(i.customId) && i.user.id === enemy.id;
-            const enemyCollector = interaction.channel.createMessageComponentCollector({
+            const enemyCollector = enemyPickMSG.createMessageComponentCollector({
                 // @ts-ignore
                 filter: enemyFilter,
                 time: 1000 * 20,

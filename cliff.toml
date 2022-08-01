@@ -46,6 +46,7 @@ commit_parsers = [
     { message = "^test", group = "Testing"},
     { message = "^chore", skip = true },
     { message = "^command", skip = true },
+    { message = "^ci", skip = true },
 ]
 filter_commits = false
 tag_pattern = "v[0-9]*|[0-9]*"

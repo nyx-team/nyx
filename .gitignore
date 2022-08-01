@@ -7,3 +7,7 @@ dist
 # Private Info
 .env
 config.json
+
+# VSCode
+.vscode/*
+!.vscode/settings.json

@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.\n
 """
 body = """
 {% if version %}\
-    ## {{ version | trim_start_matches(pat="v") }}\n
+    # {{ version | trim_start_matches(pat="v") }}\n
     {% if previous %}\
         {% if previous.version %}\
             \n**Full Changelog:** [{{ previous.version }}...{{ version }}]\

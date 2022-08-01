@@ -1,4 +1,5 @@
-import { DiscordAPIError, EmbedBuilder } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder, User } from 'discord.js';
+
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -18,48 +19,52 @@ export default {
         args.shift();
         const reason = args.join(' ') ?? null;
 
-        message.guild.members
-            .unban(
+        try {
+            const user = await message.guild.members.kick(
                 userTarget,
-                reason
-                    ? `Unbanned by: ${message.author.tag} ${reason}`
-                    : null,
-            )
-            .then((user) => {
-                const embed = new EmbedBuilder()
-                    .setAuthor({
-                        name: `User Unbanned by ${message.author.tag}`,
-                        iconURL: message.author.displayAvatarURL(),
-                    })
-                    .addFields([{ name: 'Target', value: `${user.tag}` }])
-                    .setTimestamp()
-                    .setColor('Blurple');
+                reason ? `Unbanned by: ${message.author.tag} ${reason}` : null,
+            ) as User;
 
-                if (reason) embed.addFields([{ name: 'Reason', value: `${reason}` }]);
+            const embed = new EmbedBuilder()
+                .setAuthor({
+                    name: `User Unbanned by ${message.author.tag}`,
+                    iconURL: message.author.displayAvatarURL(),
+                })
+                .addFields([{
+                    name: 'Target',
+                    value: `${user.tag ?? 'Was not able to get the user\'s tag.'}`,
+                }])
+                .setTimestamp()
+                .setColor('Blurple');
 
-                return message.reply({
-                    embeds: [embed],
-                });
-            })
-            .catch((err) => {
-                if (err instanceof DiscordAPIError) {
-                    const apiError = new EmbedBuilder()
-                        .setColor('Red')
-                        .setDescription(`:x: Got API Error!\n\`${err.message}\``);
+            if (reason) {
+                embed.addFields([{ name: 'Reason', value: `${reason}` }]);
+            }
 
-                    return message.reply({
-                        embeds: [apiError],
-                    });
-                }
-
-                const noUserFetched = new EmbedBuilder()
-                    .setDescription(`:x: ${userTarget} is not banned!`)
-                    .setTimestamp()
-                    .setColor('Red');
-
-                return message.reply({
-                    embeds: [noUserFetched],
-                });
+            await message.reply({
+                embeds: [embed],
             });
+        }
+        catch (err) {
+            if (err instanceof DiscordAPIError) {
+                const apiError = new EmbedBuilder()
+                    .setColor('Red')
+                    .setDescription(`:x: Got API Error!\n\`${err.message}\``);
+
+                await message.reply({
+                    embeds: [apiError],
+                });
+                return;
+            }
+
+            const noUserFetched = new EmbedBuilder()
+                .setDescription(`:x: ${userTarget} is not banned!`)
+                .setTimestamp()
+                .setColor('Red');
+
+            await message.reply({
+                embeds: [noUserFetched],
+            });
+        }
     },
 } as CommandOptions;

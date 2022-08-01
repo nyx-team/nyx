@@ -11,3 +11,4 @@ config.json
 # VSCode
 .vscode/*
 !.vscode/settings.json
+!.vscode/extensions.json

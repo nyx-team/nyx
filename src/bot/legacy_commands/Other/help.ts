@@ -20,6 +20,9 @@ export default {
         const OtherCommands = message.client.legacyCommands
             .filter((v) => v.category === 'Other')
             .map((cmd) => cmd.name);
+        const ConfigCommands = message.client.legacyCommands
+            .filter((v) => v.category === 'Config')
+            .map((cmd) => cmd.name);
 
         const embed = new EmbedBuilder()
             .setAuthor({
@@ -45,6 +48,13 @@ ${ModerationCommands.join(', ')}
                 value: `
 \`\`\`
 ${OtherCommands.join(', ')}
+\`\`\`
+                `,
+            }, {
+                name: 'Configuration',
+                value: `
+\`\`\`
+${ConfigCommands.join(', ')}
 \`\`\`
                 `,
             }])

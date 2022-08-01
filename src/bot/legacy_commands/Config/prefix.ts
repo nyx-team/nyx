@@ -24,8 +24,7 @@ export default {
         await this.permissionError(message);
     },
 
-    category: 'Other',
-
+    category: 'Config',
     async execute(message, args) {
         const prefix = args[0];
 

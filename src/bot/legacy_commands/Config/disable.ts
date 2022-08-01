@@ -11,7 +11,7 @@ export default {
     args: '<..."commands_to_disable"|list>',
     reqPerms: ['ManageGuild'],
 
-    category: 'Moderation',
+    category: 'Config',
     async execute(message, args) {
         // @ts-ignore
         // eslint-disable-next-line

@@ -18,7 +18,10 @@ export type Config = {
     defaultPrefix?: string;
 };
 
-export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';
+export type CategoryOptions = 'Moderation'
+    | 'Fun'
+    | 'Other'
+    | 'Config';
 
 export interface CommandOptions {
     name: string;

@@ -9,7 +9,7 @@ export default {
     args: '"<...commands_to_enable>"',
     reqPerms: ['ManageGuild'],
 
-    category: 'Moderation',
+    category: 'Config',
     async execute(message, args) {
         const quotesRegex = /".*?"/g;
         const commands = args.join(' ').match(quotesRegex);

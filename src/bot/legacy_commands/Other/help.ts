@@ -4,6 +4,7 @@ import { CommandOptions } from '../../../typings';
 
 export default {
     name: 'help',
+    aliases: ['man'],
     description: 'Helps with commands, what else.',
     author: 'loldonut',
 

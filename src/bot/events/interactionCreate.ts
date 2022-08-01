@@ -32,7 +32,7 @@ export default {
         }
         catch (err) {
             console.error(err);
-            if (err === DiscordAPIError && err.code === RESTJSONErrorCodes.UnknownInteraction) return;
+            if (err instanceof DiscordAPIError && err.code === RESTJSONErrorCodes.UnknownInteraction) return;
 
             await interaction.reply({
                 content: 'An error occured while trying to run the command.',

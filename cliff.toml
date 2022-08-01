@@ -24,7 +24,7 @@ body = """
 {% endfor %}
 """
 trim = true
-footer = ""
+footer = "\n"
 
 [git]
 conventional_commits = true

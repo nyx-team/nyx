@@ -14,7 +14,12 @@ body = """
     {% for commit in commits %}
         - {% if commit.scope %}**{{ commit.scope }}:**{% endif %} \
           {{ commit.message | upper_first }} \
-          ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/nyx-team/nyx/commit/{{ commit.id }}))
+          ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/nyx-team/nyx/commit/{{ commit.id }}))\
+          {% if commit.breaking %}\
+            {% for breakingChange in commit.footers %}\
+                \n{% raw %} {% endraw %}- **{{ breakingChange.token }}{{ breakingChange.separator }}** {{ breakingChange.value }}\
+            {% endfor %}
+          {% endif %}\
     {% endfor %}
 {% endfor %}
 """

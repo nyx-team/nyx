@@ -3,7 +3,8 @@ import { setTimeout as sleep } from 'node:timers/promises';
 
 import PrefixSchema from '../models/PrefixSchema';
 import validateCommand from '../../utils/validateCommand';
-import type { CommandOptions, EventOptions } from '../../typings';
+import loadConfig from '../../utils/loadConfig';
+import type { Config, CommandOptions, EventOptions } from '../../typings';
 import DisabledCommandsSchema from '../models/DisabledCommandsSchema';
 
 const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -18,8 +19,11 @@ export default {
                 .permissionsFor(message.client.user)
                 .has('SendMessages')
         ) return;
+
+        const config = loadConfig() as Config;
+
         const results = await PrefixSchema.findById(message.guild.id);
-        const prefix = results ? results.prefix : ',';
+        const prefix = results ? results.prefix : (config.defaultPrefix || ',');
 
         const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`);
         if (!prefixRegex.test(message.content)) return;

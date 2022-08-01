@@ -15,6 +15,7 @@ export type Config = {
     devToken?: string;
     clientId: Snowflake;
     devClientId?: Snowflake;
+    defaultPrefix?: string;
 };
 
 export type CategoryOptions = 'Moderation' | 'Fun' | 'Other';

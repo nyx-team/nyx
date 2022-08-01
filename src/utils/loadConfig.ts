@@ -35,6 +35,7 @@ export default function loadConfig(): Config {
             devToken: process.env.devToken,
             clientId: process.env.clientId,
             devClientId: process.env.devClientId,
+            defaultPrefix: process.env.defaultPrefix,
         };
     }
 
@@ -45,6 +46,7 @@ export default function loadConfig(): Config {
             devToken: process.env.devToken,
             clientId: process.env.clientId,
             devClientId: process.env.devClientId,
+            defaultPrefix: process.env.defaultPrefix,
         };
     }
 }

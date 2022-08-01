@@ -1,5 +1,8 @@
 import PrefixSchema from '../../models/PrefixSchema';
+import loadConfig from '../../../utils/loadConfig';
 import { CommandOptions } from '../../../typings';
+
+const defaultPrefix = loadConfig()?.defaultPrefix || ',';
 
 export default {
     name: 'prefix',
@@ -11,7 +14,7 @@ export default {
     reqPerms: ['ManageGuild'],
     async permissionError(message) {
         const res = await PrefixSchema.findById(message.guild.id);
-        const currentPrefix = res?.prefix ? res.prefix : ',';
+        const currentPrefix = res?.prefix ? res.prefix : defaultPrefix;
 
         await message.reply({
             content: `**Current prefix is:** \`${currentPrefix}\``,
@@ -36,7 +39,7 @@ export default {
         try {
             // if the user is trying to convert it to default
             // then delete the current prefix
-            if (prefix === ',') {
+            if (prefix === defaultPrefix) {
                 await PrefixSchema.findOneAndDelete({
                     _id: message.guild.id,
                 });

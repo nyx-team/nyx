@@ -1,4 +1,4 @@
-import { EmbedBuilder, time } from 'discord.js';
+import { EmbedBuilder, time, TimestampStyles } from 'discord.js';
 import moment from 'moment';
 
 import { CommandOptions } from '../../../typings';
@@ -35,15 +35,18 @@ export default {
                 .slice(0, -1)
             : 'None';
 
+        const joinedAtDate = new Date(member.joinedTimestamp);
+        const createdAtDate = new Date(member.user.createdTimestamp);
+
         // These 2 variables includes the Date
         // and in Discord's Timestamp
         const joinedAt = `
 ${moment(member.joinedAt).format('llll')}
-<t:${time(member.joinedTimestamp)}:R>
+${time(joinedAtDate, TimestampStyles.RelativeTime)}
 `;
         const createdAt = `
 ${moment(member.user.createdAt).format('llll')}
-<t:${time(member.user.createdTimestamp)}:R>
+${time(createdAtDate, TimestampStyles.RelativeTime)}
 `;
 
         const hasRoles = (member.roles.cache.size - 1) > 0 ? true : false;

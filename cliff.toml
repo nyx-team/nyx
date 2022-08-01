@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.\n
 """
 body = """
 {% if version %}\
-    ## {{ version | trim_start_matches(pat="v") }}
+    ## {{ version | trim_start_matches(pat="v") }}\n
+    {% if previous %}\
+        {% if previous.version %}\
+            \n**Full Changelog:** [{{ previous.version }}...{{ version }}]\
+                (https://github.com/nyx-team/nyx/compare/{{ previous.version }}...{{ version }})\
+        {% else %}
+            \n**Full Changelog:** [{{ version }}](https://github.com/nyx-team/nyx/tree/{{ version }})\
+        {% endif %}
+    {% endif %}
 {% else %}\
     ## [Unreleased]
 {% endif %}\

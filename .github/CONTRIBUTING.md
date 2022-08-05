@@ -5,6 +5,7 @@ Contribution Guidelines for Nyx!
 - [Command Suggestion](#command-suggestions)
 - [Coding Rules](#coding-rules)
 - [Commits](#commits)
+- [Making a Command](#making-a-command)
 
 ## Issues
 If you find a bug in a source code, you can report it by making an issue.
@@ -52,3 +53,7 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - `event` - Changes to an event,  replace `event` with the event's name that has been changed.
 
 These can also be used when something has been added.
+
+## Making a command
+
+For making a prefixed command, see [Prefixed Command Docs](../docs/Prefixed_Commands.md)

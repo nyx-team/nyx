@@ -1,3 +1,11 @@
+<div align="center">
+  <a href="https://discord.gg/YNppjePpje">
+    <img alt="Discord" src="https://img.shields.io/discord/960537938809200650?label=support%20server&logo=discord">
+   </a>
+   <img alt="Source Code License" src="https://img.shields.io/github/license/nyx-team/nyx">
+   <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/nyx-team/nyx?logo=GitHub&sort=semver">
+</div>
+
 # Nyx
 
 Nyx is a Multi-purpose, open-source, Discord Bot made in TypeScript.

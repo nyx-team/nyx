@@ -1,19 +1,16 @@
 import {
     client,
-    loadConfig,
+    config,
     Util,
     ClientLog,
 } from './index';
 
-import { Config } from './typings';
 import deployCommands from './utils/deployCommands';
 
 /**
  * Run the Bot
  */
 export default function run(args: Array<string>): void {
-    const config = loadConfig() as Config;
-
     const isDevMode = args.includes('--dev') || args.includes('-D');
 
     // Deploy slash commands

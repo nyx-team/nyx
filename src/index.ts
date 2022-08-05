@@ -1,3 +1,5 @@
+import { Config } from './typings';
+
 // Client
 export { client } from './bot/bot';
 
@@ -9,5 +11,9 @@ import Logger from './utils/Logger';
 
 export { Util, loadConfig, validateCommand, Logger };
 
+// Config
+export const config = loadConfig() as Config;
+
+// Loggers
 export const ClientLog = new Logger('client');
 export const UtilLog = new Logger('Util');

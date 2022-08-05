@@ -52,7 +52,7 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - **ci:** Changes to CI config files (e.g. GitHub Workflows)
 - **feat:** Adds a new feature
 - **fix:** A bug fix
-- **docs:** (might not really be used useful for now) A change from the Docs only
+- **docs:** A change from the Docs only
 - **perf:** Changes that improves performance
 - **refactor:** A code change that neither fixes a bug nor adds a feature
 - **test:** Adding missing tests or correcting existing tests
@@ -64,6 +64,12 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - `event` - Changes to an event, replace `event` with the event's name that has been changed.
 
 These can also be used when something has been added.
+
+#### Breaking Changes
+
+When there is breaking changes in your code please add a `BREAKING CHANGE: X` to the commit's footer.
+
+Where `X` is the message specifying where that breaking change happened, and/or why the change has been made.
 
 ## Making a command
 

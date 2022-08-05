@@ -1,8 +1,8 @@
-import PrefixSchema from '../../models/PrefixSchema';
-import loadConfig from '../../../utils/loadConfig';
+import { config } from '../../..';
 import { CommandOptions } from '../../../typings';
+import PrefixSchema from '../../models/PrefixSchema';
 
-const defaultPrefix = loadConfig()?.defaultPrefix || ',';
+const defaultPrefix = config.defaultPrefix || ',';
 
 export default {
     name: 'prefix',

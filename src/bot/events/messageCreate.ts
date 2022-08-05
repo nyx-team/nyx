@@ -22,6 +22,7 @@ export default {
 
         const config = loadConfig() as Config;
 
+        // @ts-ignore
         const results = await PrefixSchema.findById(message.guild.id);
         const prefix = results ? results.prefix : (config.defaultPrefix || ',');
 

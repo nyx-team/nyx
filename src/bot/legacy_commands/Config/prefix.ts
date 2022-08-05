@@ -13,6 +13,7 @@ export default {
     minArgs: 1,
     reqPerms: ['ManageGuild'],
     async permissionError(message) {
+        // @ts-ignore
         const res = await PrefixSchema.findById(message.guild.id);
         const currentPrefix = res?.prefix ? res.prefix : defaultPrefix;
 
@@ -39,6 +40,7 @@ export default {
             // if the user is trying to convert it to default
             // then delete the current prefix
             if (prefix === defaultPrefix) {
+                // @ts-ignore
                 await PrefixSchema.findOneAndDelete({
                     _id: message.guild.id,
                 });
@@ -49,6 +51,7 @@ export default {
                 return;
             }
 
+            // @ts-ignore
             await PrefixSchema.findOneAndUpdate({
                 _id: message.guild.id,
             }, {

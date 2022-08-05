@@ -61,6 +61,7 @@ And so on...
             if (!actualCommand) continue;
             if (disabledCommandsList?.includes?.(actualCommand.name)) continue;
 
+            // @ts-ignore
             await DisabledCommandsSchema.findOneAndUpdate({
                 _id: message.guild.id,
             }, {

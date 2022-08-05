@@ -37,6 +37,7 @@ And so on...
             command = command.replaceAll('"', '');
             if (!disabledCommandsList.includes(command)) continue;
 
+            // @ts-ignore
             await DisabledCommandsSchema.findOneAndUpdate({
                 _id: message.guild.id,
             }, {

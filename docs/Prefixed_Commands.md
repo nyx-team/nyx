@@ -11,7 +11,7 @@ Prefixed commands are Nyx commands that uses
 messages with a prefix instead of an Interaction by a slash command.
 (e.g. `,ping`)
 
-Prefixed commands are stored in the [`src/bot/legacy_commands`](../src/bot/legacy_commands)
+These commands are stored in the [`src/bot/legacy_commands`](../src/bot/legacy_commands)
 directory, which contains each categories for the commands.
 
 ##### Prefixed Commands Categories
@@ -95,7 +95,7 @@ CLI where:
 **Example:**
 
 ```ts
-args: '<required_arg> [optional_arg] [optional_arg_2]';
+args: '<required_arg> [optional_arg] [optional_arg_2]',
 ```
 
 Argument names should not have spaces in it, use underscore / snake casing (`_`) instead

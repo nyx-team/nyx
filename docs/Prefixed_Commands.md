@@ -52,6 +52,21 @@ the Description of the Command
   - `Moderation`
   - `Other`
 
+#### `execute`
+
+- **type:** `Function`
+  - Should return: `Promise<void>` or `void`
+ 
+the Function that will be executed when the command is received.
+
+**Parameters:**
+
+- `message` - the Message that got received
+- `args` - the arguments the user gave
+- `client` - the Bot itself
+
+`args` and `client` are both optional parameters.
+
 #### Optional Command Options
 
 #### `aliases`

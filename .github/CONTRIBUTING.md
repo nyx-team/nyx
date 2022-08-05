@@ -31,6 +31,22 @@ You must follow the ESLint rules specified in the Config.
 
 > This is pretty similar to how [Angular does it](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)
 
+#### Commit Message
+
+A commit message consists of a header, a body, and a footer.
+
+```
+<header>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+- Header should follow [`Commit Message Header`](#commit-message-header)
+- `body` should follow [`Commit Message Body`](#commit-message-body)
+- `footer` should follow [`Commit Message Footer`](#commit-message-footer)
+
 #### Commit Message Header
 
 ```
@@ -65,11 +81,32 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 
 These can also be used when something has been added.
 
+
+#### Commit Message Body
+
+An explanation for the changes made. Explain why you are making the change.
+
+#### Commit Message Footer
+
+A Footer can contain information about Breaking Changes.
+
+**Example:**
+
+```
+BREAKING CHANGE: X command has been removed
+```
+
+Always put a space after `BREAKING CHANGE:`
+
+---
+
 #### Breaking Changes
 
 When there is breaking changes in your code please add a `BREAKING CHANGE: X` to the commit's footer.
 
 Where `X` is the message specifying where that breaking change happened, and/or why the change has been made.
+
+---
 
 ## Making a command
 

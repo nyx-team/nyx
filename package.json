@@ -15,7 +15,8 @@
     "start:heroku": "node --optimize_for_size --max_old_space_size=460 -r ts-node/register index.ts",
     "build": "tsc",
     "prepare": "husky install",
-    "changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ."
+    "changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r .",
+    "prettier": "prettier . --write"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.0",
     "nodemon": "^2.0.19",
+    "prettier": "2.7.1",
     "typescript": "^4.7.4"
   }
 }

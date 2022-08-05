@@ -9,15 +9,15 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup Node.js v16 Environment
-      uses: actions/setup-node@v3.1.0
-      with:
-        node-version: 16
-        cache: 'npm'
-        cache-dependency-path: package.json
+      - uses: actions/checkout@v3
+      - name: Setup Node.js v16 Environment
+        uses: actions/setup-node@v3.1.0
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package.json
 
-    - name: Install Node Dependencies & Run ESLint
-      run: |
-        npm i eslint --save-dev
-        npm run lint:nofix
+      - name: Install Node Dependencies & Run ESLint
+        run: |
+          npm i eslint --save-dev
+          npm run lint:nofix

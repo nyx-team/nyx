@@ -13,12 +13,15 @@ Config file requires these data to at least run the Bot:
 ### Optional Config
 
 ##### `devToken`
+
 Development version of the bot, for testing purposes.
 
 ##### `devClientId`
+
 ID of the Development version of the Bot, required to be able to deploy slash commands in your development version of the Bot
 
 ##### `defaultPrefix`
+
 The Default prefix for the Bot, if none, then the default will be `,`
 
 ### JSON Config
@@ -27,12 +30,12 @@ All of the possible configuration -
 
 ```json
 {
-    "token": "TOKEN",
-    "mongo_uri": "MONGO_URI",
-    "clientId": "CLIENT_ID",
-    "devToken": "DEV_BOT_TOKEN",
-    "devClientId": "DEV_BOT_ID",
-    "defaultPrefix": "DEFAULT_PREFIX"
+  "token": "TOKEN",
+  "mongo_uri": "MONGO_URI",
+  "clientId": "CLIENT_ID",
+  "devToken": "DEV_BOT_TOKEN",
+  "devClientId": "DEV_BOT_ID",
+  "defaultPrefix": "DEFAULT_PREFIX"
 }
 ```
 

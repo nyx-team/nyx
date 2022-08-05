@@ -1,7 +1,8 @@
 {
-    "files.eol": "\n",
-    "eslint.workingDirectories": ["."],
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    }
+  "files.eol": "\n",
+  "eslint.workingDirectories": ["."],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.tabSize": 2
 }

@@ -17,6 +17,7 @@ directory, which contains each categories for the commands.
 ##### Prefixed Commands Categories
 
 ###### All Categories Nyx currently have
+
 - Config
   - Commands that configures something in a server
     (e.g. `,prefix`)
@@ -45,7 +46,7 @@ the Description of the Command
 #### `category`
 
 - **type:** `CategoryOptions`
- 
+
 - `CategoryOptions` type:
   - `Config`
   - `Fun`
@@ -56,7 +57,7 @@ the Description of the Command
 
 - **type:** `Function`
   - Should return: `Promise<void>` or `void`
- 
+
 the Function that will be executed when the command is received.
 
 **Parameters:**
@@ -87,13 +88,14 @@ the Author of the command. (can be full name, or GitHub username)
 
 Arguments of the Command, this should be similar to
 CLI where:
+
 - `[]` - means optional
 - `<>` - means required
 
 **Example:**
 
 ```ts
-args: '<required_arg> [optional_arg] [optional_arg_2]'
+args: '<required_arg> [optional_arg] [optional_arg_2]';
 ```
 
 Argument names should not have spaces in it, use underscore / snake casing (`_`) instead
@@ -102,18 +104,18 @@ Argument names should not have spaces in it, use underscore / snake casing (`_`)
 
 - **type:** `number`
 
-Minimum argument(s) *length* required for the command to run
+Minimum argument(s) _length_ required for the command to run
 
 #### `reqPerms`
 
 - **type:** `PermissionsString`
 
-Required permissions for the *user* to run the command.
-This however does not check if the *bot* has the permission.
+Required permissions for the _user_ to run the command.
+This however does not check if the _bot_ has the permission.
 See [`botReqPerms`](#botReqPerms)
 
 #### `botReqPerms`
 
 - **type:** `PermissionsString`
 
-Required permissions for the *Bot* to run.
+Required permissions for the _Bot_ to run.

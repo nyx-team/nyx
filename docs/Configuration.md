@@ -7,6 +7,8 @@ Config file requires these data to at least run the Bot:
 - `token`
 - `mongo_uri`
 - `clientId`
+- `inviteCode`
+  - the Invite code to your Discord Server (e.g. `YNppjePpje`)
 
 ### Optional Config
 

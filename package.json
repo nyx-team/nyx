@@ -17,7 +17,8 @@
     "build": "tsc",
     "prepare": "husky install",
     "changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r .",
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "release": "cliff-jumper --skip-tag"
   },
   "repository": {
     "type": "git",

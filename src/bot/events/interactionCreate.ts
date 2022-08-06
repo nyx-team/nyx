@@ -14,8 +14,9 @@ export default {
     if (!command) return;
 
     try {
-      if (options.getSubcommand(false)) {
-        const subCommandName = options.getSubcommand();
+      const subCommandName = options.getSubcommand(false);
+
+      if (subCommandName) {
         const subCommand = client.subCommands.get(subCommandName);
 
         // @ts-ignore
@@ -26,10 +27,13 @@ export default {
 
       // @ts-ignore
       await command.execute(interaction, options);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
-      if (err instanceof DiscordAPIError && err.code === RESTJSONErrorCodes.UnknownInteraction) return;
+      if (
+        err instanceof DiscordAPIError &&
+        err.code === RESTJSONErrorCodes.UnknownInteraction
+      )
+        return;
 
       await interaction.reply({
         content: 'An error occured while trying to run the command.',

@@ -8,8 +8,7 @@ const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 let dotConfig = null;
 try {
   dotConfig = require('dotenv').config; // eslint-disable-line @typescript-eslint/no-var-requires
-}
-catch {} // eslint-disable-line no-empty
+} catch {} // eslint-disable-line no-empty
 
 export default function loadConfig(): Config {
   // JSON config
@@ -32,8 +31,9 @@ export default function loadConfig(): Config {
     return {
       token: process.env.token,
       mongo_uri: process.env.mongo_uri,
-      devToken: process.env.devToken,
+      inviteCode: process.env.inviteCode,
       clientId: process.env.clientId,
+      devToken: process.env.devToken,
       devClientId: process.env.devClientId,
       defaultPrefix: process.env.defaultPrefix,
     };
@@ -43,8 +43,9 @@ export default function loadConfig(): Config {
     return {
       token: process.env.token,
       mongo_uri: process.env.mongo_uri,
-      devToken: process.env.devToken,
+      inviteCode: process.env.inviteCode,
       clientId: process.env.clientId,
+      devToken: process.env.devToken,
       devClientId: process.env.devClientId,
       defaultPrefix: process.env.defaultPrefix,
     };

@@ -4,6 +4,7 @@ import {
   OAuth2Scopes,
   PermissionFlagsBits,
 } from 'discord.js';
+import { config } from '../../..';
 
 import { CommandOptions } from '../../../typings';
 
@@ -32,8 +33,7 @@ export default {
       scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
     });
 
-    // TODO: Make this customizable
-    const supportServerLink = 'https://discord.gg/invite/YNppjePpje';
+    const supportServerLink = `https://discord.gg/invite/${config.inviteCode}`;
 
     const embed = new EmbedBuilder()
       .setAuthor({

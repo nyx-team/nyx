@@ -12,8 +12,9 @@ import {
 export type Config = {
   token: string;
   mongo_uri: string;
-  devToken?: string;
+  inviteCode: string;
   clientId: Snowflake;
+  devToken?: string;
   devClientId?: Snowflake;
   defaultPrefix?: string;
 };
@@ -38,7 +39,11 @@ export interface CommandOptions {
 
   cooldown?: number;
   category: CategoryOptions;
-  execute(message: Message, args?: Array<string>, client?: Client<true>): Promise<void>;
+  execute(
+    message: Message,
+    args?: Array<string>,
+    client?: Client<true>,
+  ): Promise<void>;
 }
 
 export interface EventOptions<K extends keyof ClientEvents> {
@@ -55,10 +60,16 @@ export interface SlashCommandOptions {
   commandSubCommandsOnly: boolean;
   subcommands: Array<string>;
 
-  execute?(interaction: CommandInteraction, options?: CommandInteractionOptionResolver): Promise<void>;
+  execute?(
+    interaction: CommandInteraction,
+    options?: CommandInteractionOptionResolver,
+  ): Promise<void>;
 }
 
 export interface SlashCommandSubCommandOptions {
   name: string;
-  execute(interaction: CommandInteraction, options?: CommandInteractionOptionResolver): Promise<unknown>;
+  execute(
+    interaction: CommandInteraction,
+    options?: CommandInteractionOptionResolver,
+  ): Promise<unknown>;
 }

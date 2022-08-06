@@ -8,7 +8,8 @@ const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
 let dotConfig = null;
 try {
   dotConfig = require('dotenv').config; // eslint-disable-line @typescript-eslint/no-var-requires
-} catch {} // eslint-disable-line no-empty
+}
+catch {} // eslint-disable-line no-empty
 
 export default function loadConfig(): Config {
   // JSON config

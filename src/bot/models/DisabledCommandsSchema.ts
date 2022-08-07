@@ -13,4 +13,5 @@ const DisabledCommands = new Schema({
   },
 });
 
-export default models['disabled-commands-schema'] || model('disabled-commands-schema', DisabledCommands);
+export default models['disabled-commands-schema'] ||
+  model('disabled-commands-schema', DisabledCommands);

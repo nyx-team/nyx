@@ -42,6 +42,9 @@ export default function run(args: Array<string>): void {
     ClientLog.INFO('Please wait...');
   }
   catch (err) {
-    ClientLog.ERROR(`An Error occured while trying to log the Bot:\n${err}`, true);
+    ClientLog.ERROR(
+      `An Error occured while trying to log the Bot:\n${err}`,
+      true,
+    );
   }
 }

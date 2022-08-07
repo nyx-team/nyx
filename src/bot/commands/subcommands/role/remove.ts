@@ -29,8 +29,11 @@ And yes, you can use also use the roles' IDs`,
 
     for (let roleToRemove of rolesToRemove) {
       roleToRemove = roleToRemove.replaceAll('"', '');
-      // eslint-disable-next-line no-shadow
-      const role = interaction.guild.roles.cache.find((role) => role.name === roleToRemove || role.id === roleToRemove);
+
+      const role = interaction.guild.roles.cache.find(
+        // eslint-disable-next-line no-shadow
+        (role) => role.name === roleToRemove || role.id === roleToRemove,
+      );
       if (!role) continue;
 
       if (!target.roles.cache.has(role.id)) {
@@ -55,7 +58,12 @@ And yes, you can use also use the roles' IDs`,
         name: target.user.tag,
         iconURL: target.user.displayAvatarURL(),
       })
-      .addFields([{ name: 'Role(s) removed', value: `${removedRoles.join(', ') || 'None'}` }])
+      .addFields([
+        {
+          name: 'Role(s) removed',
+          value: `${removedRoles.join(', ') || 'None'}`,
+        },
+      ])
       .setColor('Blurple')
       .setTimestamp()
       .setFooter({

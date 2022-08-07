@@ -3,7 +3,9 @@ import { SlashCommandOptions } from '../../typings';
 
 export default {
   name: 'ping',
-  data: new SlashCommandBuilder().setName('ping').setDescription('Sends the ping of the Bot'),
+  data: new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Sends the ping of the Bot'),
 
   async execute(interaction) {
     await interaction.reply({

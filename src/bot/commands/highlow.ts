@@ -1,12 +1,19 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ButtonInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import {
+  ButtonInteraction,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+} from 'discord.js';
 import { SlashCommandOptions } from '../../typings';
 
 import { randomInt } from 'crypto';
 
 export default {
   name: 'highlow',
-  data: new SlashCommandBuilder().setName('highlow').setDescription('Guess if the number is higher or lower.'),
+  data: new SlashCommandBuilder()
+    .setName('highlow')
+    .setDescription('Guess if the number is higher or lower.'),
 
   async execute(interaction) {
     let correctNum = randomInt(1, 200);
@@ -16,14 +23,25 @@ export default {
     // then either add or minus the correct number
     if (correctNum === baseNum) {
       correctNum =
-        Math.random() > 0.5 ? correctNum - Math.floor(Math.random() * 2) : correctNum + Math.floor(Math.random() * 2);
+        Math.random() > 0.5
+          ? correctNum - Math.floor(Math.random() * 2)
+          : correctNum + Math.floor(Math.random() * 2);
     }
 
-    const high = new ButtonBuilder().setCustomId('high').setLabel('High').setStyle(ButtonStyle.Success);
+    const high = new ButtonBuilder()
+      .setCustomId('high')
+      .setLabel('High')
+      .setStyle(ButtonStyle.Success);
 
-    const low = new ButtonBuilder().setCustomId('low').setLabel('Low').setStyle(ButtonStyle.Danger);
+    const low = new ButtonBuilder()
+      .setCustomId('low')
+      .setLabel('Low')
+      .setStyle(ButtonStyle.Danger);
 
-    const row = new ActionRowBuilder<ButtonBuilder>().addComponents([high, low]);
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents([
+      high,
+      low,
+    ]);
 
     await interaction.reply({
       content: `Number to base answer: **${baseNum}**\n**Higher or Lower?**`,
@@ -35,7 +53,10 @@ export default {
 
     // A collector for the Buttons, only lasts for 15 seconds
     // @ts-ignore
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 1000 * 10 });
+    const collector = interaction.channel.createMessageComponentCollector({
+      filter,
+      time: 1000 * 10,
+    });
 
     collector.on('collect', async (i) => {
       high.setDisabled(true);

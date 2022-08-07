@@ -11,12 +11,18 @@ export default {
   minArgs: 1,
   args: '<command name>',
   async customArgError(message) {
-    const FunCommands = message.client.legacyCommands.filter((v) => v.category === 'Fun').map((cmd) => cmd.name);
+    const FunCommands = message.client.legacyCommands
+      .filter((v) => v.category === 'Fun')
+      .map((cmd) => cmd.name);
     const ModerationCommands = message.client.legacyCommands
       .filter((v) => v.category === 'Moderation')
       .map((cmd) => cmd.name);
-    const OtherCommands = message.client.legacyCommands.filter((v) => v.category === 'Other').map((cmd) => cmd.name);
-    const ConfigCommands = message.client.legacyCommands.filter((v) => v.category === 'Config').map((cmd) => cmd.name);
+    const OtherCommands = message.client.legacyCommands
+      .filter((v) => v.category === 'Other')
+      .map((cmd) => cmd.name);
+    const ConfigCommands = message.client.legacyCommands
+      .filter((v) => v.category === 'Config')
+      .map((cmd) => cmd.name);
 
     const embed = new EmbedBuilder()
       .setAuthor({
@@ -93,14 +99,16 @@ ${ConfigCommands.join(', ')}
       .setColor(0x6666ff)
       .addFields([{ name: 'Description', value: description }]);
 
-    if (command.aliases) embed.addFields([{ name: 'Aliases', value: command.aliases.join(', ') }]);
-    if (command.args) embed.addFields([{ name: 'Args', value: `\`${command.args}\`` }]);
-    if (command.category) embed.addFields([{ name: 'Category', value: command.category }]);
+    if (command.aliases) {embed.addFields([{ name: 'Aliases', value: command.aliases.join(', ') }]);}
+    if (command.args) {embed.addFields([{ name: 'Args', value: `\`${command.args}\`` }]);}
+    if (command.category) {embed.addFields([{ name: 'Category', value: command.category }]);}
     if (command.author) {
       const nyxGithub = 'https://github.com/nyx-team/nyx';
 
       const commandCommitLink = command.commit
-        ? ` ([${command.commit.slice(0, 7)}](${nyxGithub}/tree/${command.commit}))`
+        ? ` ([${command.commit.slice(0, 7)}](${nyxGithub}/tree/${
+          command.commit
+        }))`
         : '';
 
       embed.addFields([

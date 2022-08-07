@@ -17,13 +17,17 @@ export default class Logger {
 
   public INFO(content: string): void {
     console.log(
-      `${chalk.gray(this.getCurrentTime())} ${chalk.bgGreen('[INFO]')} [${chalk.bold(`${this.name}`)}]: ${content}`,
+      `${chalk.gray(this.getCurrentTime())} ${chalk.bgGreen(
+        '[INFO]',
+      )} [${chalk.bold(`${this.name}`)}]: ${content}`,
     );
   }
 
   public ERROR(err: string, shouldExit?: boolean): void {
     console.error(
-      `${chalk.gray(this.getCurrentTime())} ${chalk.bgRed('[ERROR]')} [${chalk.bold(`${this.name}`)}]: ${err}`,
+      `${chalk.gray(this.getCurrentTime())} ${chalk.bgRed(
+        '[ERROR]',
+      )} [${chalk.bold(`${this.name}`)}]: ${err}`,
     );
 
     if (shouldExit) {

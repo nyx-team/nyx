@@ -9,7 +9,10 @@ export default async function validateCommand(
   args: Array<string>,
   prefix: string,
 ): Promise<boolean | MessageOptions> {
-  if (command?.botReqPerms && !message.guild.members.me.permissions.has(command.botReqPerms)) {
+  if (
+    command?.botReqPerms &&
+    !message.guild.members.me.permissions.has(command.botReqPerms)
+  ) {
     // Convert required perms into a readable one
     const reqPerms = command.botReqPerms.map((e) => PermissionsReadable[e]);
     return {
@@ -23,7 +26,10 @@ export default async function validateCommand(
   // has the required permissions
   // to run the command.
   if (command?.reqPerms && !message.member.permissions.has(command.reqPerms)) {
-    if (command?.permissionError && typeof command.permissionError === 'function') {
+    if (
+      command?.permissionError &&
+      typeof command.permissionError === 'function'
+    ) {
       command.permissionError(message, args);
       return;
     }
@@ -38,7 +44,9 @@ export default async function validateCommand(
     if (!command?.customArgError) {
       const embed = new EmbedBuilder()
         .setColor('DarkBlue')
-        .setDescription(`:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`);
+        .setDescription(
+          `:x: **Not Enough Arguments passed!**\nDo \`${prefix}help ${command.name}\` for more info.`,
+        );
       return {
         embeds: [embed],
       };

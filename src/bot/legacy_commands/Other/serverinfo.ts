@@ -16,7 +16,9 @@ export default {
     const icon = guild.iconURL();
 
     const memberCount = members.size;
-    const membersOnline = members.filter((member) => member.presence?.status === 'online');
+    const membersOnline = members.filter(
+      (member) => member.presence?.status === 'online',
+    );
 
     const embed = new EmbedBuilder()
       .setAuthor({

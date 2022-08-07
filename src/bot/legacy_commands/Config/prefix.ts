@@ -71,7 +71,8 @@ export default {
     catch (err) {
       console.error(err);
       await message.reply({
-        content: ':x: An error occured while trying to register the new prefix.',
+        content:
+          ':x: An error occured while trying to register the new prefix.',
       });
     }
   },

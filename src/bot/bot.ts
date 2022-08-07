@@ -1,6 +1,18 @@
-import { ActivityType, Client, Collection, GatewayIntentBits, Message, Partials, Snowflake } from 'discord.js';
+import {
+  ActivityType,
+  Client,
+  Collection,
+  GatewayIntentBits,
+  Message,
+  Partials,
+  Snowflake,
+} from 'discord.js';
 
-import type { SlashCommandOptions, CommandOptions, SlashCommandSubCommandOptions } from '../typings';
+import type {
+  SlashCommandOptions,
+  CommandOptions,
+  SlashCommandSubCommandOptions,
+} from '../typings';
 
 export const client = new Client({
   intents: [

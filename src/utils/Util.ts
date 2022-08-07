@@ -2,7 +2,11 @@ import { Client, Collection } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-import { CommandOptions, SlashCommandOptions, SlashCommandSubCommandOptions } from '../typings';
+import {
+  CommandOptions,
+  SlashCommandOptions,
+  SlashCommandSubCommandOptions,
+} from '../typings';
 
 import { UtilLog } from '../index';
 
@@ -14,13 +18,25 @@ const curPathJoin = (...paths: string[]) => join(__dirname, ...paths);
  * @param {Client} client
  */
 export function loadCommands(client: Client): void {
-  const commandFiles = readdirSync(curPathJoin('..', 'bot', 'commands')).filter((file) => file.endsWith('.ts'));
+  const commandFiles = readdirSync(curPathJoin('..', 'bot', 'commands')).filter(
+    (file) => file.endsWith('.ts'),
+  );
 
   commandFiles.forEach(async (file) => {
-    const command = (await import(curPathJoin('..', 'bot', 'commands', file))).default as SlashCommandOptions;
+    const command = (await import(curPathJoin('..', 'bot', 'commands', file)))
+      .default as SlashCommandOptions;
 
     if (command?.subcommands) {
-      loadSubCommand(client, curPathJoin('..', 'bot', 'commands', 'subcommands', `${file.replace('.ts', '')}`));
+      loadSubCommand(
+        client,
+        curPathJoin(
+          '..',
+          'bot',
+          'commands',
+          'subcommands',
+          `${file.replace('.ts', '')}`,
+        ),
+      );
     }
 
     client.commands.set(command.name, command);
@@ -35,18 +51,21 @@ export function loadCommands(client: Client): void {
  * @param {Client} client
  */
 export function loadLegacyCommands(client: Client): void {
-  const loadLegacyCommandCategories = readdirSync(curPathJoin('..', 'bot', 'legacy_commands')).filter(
-    (category) => !category.endsWith('.ts'),
-  );
+  const loadLegacyCommandCategories = readdirSync(
+    curPathJoin('..', 'bot', 'legacy_commands'),
+  ).filter((category) => !category.endsWith('.ts'));
 
   loadLegacyCommandCategories.forEach(async (category) => {
-    const commands = readdirSync(curPathJoin('..', 'bot', 'legacy_commands', category)).filter((file) =>
-      file.endsWith('.ts'),
-    );
+    const commands = readdirSync(
+      curPathJoin('..', 'bot', 'legacy_commands', category),
+    ).filter((file) => file.endsWith('.ts'));
 
     commands.forEach(async (file) => {
-      const command = (await import(curPathJoin('..', 'bot', 'legacy_commands', category, file)))
-        .default as CommandOptions;
+      const command = (
+        await import(
+          curPathJoin('..', 'bot', 'legacy_commands', category, file)
+        )
+      ).default as CommandOptions;
 
       client.legacyCommands.set(command.name, command);
       client.cooldowns.set(command.name, new Collection());
@@ -57,10 +76,13 @@ export function loadLegacyCommands(client: Client): void {
 }
 
 export function loadEvents(client: Client): void {
-  const eventFiles = readdirSync(curPathJoin('..', 'bot', 'events')).filter((file) => file.endsWith('.ts'));
+  const eventFiles = readdirSync(curPathJoin('..', 'bot', 'events')).filter(
+    (file) => file.endsWith('.ts'),
+  );
 
   eventFiles.forEach(async (file) => {
-    const event = (await import(curPathJoin('..', 'bot', 'events', file))).default;
+    const event = (await import(curPathJoin('..', 'bot', 'events', file)))
+      .default;
 
     if (event?.once === true) {
       client.once(event.name, (...args) => event.execute(client, ...args));
@@ -74,10 +96,13 @@ export function loadEvents(client: Client): void {
 }
 
 export function loadSubCommand(client: Client, path: string): void {
-  const subCommandFiles = readdirSync(path).filter((file) => file.endsWith('.ts'));
+  const subCommandFiles = readdirSync(path).filter((file) =>
+    file.endsWith('.ts'),
+  );
 
   subCommandFiles.forEach(async (file) => {
-    const subcommand = (await import(`${path}/${file}`)).default as SlashCommandSubCommandOptions;
+    const subcommand = (await import(`${path}/${file}`))
+      .default as SlashCommandSubCommandOptions;
 
     client.subCommands.set(subcommand.name, subcommand);
   });

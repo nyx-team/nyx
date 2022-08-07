@@ -12,7 +12,9 @@ export default {
   category: 'Other',
   async execute(message, args) {
     const member = args?.[0]
-      ? await message.guild.members.fetch(args[0]).catch(() => message.mentions.members.first())
+      ? await message.guild.members
+        .fetch(args[0])
+        .catch(() => message.mentions.members.first())
       : message.member;
 
     const embed = new EmbedBuilder()

@@ -20,7 +20,8 @@ export default {
 
     try {
       const bannedUser = await message.guild.members.ban(targetUser, {
-        reason: reason != null ? `Banned by: ${message.author.tag} ${reason}` : null,
+        reason:
+          reason != null ? `Banned by: ${message.author.tag} ${reason}` : null,
       });
 
       const embed = new EmbedBuilder()
@@ -29,7 +30,10 @@ export default {
           iconURL: message.author.displayAvatarURL(),
         })
         // @ts-ignore
-        .addField('Target', `${bannedUser.user?.tag ?? bannedUser.tag ?? bannedUser}`)
+        .addField(
+          'Target',
+          `${bannedUser.user?.tag ?? bannedUser.tag ?? bannedUser}`,
+        )
         .setTimestamp()
         .setColor('BLURPLE');
 

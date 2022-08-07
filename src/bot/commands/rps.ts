@@ -25,14 +25,20 @@ const RPS_BEATS = {
 };
 
 type validSelections = 'rock' | 'paper' | 'scissors';
-const isWinner = (s1: validSelections, s2: validSelections): boolean => RPS_BEATS[s1].beats === s2;
+const isWinner = (s1: validSelections, s2: validSelections): boolean =>
+  RPS_BEATS[s1].beats === s2;
 
 export default {
   name: 'rps',
   data: new SlashCommandBuilder()
     .setName('rps')
     .setDescription('Play rock paper scissors')
-    .addUserOption((option) => option.setName('enemy').setDescription('the Player to battle with').setRequired(true)),
+    .addUserOption((option) =>
+      option
+        .setName('enemy')
+        .setDescription('the Player to battle with')
+        .setRequired(true),
+    ),
 
   async execute(interaction, options: CommandInteractionOptionResolver) {
     const enemy = options.getUser('enemy');
@@ -41,18 +47,32 @@ export default {
     let enemySelection: validSelections;
 
     // #region Buttons and Row
-    const rock = new ButtonBuilder().setCustomId('rock').setLabel('✊').setStyle(ButtonStyle.Success);
+    const rock = new ButtonBuilder()
+      .setCustomId('rock')
+      .setLabel('✊')
+      .setStyle(ButtonStyle.Success);
 
-    const paper = new ButtonBuilder().setCustomId('paper').setLabel('✋').setStyle(ButtonStyle.Success);
+    const paper = new ButtonBuilder()
+      .setCustomId('paper')
+      .setLabel('✋')
+      .setStyle(ButtonStyle.Success);
 
-    const scissors = new ButtonBuilder().setCustomId('scissors').setLabel('✌️').setStyle(ButtonStyle.Success);
+    const scissors = new ButtonBuilder()
+      .setCustomId('scissors')
+      .setLabel('✌️')
+      .setStyle(ButtonStyle.Success);
 
-    const row = new ActionRowBuilder<ButtonBuilder>().addComponents([rock, paper, scissors]);
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents([
+      rock,
+      paper,
+      scissors,
+    ]);
     // #endregion
 
     // #region Author Selection
     const authorFilter = (i: ButtonInteraction): boolean =>
-      ['rock', 'paper', 'scissors'].includes(i.customId) && i.user.id === interaction.user.id;
+      ['rock', 'paper', 'scissors'].includes(i.customId) &&
+      i.user.id === interaction.user.id;
 
     const startMessage = await interaction.reply({
       content: `${interaction.member} has started an RPS battle with ${enemy}!\n${interaction.member} it's time for you to pick!`,
@@ -94,7 +114,8 @@ export default {
       });
 
       const enemyFilter = (i: ButtonInteraction): boolean =>
-        ['rock', 'paper', 'scissors'].includes(i.customId) && i.user.id === enemy.id;
+        ['rock', 'paper', 'scissors'].includes(i.customId) &&
+        i.user.id === enemy.id;
       const enemyCollector = enemyPickMSG.createMessageComponentCollector({
         // @ts-ignore
         filter: enemyFilter,

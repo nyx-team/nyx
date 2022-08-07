@@ -15,8 +15,9 @@ export default {
   async execute(message, args) {
     // @ts-ignore
     // eslint-disable-next-line
-    const disabledCommandsList = (await DisabledCommandsSchema.findById(message.guild.id))
-      ?.disabledCommands! as Array<string>;
+    const disabledCommandsList = (
+      await DisabledCommandsSchema.findById(message.guild.id)
+    )?.disabledCommands! as Array<string>;
 
     if (args[0] === 'list') {
       const embed = new EmbedBuilder()
@@ -59,7 +60,9 @@ And so on...
     const disabledCommands = [];
     for await (let command of commands) {
       command = command.replaceAll('"', '');
-      const actualCommand = message.client.legacyCommands.find((v) => v.name === command);
+      const actualCommand = message.client.legacyCommands.find(
+        (v) => v.name === command,
+      );
 
       if (!actualCommand) continue;
       if (disabledCommandsList?.includes?.(actualCommand.name)) continue;
@@ -83,7 +86,9 @@ And so on...
     }
 
     await message.reply({
-      content: `:white_check_mark: **Disabled commands:** ${disabledCommands.join(', ')}`,
+      content: `:white_check_mark: **Disabled commands:** ${disabledCommands.join(
+        ', ',
+      )}`,
     });
   },
 } as CommandOptions;

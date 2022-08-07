@@ -30,8 +30,9 @@ And so on...
 
     // @ts-ignore
     // eslint-disable-next-line
-    const disabledCommandsList = (await DisabledCommandsSchema.findById(message.guild.id))
-      ?.disabledCommands! as Array<string>;
+    const disabledCommandsList = (
+      await DisabledCommandsSchema.findById(message.guild.id)
+    )?.disabledCommands! as Array<string>;
 
     const enabledCommands = [];
     for await (let command of commands) {
@@ -57,7 +58,9 @@ And so on...
     }
 
     await message.reply({
-      content: `:white_check_mark: **Enabled commands:** ${enabledCommands.join(', ')}`,
+      content: `:white_check_mark: **Enabled commands:** ${enabledCommands.join(
+        ', ',
+      )}`,
     });
   },
 } as CommandOptions;

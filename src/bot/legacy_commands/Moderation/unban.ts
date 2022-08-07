@@ -49,7 +49,9 @@ export default {
     }
     catch (err) {
       if (err instanceof DiscordAPIError) {
-        const apiError = new EmbedBuilder().setColor('Red').setDescription(`:x: Got API Error!\n\`${err.message}\``);
+        const apiError = new EmbedBuilder()
+          .setColor('Red')
+          .setDescription(`:x: Got API Error!\n\`${err.message}\``);
 
         await message.reply({
           embeds: [apiError],

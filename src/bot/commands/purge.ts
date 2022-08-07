@@ -8,7 +8,10 @@ export default {
     .setName('purge')
     .setDescription('Purges messages / Bulk deletes messages')
     .addNumberOption((option) =>
-      option.setName('amount').setDescription('Amount of messages you want to be deleted').setRequired(true),
+      option
+        .setName('amount')
+        .setDescription('Amount of messages you want to be deleted')
+        .setRequired(true),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 

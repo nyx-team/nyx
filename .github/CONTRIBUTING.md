@@ -81,7 +81,6 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 
 These can also be used when something has been added.
 
-
 #### Commit Message Body
 
 An explanation for the changes made. Explain why you are making the change.

@@ -11,12 +11,19 @@ import { SlashCommandOptions } from '../typings';
  *
  * @param {boolean} dev - If it should be deployed on the dev bot
  */
-export default async function deployCommands(token: string, clientId: Snowflake): Promise<void> {
+export default async function deployCommands(
+  token: string,
+  clientId: Snowflake,
+): Promise<void> {
   const commands = [];
-  const commandFiles = readdirSync(join(__dirname, '..', 'bot', 'commands')).filter((file) => file.endsWith('.ts'));
+  const commandFiles = readdirSync(
+    join(__dirname, '..', 'bot', 'commands'),
+  ).filter((file) => file.endsWith('.ts'));
 
   for (const file of commandFiles) {
-    const { data } = (await import(join(__dirname, '..', 'bot', 'commands', file))).default as SlashCommandOptions;
+    const { data } = (
+      await import(join(__dirname, '..', 'bot', 'commands', file))
+    ).default as SlashCommandOptions;
 
     commands.push(data.toJSON());
   }

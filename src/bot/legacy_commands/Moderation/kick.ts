@@ -14,8 +14,11 @@ export default {
   category: 'Moderation',
 
   async execute(message: Message, args: Array<string>) {
-    const member = message.mentions.members.first() ?? (message.guild.members.cache.get(args[0]) as GuildMember);
-    const reason = args.length > 1 ? args.slice(1, args.length).join(' ') : 'None';
+    const member =
+      message.mentions.members.first() ??
+      (message.guild.members.cache.get(args[0]) as GuildMember);
+    const reason =
+      args.length > 1 ? args.slice(1, args.length).join(' ') : 'None';
 
     if (!member.kickable) {
       await message.reply({

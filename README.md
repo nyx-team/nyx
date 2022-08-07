@@ -1,4 +1,6 @@
 <div align="center">
+  <img alt="YesNyx_512" src="https://user-images.githubusercontent.com/55540586/183291513-7f72c37d-f578-4dbe-acd5-fd559e248547.png" height="256px">
+  <br />
   <a href="https://discord.gg/YNppjePpje">
     <img alt="Discord" src="https://img.shields.io/discord/960537938809200650?label=support%20server&logo=discord">
    </a>

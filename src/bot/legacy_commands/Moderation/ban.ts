@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js';
+import { Colors, EmbedBuilder } from 'discord.js';
 import { CommandOptions } from '../../../typings';
 
 export default {
@@ -29,15 +29,15 @@ export default {
           name: `User banned by ${message.author.tag}`,
           iconURL: message.author.displayAvatarURL(),
         })
-        // @ts-ignore
-        .addField(
-          'Target',
-          `${bannedUser.user?.tag ?? bannedUser.tag ?? bannedUser}`,
-        )
+        .addFields({
+          name: 'Target',
+          // @ts-ignore
+          value: `${bannedUser.user?.tag ?? bannedUser.tag ?? bannedUser}`,
+        })
         .setTimestamp()
-        .setColor('BLURPLE');
+        .setColor(Colors.Blurple);
 
-      if (reason) embed.addField('Reason', `${reason}`);
+      if (reason) embed.addFields({ name: 'Reason', value: `${reason}` });
 
       await message.reply({
         embeds: [embed],

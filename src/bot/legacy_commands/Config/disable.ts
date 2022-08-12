@@ -13,9 +13,9 @@ export default {
 
   category: 'Config',
   async execute(message, args) {
-    // @ts-ignore
     // eslint-disable-next-line
     const disabledCommandsList = (
+      // @ts-ignore
       await DisabledCommandsSchema.findById(message.guild.id)
     )?.disabledCommands! as Array<string>;
 

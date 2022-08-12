@@ -28,9 +28,9 @@ And so on...
       return;
     }
 
-    // @ts-ignore
     // eslint-disable-next-line
     const disabledCommandsList = (
+      // @ts-ignore
       await DisabledCommandsSchema.findById(message.guild.id)
     )?.disabledCommands! as Array<string>;
 

@@ -10,13 +10,17 @@ export default {
     .setDescription('Sends a random dad joke.'),
 
   async execute(interaction) {
-    const DadJoke = (await request('https://icanhazdadjoke.com/', {
-      headers: { accept: 'application/json' },
-    })).body.json();
+    await interaction.deferReply();
 
-    await interaction.reply({
+    const Response = await request('https://icanhazdadjoke.com/', {
+      headers: { Accept: 'text/plain' },
+      method: 'GET',
+    });
+    const DadJoke = await Response.body.text();
+
+    await interaction.editReply({
       // @ts-ignore
-      content: DadJoke.joke,
+      content: DadJoke,
     });
   },
 } as SlashCommandOptions;

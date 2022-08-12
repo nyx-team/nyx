@@ -44,9 +44,9 @@ export default {
       );
     if (!commands) return;
 
-    // @ts-ignore
     // eslint-disable-next-line
     const disabledCommands = (
+      // @ts-ignore
       await DisabledCommandsSchema.findById(message.guild.id)
     )?.disabledCommands! as Array<string>;
     if (disabledCommands && disabledCommands.includes(command)) return;

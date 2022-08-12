@@ -52,8 +52,8 @@ export default {
       ['high', 'low'].includes(i.customId) && i.user.id === interaction.user.id;
 
     // A collector for the Buttons, only lasts for 15 seconds
-    // @ts-ignore
     const collector = interaction.channel.createMessageComponentCollector({
+      // @ts-ignore
       filter,
       time: 1000 * 10,
     });

@@ -14,7 +14,8 @@
         "perf",
         "refactor",
         "revert",
-        "test"
+        "test",
+        "style"
       ]
     ],
     "scope-case": [0]

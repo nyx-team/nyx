@@ -72,6 +72,7 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - **perf:** Changes that improves performance
 - **refactor:** A code change that neither fixes a bug nor adds a feature
 - **test:** Adding missing tests or correcting existing tests
+- **style:** Changes the coding style (e.g. prettier, ESLint)
 
 #### Scopes
 

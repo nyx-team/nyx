@@ -35,7 +35,7 @@
     "@discordjs/rest": "^1.0.0",
     "bufferutil": "^4.0.6",
     "chalk": "4.1.2",
-    "discord.js": "^14.1.1",
+    "discord.js": "^14.2.0",
     "erlpack": "github:discord/erlpack",
     "moment": "^2.29.4",
     "mongoose": "^6.4.4",

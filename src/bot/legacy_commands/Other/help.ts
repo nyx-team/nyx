@@ -11,63 +11,36 @@ export default {
   minArgs: 1,
   args: '<command name>',
   async customArgError(message) {
-    const FunCommands = message.client.legacyCommands
-      .filter((v) => v.category === 'Fun')
-      .map((cmd) => cmd.name);
-    const ModerationCommands = message.client.legacyCommands
-      .filter((v) => v.category === 'Moderation')
-      .map((cmd) => cmd.name);
-    const OtherCommands = message.client.legacyCommands
-      .filter((v) => v.category === 'Other')
-      .map((cmd) => cmd.name);
-    const ConfigCommands = message.client.legacyCommands
-      .filter((v) => v.category === 'Config')
-      .map((cmd) => cmd.name);
+    const Categories = {};
+
+    message.client.legacyCommands.forEach((command) =>
+      Array.isArray(Categories[command.category])
+        ? Categories[command.category].push(command.name)
+        : (Categories[command.category] = [command.name]),
+    );
 
     const embed = new EmbedBuilder()
       .setAuthor({
         name: 'Nyx (JS) Commands',
         iconURL: message.client.user.displayAvatarURL(),
       })
-      .addFields([
-        {
-          name: 'Fun',
-          value: `
-\`\`\`
-${FunCommands.join(', ')}
-\`\`\`
-                `,
-        },
-        {
-          name: 'Moderation',
-          value: `
-\`\`\`
-${ModerationCommands.join(', ')}
-\`\`\`
-                `,
-        },
-        {
-          name: 'Other',
-          value: `
-\`\`\`
-${OtherCommands.join(', ')}
-\`\`\`
-                `,
-        },
-        {
-          name: 'Configuration',
-          value: `
-\`\`\`
-${ConfigCommands.join(', ')}
-\`\`\`
-                `,
-        },
-      ])
       .setColor('Blurple')
       .setTimestamp()
       .setFooter({
         text: 'Nyx JavaScript Branch',
       });
+
+    for (const key in Categories) {
+      const Category = Categories[key];
+      embed.addFields({
+        name: key,
+        value: `
+\`\`\`
+${Category.join(', ')}
+\`\`\`
+`,
+      });
+    }
 
     await message.reply({
       content: ':x: **Not enough arguments passed!**',
@@ -99,9 +72,15 @@ ${ConfigCommands.join(', ')}
       .setColor(0x6666ff)
       .addFields([{ name: 'Description', value: description }]);
 
-    if (command.aliases) {embed.addFields([{ name: 'Aliases', value: command.aliases.join(', ') }]);}
-    if (command.args) {embed.addFields([{ name: 'Args', value: `\`${command.args}\`` }]);}
-    if (command.category) {embed.addFields([{ name: 'Category', value: command.category }]);}
+    if (command.aliases) {
+      embed.addFields([{ name: 'Aliases', value: command.aliases.join(', ') }]);
+    }
+    if (command.args) {
+      embed.addFields([{ name: 'Args', value: `\`${command.args}\`` }]);
+    }
+    if (command.category) {
+      embed.addFields([{ name: 'Category', value: command.category }]);
+    }
     if (command.author) {
       const nyxGithub = 'https://github.com/nyx-team/nyx';
 

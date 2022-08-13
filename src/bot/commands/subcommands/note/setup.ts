@@ -20,8 +20,8 @@ export default {
 
     const channel = options.getChannel('channel', false);
     if (!channel) {
-      // @ts-ignore
       const currentNoteChannelId = (
+        // @ts-ignore
         await ServerNotesSchema.findById(interaction.guild.id)
       )?.channelId;
       const currentNoteChannel = currentNoteChannelId

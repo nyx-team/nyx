@@ -61,7 +61,7 @@ export interface SlashCommandOptions {
   subcommands: Array<string>;
 
   execute?(
-    interaction: CommandInteraction,
+    interaction: CommandInteraction<'cached'>,
     options?: CommandInteractionOptionResolver,
   ): Promise<void>;
 }
@@ -69,7 +69,7 @@ export interface SlashCommandOptions {
 export interface SlashCommandSubCommandOptions {
   name: string;
   execute(
-    interaction: CommandInteraction,
+    interaction: CommandInteraction<'cached'>,
     options?: CommandInteractionOptionResolver,
   ): Promise<unknown>;
 }

@@ -1,8 +1,7 @@
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-import { REST } from '@discordjs/rest';
-import { Snowflake, Routes } from 'discord.js';
+import { Snowflake, Routes, REST } from 'discord.js';
 
 import { SlashCommandOptions } from '../typings';
 

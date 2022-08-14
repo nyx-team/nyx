@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
 import {
   ButtonInteraction,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  SlashCommandBuilder,
 } from 'discord.js';
 import { SlashCommandOptions } from '../../typings';
 

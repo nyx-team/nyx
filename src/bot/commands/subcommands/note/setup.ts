@@ -1,5 +1,6 @@
 import {
   ActionRowBuilder,
+  ButtonBuilder,
   ButtonInteraction,
   ButtonStyle,
   ChannelType,
@@ -11,7 +12,6 @@ import {
 
 import ServerNotesSchema from '../../../models/ServerNotesSchema';
 import { SlashCommandSubCommandOptions } from '../../../../typings';
-import { ButtonBuilder } from '@discordjs/builders';
 
 export default {
   name: 'setup',

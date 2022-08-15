@@ -1,10 +1,12 @@
 import { Message, EmbedBuilder, MessageOptions } from 'discord.js';
 
+import { Bot } from '../bot/bot';
 import { CommandOptions } from '../typings';
 import { PermissionsReadable } from './Constants';
 
 export default async function validateCommand(
   message: Message,
+  bot: Bot,
   command: CommandOptions,
   args: Array<string>,
   prefix: string,
@@ -53,7 +55,7 @@ export default async function validateCommand(
     }
 
     if (typeof command?.customArgError === 'function') {
-      await command?.customArgError(message, message.client);
+      await command?.customArgError(message, bot);
       return false;
     }
   }

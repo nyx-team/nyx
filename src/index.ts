@@ -1,7 +1,7 @@
 import { Config } from './typings';
 
 // Client
-export { client } from './bot/bot';
+export { Bot } from './bot/bot';
 
 // Utils
 import * as Util from './utils/Util';

@@ -10,10 +10,10 @@ export default {
 
   minArgs: 1,
   args: '<command name>',
-  async customArgError(message) {
+  async customArgError(message, client) {
     const Categories = {};
 
-    message.client.legacyCommands.forEach((command) =>
+    client.legacyCommands.forEach((command) =>
       Array.isArray(Categories[command.category])
         ? Categories[command.category].push(command.name)
         : (Categories[command.category] = [command.name]),

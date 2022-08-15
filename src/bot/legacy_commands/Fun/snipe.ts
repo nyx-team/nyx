@@ -7,8 +7,8 @@ export default {
 
   category: 'Fun',
 
-  async execute(message: Message) {
-    const msg = message.client.snipedMessages.get(message.channel.id);
+  async execute(message: Message, _, client) {
+    const msg = client.snipedMessages.get(message.channel.id);
 
     if (!msg) {
       message.reply({

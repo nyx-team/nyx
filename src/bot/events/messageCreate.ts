@@ -53,6 +53,7 @@ export default {
 
     const isCommandValid = await validateCommand(
       message,
+      client,
       commands,
       args,
       prefix,
@@ -63,7 +64,7 @@ export default {
     }
     if (!isCommandValid) return;
 
-    const cooldown = message.client.cooldowns.get(commands.name);
+    const cooldown = client.cooldowns.get(commands.name);
 
     if (cooldown?.has(message.author.id)) {
       const cooldownTime = cooldown.get(message.author.id);

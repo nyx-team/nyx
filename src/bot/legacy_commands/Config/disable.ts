@@ -12,7 +12,7 @@ export default {
   reqPerms: ['ManageGuild'],
 
   category: 'Config',
-  async execute(message, args) {
+  async execute(message, args, client) {
     // eslint-disable-next-line
     const disabledCommandsList = (
       // @ts-ignore
@@ -60,7 +60,7 @@ And so on...
     const disabledCommands = [];
     for await (let command of commands) {
       command = command.replaceAll('"', '');
-      const actualCommand = message.client.legacyCommands.find(
+      const actualCommand = client.legacyCommands.find(
         (v) => v.name === command,
       );
 

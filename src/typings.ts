@@ -1,13 +1,14 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
 import {
-  Client,
   ClientEvents,
   CommandInteraction,
   CommandInteractionOptionResolver,
   Message,
   PermissionsString,
+  SlashCommandBuilder,
   Snowflake,
 } from 'discord.js';
+
+import { Bot } from './bot/bot';
 
 export type Config = {
   token: string;
@@ -35,14 +36,14 @@ export interface CommandOptions {
   botReqPerms?: Array<PermissionsString>;
   permissionError?(message: Message, args?: Array<string>): Promise<void>;
 
-  customArgError?(message: Message, client: Client): Promise<void>;
+  customArgError?(message: Message, client: Bot): Promise<void>;
 
   cooldown?: number;
   category: CategoryOptions;
   execute(
     message: Message,
     args?: Array<string>,
-    client?: Client<true>,
+    client?: Bot,
   ): Promise<void>;
 }
 
@@ -50,7 +51,7 @@ export interface EventOptions<K extends keyof ClientEvents> {
   name: string;
   once?: boolean;
 
-  execute(client?: Client, ...args: ClientEvents[K]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  execute(bot?: Bot, ...args: ClientEvents[K]): Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export interface SlashCommandOptions {

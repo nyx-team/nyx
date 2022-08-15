@@ -1,4 +1,4 @@
-import { client, config, Util, ClientLog } from './index';
+import { Bot, config, Util, ClientLog } from './index';
 
 import deployCommands from './utils/deployCommands';
 
@@ -22,7 +22,8 @@ export default function run(args: Array<string>): void {
   }
 
   try {
-    Util.loadEvents(client);
+    const bot = new Bot();
+    Util.loadEvents(bot);
 
     // like:
     // ts-node index.ts --dev
@@ -32,10 +33,10 @@ export default function run(args: Array<string>): void {
       ClientLog.INFO('Detected dev mode (`-D` or `--dev` flag)');
       ClientLog.INFO('Logging in using Development Token!');
 
-      client.login(config?.devToken);
+      bot.login(config?.devToken);
     }
     else {
-      client.login(config.token);
+      bot.login(config.token);
     }
 
     ClientLog.INFO('Successfully logged in to the Bot');

@@ -20,7 +20,7 @@ export default {
     const reason = args.join(' ') ?? null;
 
     try {
-      const user = (await message.guild.members.kick(
+      const user = (await message.guild.members.unban(
         userTarget,
         reason ? `Unbanned by: ${message.author.tag} ${reason}` : null,
       )) as User;
